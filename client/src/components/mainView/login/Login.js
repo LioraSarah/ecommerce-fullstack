@@ -13,13 +13,9 @@ export function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const loginAPI = axios.create({
-        baseURL: "https://ecommerce-server-9r5x.onrender.com"
-    });
-
     const loginUser = async (user) => {
         try {
-            const response = await loginAPI.post("/login", user);
+            const response = await axios.post("/login", user);
             dispatch(setUser(response.data));
             dispatch(setAuthenticated(true));
             return response;

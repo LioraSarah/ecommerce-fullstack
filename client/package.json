@@ -1,7 +1,7 @@
 {
   "name": "ecommerce",
   "version": "0.1.0",
-  "proxy": "https://ecommerce-server-9r5x.onrender.com",
+  "proxy": "https://localhost:4000",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.2",

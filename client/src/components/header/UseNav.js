@@ -15,7 +15,7 @@ export const UserNav = () => {
 
     const logoutUser = async () => {
         try {
-            const response = await axios.delete("https://ecommerce-server-ob3d.onrender.com/logout");
+            const response = await axios.delete("/logout");
             dispatch(logOut());
             return response;
         } catch (err) {

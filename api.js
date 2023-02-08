@@ -10,8 +10,15 @@ const initializePassport = require("./backend/api/passport-config");
 const bcrypt = require('bcrypt');
 const corsOptions = require('./backend/config/corsOptions');
 
+const path = require("path");
+const PORT = process.env.PORT || 4000;
+
 var cors = require('cors');
 app.use(cors(corsOptions));
+
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "client/build")));
+}
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -115,8 +122,12 @@ app.delete("/cart", async (req, res) => {
     const response = cart.deleteItem(itemInfo);
 });
 
-app.listen(process.env.PORT || 4000, () => {
-    console.log("Server is now listening at port 4000");
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client/build/index.html"));
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is now listening at port ${PORT}`);
 });
 
 

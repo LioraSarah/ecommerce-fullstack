@@ -23,7 +23,7 @@ export const Cart = () => {
     refetch
   } = useQuery(["cart"], async () => {
     if (userId) {
-      const res = await axios.get("https://ecommerce-server-9r5x.onrender.com/cart", { params: { userId: userId } });
+      const res = await axios.get("/cart", { params: { userId: userId } });
       return res.data;
     }
   },
@@ -40,7 +40,7 @@ export const Cart = () => {
 
   const removeItemFromDB = async (itemInfo) => {
     try {
-      const response = await axios.delete("https://ecommerce-server-9r5x.onrender.com/cart", { data: itemInfo });
+      const response = await axios.delete("/cart", { data: itemInfo });
       alert("The remove was successful!");
       return response;
     } catch (err) {

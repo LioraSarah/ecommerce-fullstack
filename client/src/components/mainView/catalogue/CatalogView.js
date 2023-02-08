@@ -23,7 +23,7 @@ export function CatalogueView() {
     status,
     refetch
   } = useQuery(["products"], async () => {
-    const res = await axios.get("https://ecommerce-server-9r5x.onrender.com/catalogue", { params: { category: category } });
+    const res = await axios.get("/catalogue", { params: { category: category } });
     return res.data;
   },
   {

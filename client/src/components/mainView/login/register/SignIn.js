@@ -8,13 +8,10 @@ import "./signIn.css";
 
 export function SignIn() {
     const navigate = useNavigate();
-    const registerAPI = axios.create({
-        baseURL: "https://ecommerce-server-9r5x.onrender.com"
-    });
 
     const addUser = async (user) => {
         try {
-            const response = await registerAPI.post("/register", user);
+            const response = await axios.post("/register", user);
             alert("The registration was successful!");
             return response;
         } catch (err) {
