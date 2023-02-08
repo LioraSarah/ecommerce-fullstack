@@ -1,0 +1,36 @@
+.list-general {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.main-button {
+    background-color: #7FACFA;
+    color: white;
+    text-transform: uppercase;
+    border: 0;
+}
+
+NavLink {
+    color: white;
+}
+
+main {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#footer-div {
+    width: 100%;
+    background-color: rgb(155, 190, 251);
+    height: 50px;
+
+}

@@ -1,0 +1,44 @@
+#login-view {
+    width: 30%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+#login-h2 {
+    text-align: center;
+    font-weight: 900;
+    color: #7FACFA;
+}
+
+#signup-link {
+    color: rgb(222, 139, 171);
+    font-weight: 600;
+}
+
+#signup-p {
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+#login-button {
+    padding: 13px 43px;
+}
+
+.input-general {
+    text-align: center;
+    padding: 8px 0;
+    width: 100%;
+}
+
+#email {
+    margin-bottom: 15px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
