@@ -2,14 +2,12 @@
 
 -- DROP TABLE IF EXISTS public.cart;
 
-CREATE TABLE IF NOT EXISTS public.cart
-(
-    id integer NOT NULL DEFAULT nextval('cart_id_seq'::regclass),
+CREATE TABLE cart(
+    id SERIAL PRIMARY KEY NOT NULL,
     user_id integer NOT NULL,
     product_id integer NOT NULL,
-    quantity integer NOT NULL,
-    CONSTRAINT cart_pkey PRIMARY KEY (id)
-)
+    quantity integer NOT NULL
+);
 
 TABLESPACE pg_default;
 
