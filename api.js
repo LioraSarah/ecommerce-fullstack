@@ -74,6 +74,7 @@ app.post("/login", passport.authenticate('local', {
 app.get("/user", (err, res, req, next)=>{
     console.log("user:");
         console.log(req.user);
+        res.status(200).send('check');
     if (req.user) {
         console.log("user:");
         console.log(req.user);
