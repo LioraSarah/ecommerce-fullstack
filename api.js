@@ -10,6 +10,7 @@ const cart = require("./backend/api/db-cart");
 const initializePassport = require("./backend/api/passport-config");
 const bcrypt = require('bcrypt');
 const corsOptions = require('./backend/config/corsOptions');
+const cookieParser = require('cookie-parser');
 
 const path = require("path");
 const PORT = process.env.PORT || 4000;
@@ -23,6 +24,7 @@ if (process.env.NODE_ENV === "production") {
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 
 // app.use(cookieSession({
 //     maxAge: 1000 * 60 * 60 * 24,
@@ -33,14 +35,18 @@ initializePassport(passport);
 
 app.use(
     session({
-        secret: "SESSION_SECRET",
+        secret: process.env.SECRET,
+        cookie: {
+            maxAge: 1000 * 60 * 60 * 24,
+            secure: true,
+        },
         resave: false,
         saveUninitialized: false,
         store
     })
 );
 
-process.env.SECRET = "SESSION_SECRET";
+app.use(cookieParser(process.env.SECRET));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -64,6 +70,19 @@ app.post("/login", passport.authenticate('local', {
     }
     res.status(200).send(user);
 });
+
+app.get("/user", (res,req)=>{
+    let user = null;
+    if (req.user) {
+        user = {
+            id: req.user.id,
+            firstName: req.user.first_name,
+            lastName: req.user.last_name,
+            email: req.user.email
+        }
+    };
+    res.status(200).send(user);
+})
 
 app.delete("/logout", (req, res, next) => {
     req.logOut((err) => {
