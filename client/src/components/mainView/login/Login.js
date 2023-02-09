@@ -16,7 +16,7 @@ export function Login() {
 
     const loginUser = async (user) => {
         try {
-            const response = await axios.post("/login", user);
+            const response = await axios.post("/login", user, { withCredentials: true });
             dispatch(setUser(response.data));
             dispatch(setAuthenticated(true));
             return response;
