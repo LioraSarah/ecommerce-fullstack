@@ -29,8 +29,10 @@ function App() {
       console.log("in auth");
       console.log(response);
       if (response.data) {
-        dispatch(setUser(response.data));
-        dispatch(setAuthenticated(true));
+        console.log('sucsses');
+        console.log(response.data);
+        // dispatch(setUser(response.data));
+        // dispatch(setAuthenticated(true));
       }
     } catch (error) {
       console.log(error);
