@@ -73,6 +73,8 @@ app.post("/login", passport.authenticate('local', {
 
 app.get("/user", (err, res, req, next)=>{
     if (req.user) {
+        console.log("user:");
+        console.log(req.user);
         const user = {
             id: req.user.id,
             firstName: req.user.first_name,
