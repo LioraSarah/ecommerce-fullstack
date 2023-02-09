@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const session = require("express-session");
+// const cookieSession = require("cookie-session");
 const store = new session.MemoryStore();
 const passport = require("passport");
 const login = require("./backend/api/db-login");
@@ -23,15 +24,16 @@ if (process.env.NODE_ENV === "production") {
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
+// app.use(cookieSession({
+//     maxAge: 1000 * 60 * 60 * 24,
+//     keys: [process.env.COOKIE_KEY]
+// }));
+
 initializePassport(passport);
 
 app.use(
     session({
         secret: "SESSION_SECRET",
-        cookie: {
-            maxAge: 1000 * 60 * 60 * 24,
-            secure: true,
-        },
         resave: false,
         saveUninitialized: false,
         store

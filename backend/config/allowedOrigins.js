@@ -1,5 +1,5 @@
 const allowedOrigins = [
-    'https://knitlove.onrender.com'
+    'https://knitlove.herokuapp.com'
 ];
 
 module.exports = allowedOrigins;
