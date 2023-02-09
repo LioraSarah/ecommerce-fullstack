@@ -40,8 +40,8 @@ app.use(
             maxAge: 1000 * 60 * 60 * 24,
             secure: true,
         },
-        resave: false,
-        saveUninitialized: false,
+        resave: true,
+        saveUninitialized: true,
         store
     })
 );
