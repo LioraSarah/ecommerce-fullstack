@@ -71,8 +71,9 @@ app.post("/login", passport.authenticate('local', {
     res.status(200).send(user);
 });
 
-app.get("/user", (res, req, next)=>{
-    res.status(200).send(req.user);
+app.get("/user", (err, res, req, next)=>{
+    const user = req.user;
+    res.status(200).send(user);
 });
 
 app.delete("/logout", (req, res, next) => {
