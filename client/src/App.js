@@ -25,7 +25,7 @@ function App() {
 
   const authUser = async () => {
     try {
-      const response = await axios.get("/getuser", { credentials: 'include' });
+      const response = await axios.get("/getuser", { withCredentials: true });
       console.log("in auth");
       console.log(response);
       if (response.data) {

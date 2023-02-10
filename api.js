@@ -46,7 +46,7 @@ app.use(
     })
 );
 
-app.use(cookieParser('sessionsecret'));
+//app.use(cookieParser('sessionsecret'));
 
 app.use(passport.initialize());
 app.use(passport.session());
