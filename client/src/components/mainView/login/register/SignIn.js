@@ -11,7 +11,7 @@ export function SignIn() {
 
     const addUser = async (user) => {
         try {
-            const response = await axios.post("/register", user, { withCredentials: true });
+            const response = await axios.post("/register", user, { credentials: 'include' });
             alert("The registration was successful!");
             return response;
         } catch (err) {
