@@ -28,8 +28,7 @@ export function Login() {
         } catch (err) {
             console.log(err);
             return err;
-        }
-        
+        }  
     };
 
     const addUserMutation = useMutation(loginUser);
