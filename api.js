@@ -77,8 +77,9 @@ app.get("/user", (req, res)=>{
             email: req.user.email
         }
         res.status(200).send(user);
+    } else {
+        res.status(200).send();
     }
-    res.status(200).send();
 });
 
 app.delete("/logout", (req, res, next) => {
