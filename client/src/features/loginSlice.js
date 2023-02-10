@@ -10,6 +10,9 @@ export const userSlice = createSlice({
     isAuthenticated: false
   },
   reducers: {
+    loaduser(state, action) {
+      return(action.payload);
+    },
     setUser(state, action) {
       state.id = action.payload.id;
       state.firstName = action.payload.firstName;
@@ -35,5 +38,5 @@ export const selectLastName = (state) => state.user.lastName;
 export const selectEmail = (state) => state.user.email;
 export const selectIsAuthenticated = (state) => state.user.isAuthenticated;
 
-export const { setUser, setAuthenticated, logOut } = userSlice.actions;
+export const { loaduser, setUser, setAuthenticated, logOut } = userSlice.actions;
 export default userSlice.reducer;
