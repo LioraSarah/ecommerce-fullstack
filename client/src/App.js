@@ -41,9 +41,7 @@ function App() {
   }
 
   useEffect(()=>{
-    if (userId) {
-      authUser();
-    }
+    authUser();
   });
 
   return (
