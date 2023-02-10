@@ -54,7 +54,9 @@ app.get("/login", (req, res) => {
     res.send("Oh no!");
 });
 
-app.post("/login", passport.authenticate('local'), (req, res) => {
+app.post("/login", passport.authenticate('local', {
+    failureRedirect: "/login"
+}), (req, res) => {
     if (req.user) {
         const user = {
             id: req.user.id,
