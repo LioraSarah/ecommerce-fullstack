@@ -17,7 +17,7 @@ export function Login() {
     const loginUser = async (user) => {
         try {
             const response = await axios({
-                method: "post",
+                method: "POST",
                 data: user,
                 withCredentials: true,
                 url: "/login"

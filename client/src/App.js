@@ -26,7 +26,7 @@ function App() {
   const authUser = async () => {
     try {
       const response = await axios({
-        method: "get",
+        method: "GET",
         withCredentials: true,
         url: "/user"
       });
