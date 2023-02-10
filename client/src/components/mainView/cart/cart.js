@@ -23,6 +23,8 @@ export const Cart = () => {
     refetch
   } = useQuery(["cart"], async () => {
     if (userId) {
+      console.log("in cart");
+      console.log(userId);
       const res = await axios.get("/cart", { params: { userId: userId } });
       return res.data;
     }

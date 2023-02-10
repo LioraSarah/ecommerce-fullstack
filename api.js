@@ -78,6 +78,7 @@ app.get("/user", (req, res)=>{
         }
         res.status(200).send(user);
     }
+    res.status(200).send();
 });
 
 app.delete("/logout", (req, res, next) => {
