@@ -36,7 +36,6 @@ export const Cart = () => {
   console.log("cart");
 
   useEffect(() => {
-    dispatch(loaduser());
     refetch();
     dispatch(loadCart());
   }
