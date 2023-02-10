@@ -41,12 +41,11 @@ app.use(
             secure: true,
         },
         resave: true,
-        saveUninitialized: true,
-        store
+        saveUninitialized: true
     })
 );
 
-//app.use(cookieParser('sessionsecret'));
+app.use(cookieParser('sessionsecret'));
 
 app.use(passport.initialize());
 app.use(passport.session());
