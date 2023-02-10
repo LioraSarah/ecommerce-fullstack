@@ -27,7 +27,7 @@ export function Login() {
             return response;
         } catch (err) {
             console.log(err);
-            throw new Error(err);
+            return err;
         }
         
     };

@@ -8,7 +8,7 @@ function initializePassport (passport) {
         try {
             const user = await login.findUserByMail(username);
             const userPass = await bcrypt.compare(password, user.password);
-            if (!user || !userPass) {
+            if (!user && !userPass) {
                 return done(null, false);
             }
             return done(null, user);
