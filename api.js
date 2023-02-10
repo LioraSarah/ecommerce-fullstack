@@ -67,19 +67,17 @@ app.post("/login", passport.authenticate('local', {
 });
 
 app.get("/user", (req, res)=>{
-    console.log("user:");
-    res.status(200).send('check');
-    // if (req.user) {
-    //     console.log("user:");
-    //     console.log(req.user);
-    //     const user = {
-    //         id: req.user.id,
-    //         firstName: req.user.first_name,
-    //         lastName: req.user.last_name,
-    //         email: req.user.email
-    //     }
-    //     res.status(200).send(user);
-    // }
+    if (req.user) {
+        console.log("user:");
+        console.log(req.user);
+        const user = {
+            id: req.user.id,
+            firstName: req.user.first_name,
+            lastName: req.user.last_name,
+            email: req.user.email
+        }
+        res.status(200).send(user);
+    }
 });
 
 app.delete("/logout", (req, res, next) => {

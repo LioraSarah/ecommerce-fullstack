@@ -30,13 +30,9 @@ function App() {
         withCredentials: true,
         url: "/user"
       });
-      console.log("in auth");
-      console.log(response);
       if (response.data) {
-        console.log('sucsses');
-        console.log(response.data);
-        // dispatch(setUser(response.data));
-        // dispatch(setAuthenticated(true));
+        dispatch(setUser(response.data));
+        dispatch(setAuthenticated(true));
       }
     } catch (error) {
       console.log(error);
