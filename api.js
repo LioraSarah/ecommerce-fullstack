@@ -54,37 +54,19 @@ app.get("/login", (req, res) => {
     res.send("Oh no!");
 });
 
-app.post("/login", (req, res, next) => {
-    passport.authenticate("local", (err, user, info) => {
-      if (err) throw err;
-      if (!user) res.status(400).send("No User Exists");
-      else {
-        req.logIn(user, (err) => {
-          if (err) throw err;
-          const userObj = {
-                        id: req.user.id,
-                        firstName: req.user.first_name,
-                        lastName: req.user.last_name,
-                        email: req.user.email
-                    }
-          res.status(200).send(userObj);
-        });
-      }
-    })(req, res, next);
+app.post("/login", passport.authenticate('local'), (req, res) => {
+    if (req.user) {
+        const user = {
+            id: req.user.id,
+            firstName: req.user.first_name,
+            lastName: req.user.last_name,
+            email: req.user.email
+        }
+        res.status(200).send(user);
+    } else {
+        res.status(400).send();
+    }
 });
-//passport.authenticate('local'), (req, res) => {
-//     if (req.user) {
-//         const user = {
-//             id: req.user.id,
-//             firstName: req.user.first_name,
-//             lastName: req.user.last_name,
-//             email: req.user.email
-//         }
-//         res.status(200).send(user);
-//     } else {
-//         res.status(400).send();
-//     }
-// });
 
 app.get("/user", (req, res)=>{
     if (req.user) {
