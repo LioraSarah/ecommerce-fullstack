@@ -58,6 +58,7 @@ app.post("/login", passport.authenticate('local', {
     failureRedirect: "/login"
 }), (req, res) => {
     if (req.user) {
+        console.log("user yes");
         const user = {
             id: req.user.id,
             firstName: req.user.first_name,
@@ -66,6 +67,7 @@ app.post("/login", passport.authenticate('local', {
         }
         res.status(200).send(user);
     } else {
+        console.log("user no");
         res.status(400).send();
     }
 });
