@@ -27,7 +27,7 @@ export function Login() {
             return response;
         } catch (err) {
             console.log(err);
-            return err;
+            throw new Error(err);
         }
         
     };
@@ -41,6 +41,7 @@ export function Login() {
             addUserMutation.mutate(data);
             navigate('/');
         } catch (err) {
+            alert("There was a problem with your log-in")
             console.log("the error is - " + err);
         }
     };
