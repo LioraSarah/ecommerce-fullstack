@@ -116,7 +116,7 @@ app.get("/catalogue", async (req, res) => {
     }
 });
 
-app.post("/cart", async (req, res) => {
+app.post("/shopcart", async (req, res) => {
     const { userId } = req.body;
     const { productId } = req.body;
     const { quantity } = req.body;
@@ -129,13 +129,13 @@ app.post("/cart", async (req, res) => {
     }
 });
 
-app.get("/cart", async (req, res) => {
+app.get("/shopcart", async (req, res) => {
     const { userId } = req.query;
     const userCart = await cart.getCart(userId);
     res.status(200).send(userCart);
 });
 
-app.delete("/cart", async (req, res) => {
+app.delete("/shopcart", async (req, res) => {
     const { itemInfo } = req.body;
     const response = cart.deleteItem(itemInfo);
 });

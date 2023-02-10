@@ -24,7 +24,7 @@ export function ProductPage() {
 
     const addItemToDB = async (itemInfo) => {
         try {
-            const response = await axios.post("/cart", itemInfo);
+            const response = await axios.post("/shopcart", itemInfo);
             return response;
         } catch (err) {
             console.log(err);

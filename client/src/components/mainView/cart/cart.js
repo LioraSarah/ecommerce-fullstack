@@ -25,7 +25,7 @@ export const Cart = () => {
     if (userId) {
       console.log("in cart");
       console.log(userId);
-      const res = await axios.get("/cart", { params: { userId: userId } });
+      const res = await axios.get("/shopcart", { params: { userId: userId } });
       return res.data;
     }
   },
@@ -42,7 +42,7 @@ export const Cart = () => {
 
   const removeItemFromDB = async (itemInfo) => {
     try {
-      const response = await axios.delete("/cart", { data: itemInfo });
+      const response = await axios.delete("/shopcart", { data: itemInfo });
       alert("The remove was successful!");
       return response;
     } catch (err) {
