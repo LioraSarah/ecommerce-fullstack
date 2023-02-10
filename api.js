@@ -57,13 +57,17 @@ app.get("/login", (req, res) => {
 app.post("/login", passport.authenticate('local', {
     failureRedirect: "/login"
 }), (req, res) => {
-    const user = {
-        id: req.user.id,
-        firstName: req.user.first_name,
-        lastName: req.user.last_name,
-        email: req.user.email
+    if (req.user) {
+        const user = {
+            id: req.user.id,
+            firstName: req.user.first_name,
+            lastName: req.user.last_name,
+            email: req.user.email
+        }
+        res.status(200).send(user);
+    } else {
+        res.status(400).send();
     }
-    res.status(200).send(user);
 });
 
 app.get("/user", (req, res)=>{
