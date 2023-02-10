@@ -33,9 +33,9 @@ export const Cart = () => {
       onSuccess,
     }
   );
+  console.log("cart");
 
   useEffect(() => {
-    dispatch(loaduser());
     refetch();
     dispatch(loadCart());
   }
@@ -69,6 +69,8 @@ export const Cart = () => {
   if (status === "loading") {
     return <h2>Loading...</h2>
   }
+
+  
 
   return (
     <article className="cart-container">

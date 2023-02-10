@@ -42,6 +42,7 @@ function App() {
 
   useEffect(()=>{
     authUser();
+    console.log(userId);
   });
 
   return (
