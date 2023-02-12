@@ -51,6 +51,7 @@ export function ProductPage() {
     }
 
     return (
+        <div id="flex-div">
         <article className="catalog-container content-wrapper">
             <img src={`../media/${productImage}.png`} alt={productName} className="product-img" />
             <div className="product-description">
@@ -93,5 +94,6 @@ export function ProductPage() {
             </div>
 
         </article>
+        </div>
     )
 }
