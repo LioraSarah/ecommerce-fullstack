@@ -1,22 +1,46 @@
 //import './Header.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { addItem } from "../../../../features/cartSlice.js";
 import "./ProductPage.css";
-import { selectCurrentProduct } from '../../../../features/currentProductSlice.js';
+import { selectCurrentProduct, setCurrentProduct } from '../../../../features/currentProductSlice.js';
 import { selectUserId } from '../../../../features/loginSlice.js';
 
 export function ProductPage() {
 
-    let { productName } = useParams();
+    let { productId } = useParams();
     const { category } = useParams();
-    const productURL = `/${category}/${productName}`;
+    const productURL = `/${category}/${productId}`;
+
+    const onSuccess = (data) => {
+        dispatch(setCurrentProduct(data));
+      }
+    
+      const {
+        data: product,
+        status,
+        refetch
+      } = useQuery(["product"], async () => {
+        const res = await axios.get("/product", { params: { productId: productId } });
+        return res.data;
+      },
+      {
+        onSuccess,
+      }
+      );
     const dispatch = useDispatch();
-    const product = useSelector(selectCurrentProduct);
     const userId = useSelector(selectUserId);
+
+    useEffect(()=>{
+        refetch();
+    },[refetch]);
+
+    useEffect(() => {
+        dispatch(setCurrentProduct(product));
+      }, [product, dispatch]);
 
     const productImage = product.image_url;
     const productMAterial = product.material;
@@ -50,14 +74,18 @@ export function ProductPage() {
         }
     }
 
+    if (status === "loading") {
+        return <h2>Loading...</h2>
+      }
+
     return (
         <div id="prod">
             <div id="flex-div">
                 <div className="catalog-container content-wrapper">
-                    <img src={`../media/${productImage}.png`} alt={productName} className="product-img" />
+                    <img src={`../media/${productImage}.png`} alt={product.product_name} className="product-img" />
                     <div className="product-description">
 
-                        <h3 className="product-h3 info-section">{productName}</h3>
+                        <h3 className="product-h3 info-section">{product.product_name}</h3>
                         <div className="description">
                             <div id="material" className="info-section">
                                 <p>

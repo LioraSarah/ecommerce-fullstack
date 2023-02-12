@@ -63,7 +63,7 @@ export function CatalogueView() {
       <div className="catalogue-view">
         {products.map((item) => (
           <div key={item.id} className="catalogue-view-item">
-            <NavLink id={item.id} className="link" activeclassname="link-active" to={`/${category}/${item.product_name}`} onClick={handleClick}>
+            <NavLink id={item.id} className="link" activeclassname="link-active" to={`/${category}/${item.id}`} onClick={handleClick}>
               <img src={`./media/${item.image_url}.png`} alt={item.name} className="itemImg"
                 onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} id={item.id}></img>
               <div className="hidden-hover">

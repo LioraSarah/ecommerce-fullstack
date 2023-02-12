@@ -17,7 +17,7 @@ export const MainView = () => {
                 <Route path="/*" element={<WelcomePage />} />
                 <Route path="/:category/*"
                     element={<CatalogueView />} />
-                <Route path={"/:category/:productName"}
+                <Route path={"/:category/:productId"}
                     element={<ProductPage />} />
                 <Route path={"/cart"}
                     element={<Cart />} />
