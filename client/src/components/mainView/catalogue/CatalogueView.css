@@ -9,9 +9,10 @@
 
 .catalogue-view {
     display: inline-grid; 
-    width: fit-content;
+    width: 80%;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px 40px;
+    margin: 0 auto;
 }
 
 .catalogue-view-item {
