@@ -58,10 +58,6 @@
 }
 
 #flex-div {
-    display: flex;
-    align-items: center;
-    align-content: center;
-    flex-wrap: wrap;
     margin-bottom: 60px;
     height: 100%;
     width: 100%;
