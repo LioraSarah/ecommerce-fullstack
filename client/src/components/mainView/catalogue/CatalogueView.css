@@ -9,7 +9,7 @@
 
 .catalogue-view {
     display: inline-grid; 
-    width: 80%;
+    width: 60%;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px 40px;
     margin: 0 auto;
