@@ -29,7 +29,7 @@ export function ProductPage() {
         const res = await axios.get("/product", { params: { productId: productId } });
         console.log("in prod");
         console.log(res.data);
-        return res.data;
+        return res.data[0];
     },
         {
             onSuccess,
