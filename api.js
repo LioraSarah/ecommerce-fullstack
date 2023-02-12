@@ -121,6 +121,17 @@ app.get("/catalogue", async (req, res) => {
     }
 });
 
+app.get("/product", async (req, res) => {
+    const { productId } = req.query;
+    try {
+        const response = await catalogue.getItem(productId);
+        res.status(200).send(response);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error);
+    }
+});
+
 app.post("/shopcart", async (req, res) => {
     const { userId } = req.body;
     const { productId } = req.body;

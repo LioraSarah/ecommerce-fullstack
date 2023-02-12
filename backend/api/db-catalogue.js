@@ -17,5 +17,22 @@ module.exports = {
                 return reject(err);
             }    
         });
+    },
+    getItem: async (itemId) => {
+        return new Promise((resolve, reject)=>{ 
+            try {
+                pool.query(
+                    `SELECT * FROM public.products WHERE id='${itemId}'`, (err, result) => {
+                    if (!err) {
+                        return resolve(result.rows);
+                    } else {
+                        return reject(err);
+                    }
+                });
+                
+            } catch (err) {
+                return reject(err);
+            }    
+        });
     }
 }

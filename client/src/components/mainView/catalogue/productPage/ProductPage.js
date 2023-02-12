@@ -25,6 +25,8 @@ export function ProductPage() {
         refetch
       } = useQuery(["product"], async () => {
         const res = await axios.get("/product", { params: { productId: productId } });
+        console.log("in prod");
+        console.log(res.data);
         return res.data;
       },
       {
@@ -33,6 +35,7 @@ export function ProductPage() {
       );
     const dispatch = useDispatch();
     const userId = useSelector(selectUserId);
+    
 
     useEffect(()=>{
         refetch();
