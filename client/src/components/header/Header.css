@@ -73,7 +73,7 @@
     display: inline;
 }
 
-#bottomHeader {
+.navbar-links {
     background-color: rgb(237, 174, 210);
     padding: 10px 0;
     display: flex;
@@ -90,7 +90,7 @@
 }
 
 /*media queries*/
-@media screen and (max-width: 905px) {
+@media screen and (max-width: 875px) {
     .navbar {
         flex-direction: column;
         align-items: flex-start;

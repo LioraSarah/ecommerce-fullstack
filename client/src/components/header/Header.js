@@ -23,7 +23,7 @@ export const Header = () => {
                 </div>
             </div>
 
-            <nav className="general-nav" id="bottomHeader">
+            <nav className="general-nav navbar-links" id="bottomHeader">
                 <ul className="list-general" id="bottom-ul">
                     <li>
                         <NavLink
