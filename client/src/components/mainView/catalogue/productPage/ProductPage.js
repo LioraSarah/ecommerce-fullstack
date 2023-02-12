@@ -19,33 +19,37 @@ export function ProductPage() {
 
     const onSuccess = (data) => {
         dispatch(setCurrentProduct(data));
-      }
-    
-      const {
+    }
+
+    const {
         data: product,
         status,
         refetch
-      } = useQuery(["product"], async () => {
+    } = useQuery(["product"], async () => {
         const res = await axios.get("/product", { params: { productId: productId } });
         console.log("in prod");
         console.log(res.data);
         return res.data;
-      },
-      {
-        onSuccess,
-      }
-      );
+    },
+        {
+            onSuccess,
+        }
+    );
     const dispatch = useDispatch();
     const userId = useSelector(selectUserId);
-    
 
-    useEffect(()=>{
+
+    useEffect(() => {
         refetch();
-    },[refetch]);
+    }, [refetch]);
 
     useEffect(() => {
         dispatch(setCurrentProduct(product));
-      }, [product, dispatch]);
+    }, [product, dispatch]);
+
+    if (status === "loading" || status === "error") {
+        return <h2>Loading...</h2>
+    }
 
     const productImage = product.image_url;
     const productMAterial = product.material;
@@ -79,9 +83,7 @@ export function ProductPage() {
         }
     }
 
-    if (status === "loading") {
-        return <h2>Loading...</h2>
-      }
+
 
     return (
         <div id="prod">

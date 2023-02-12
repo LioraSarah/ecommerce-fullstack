@@ -39,7 +39,7 @@ export function CatalogueView() {
     dispatch(setCategorie(category));
   }, [category, dispatch]);
 
-  if (status === "loading" || status === "error") {
+  if (status === "loading") {
     return <h2>Loading...</h2>
   }
 
