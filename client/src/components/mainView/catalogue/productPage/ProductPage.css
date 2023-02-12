@@ -69,5 +69,5 @@
 
 prod {
     width: 100%;
-    position: relative;
+    position: static;
 }
