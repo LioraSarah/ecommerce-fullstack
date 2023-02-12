@@ -112,6 +112,7 @@
     .navbar-links ul {
         width: 100%;
         flex-direction: column;
+        gap: 20px;
     }
 
     .navbar-links ul li {
