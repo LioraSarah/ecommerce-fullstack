@@ -38,6 +38,18 @@ export function ProductPage() {
     const dispatch = useDispatch();
     const userId = useSelector(selectUserId);
 
+    const addItemToDB = async (itemInfo) => {
+        try {
+            const response = await axios.post("/shopcart", itemInfo);
+            return response;
+        } catch (err) {
+            console.log(err);
+            alert("error adding item!");
+        }
+
+    };
+
+    const addItemMutation = useMutation(addItemToDB);
 
     useEffect(() => {
         refetch();
@@ -54,19 +66,6 @@ export function ProductPage() {
     const productImage = product.image_url;
     const productMAterial = product.material;
     const productPrice = product.price;
-
-    const addItemToDB = async (itemInfo) => {
-        try {
-            const response = await axios.post("/shopcart", itemInfo);
-            return response;
-        } catch (err) {
-            console.log(err);
-            alert("error adding item!");
-        }
-
-    };
-
-    const addItemMutation = useMutation(addItemToDB);
 
     const addToCart = () => {
         const cartItem = {
