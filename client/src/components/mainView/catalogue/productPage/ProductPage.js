@@ -15,6 +15,8 @@ export function ProductPage() {
     const { category } = useParams();
     const productURL = `/${category}/${productId}`;
 
+    console.log(productId);
+
     const onSuccess = (data) => {
         dispatch(setCurrentProduct(data));
       }

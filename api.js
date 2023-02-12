@@ -125,6 +125,7 @@ app.get("/product", async (req, res) => {
     const { productId } = req.query;
     try {
         const response = await catalogue.getItem(productId);
+        console.log(response)
         res.status(200).send(response);
     } catch (error) {
         console.log(error);
