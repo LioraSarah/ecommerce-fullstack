@@ -82,7 +82,7 @@
     font-size: 0.8rem;
 }
 
-#bottom-ul {
+.navbar-links ul {
     gap: 200px;
     display: flex;
     align-items: center;
