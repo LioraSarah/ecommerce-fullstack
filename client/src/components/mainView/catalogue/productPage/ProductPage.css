@@ -4,8 +4,7 @@
     justify-content: center;
     column-gap: 85px;
     font-weight: 100;
-    margin-left: 300px;
-    margin-bottom: 60px;
+    /* margin-left: 300px; */
 }
 
 .info-section {
@@ -63,6 +62,9 @@
     align-items: center;
     align-content: center;
     flex-wrap: wrap;
+    margin-bottom: 60px;
+    height: 100%;
+    width: 100%;
 }
 
 prod {
