@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { addItem } from "../../../../features/cartSlice.js";
-import "./ProductPage.css";
 import { selectCurrentProduct, setCurrentProduct } from '../../../../features/currentProductSlice.js';
 import { selectUserId } from '../../../../features/loginSlice.js';
+import "./ProductPage.css";
 
 export function ProductPage() {
 
