@@ -52,18 +52,22 @@ app.get("/", (req, res) => {
     res.send("Hello!");
 });
 
-app.get("/auth/google", passport.authenticate('google', {scope:["profile"]}));
+// app.get("/auth/google", passport.authenticate('google', {scope:["profile"]}));
 
 app.get("/loginfail", (req, res) => {
     res.status(400).send();
 });
 
-app.get('/auth/google/callback', 
-  passport.authenticate('google', { 
-    failureRedirect: 'https://knitlove.herokuapp.com/login', 
-    successRedirect: 'https://knitlove.herokuapp.com' 
-  })
-);
+// app.get("/logingoogle", (req, res) => {
+
+// }
+
+// app.get('/auth/google/callback', 
+//   passport.authenticate('google', { 
+//     failureRedirect: 'https://knitlove.herokuapp.com/login', 
+//     successRedirect: '/logingoogle' 
+//   })
+// );
 
 app.post("/login", passport.authenticate('local', {
     failureRedirect: "/loginfail"
