@@ -3,6 +3,7 @@ const pool = require('./connection.js');
 module.exports = {
     addToCart: async (details) => {
         return new Promise((resolve, reject) => {
+            console.log(details.productSize);
             pool.query(`INSERT INTO public.cart(id, user_id, product_id, quantity, size)
             VALUES (DEFAULT, ${details.userId}, ${details.productId}, ${details.quantity}, ${details.productSize});`, (err, result) => {
                 if (!err) {

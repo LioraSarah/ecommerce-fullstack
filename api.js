@@ -137,9 +137,11 @@ app.post("/shopcart", async (req, res) => {
     const { userId } = req.body;
     const { productId } = req.body;
     const { quantity } = req.body;
-    const { size } = req.body
+    const productSize = req.body.size;
+    console.log(productSize);
+    console.log("in api");
     try {
-        const response = await cart.addToCart({ userId, productId, quantity, productSize: size });
+        const response = await cart.addToCart({ userId, productId, quantity, productSize });
         res.status(200).send(response);
     } catch (error) {
         console.log(error);
