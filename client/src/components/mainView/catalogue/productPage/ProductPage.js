@@ -71,13 +71,13 @@ export function ProductPage() {
     const addToCart = () => {
         const cartItem = {
             ...product,
-            product_size: size,
+            size: size,
             product_url: productURL
         };
         dispatch(addItem(cartItem));
         if (userId) {
             try {
-                addItemMutation.mutate({ productId: product.id, userId: userId, quantity: 1, product_size: size, product_url: productURL });
+                addItemMutation.mutate({ productId: product.id, userId: userId, quantity: 1, size, product_url: productURL });
             } catch (err) {
                 console.log(err);
             }
