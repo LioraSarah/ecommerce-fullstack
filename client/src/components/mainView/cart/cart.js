@@ -102,7 +102,7 @@ export const Cart = () => {
             </li>
           ))}
         </ul>
-        <h5 id="total">total: {calcTotal(cartItemsPreview)}</h5>
+        <h5 id="total">total: {calcTotal(cartItemsPreview)}$</h5>
         <div className="main-button checkout-btn">check out</div>
       </div>
     </article>
