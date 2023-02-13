@@ -28,7 +28,7 @@ export function Login() {
             return response;
         } catch (err) {
             console.log(err);
-            alert("There's an error with your log-in, please check if email and password is correct");
+            alert("There's an error with your log-in, please check if email and password are correct");
             return err;
         }  
     };
