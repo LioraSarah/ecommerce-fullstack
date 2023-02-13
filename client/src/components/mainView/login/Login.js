@@ -46,6 +46,10 @@ export function Login() {
         }
     };
 
+    const googleLogin = () => {
+        window.open("/auth/google", "_self");
+    };
+
     return (
         <article id="login-view" className='content-wrapper'>
             <h2 id="login-h2">log in</h2>
@@ -55,6 +59,7 @@ export function Login() {
                 <p id="signup-p">don't have a user? <NavLink to="/register" id="signup-link">sign-up</NavLink></p>
                 <input type="submit" value="LOG IN" className='main-button' id="login-button"/>
             </form>
+            <button onClick={googleLogin}><img src='./media/google.png' alt='google' class="google-icon"/>Log in with Google</button>
         </article>
     );
 }

@@ -8,6 +8,7 @@ const login = require("./backend/api/db-login");
 const catalogue = require("./backend/api/db-catalogue");
 const cart = require("./backend/api/db-cart");
 const initializePassport = require("./backend/api/passport-config");
+const initializePassportGoogle = require("./backend/api/passport-config-google");
 const bcrypt = require('bcrypt');
 const corsOptions = require('./backend/config/corsOptions');
 const cookieParser = require('cookie-parser');
@@ -32,6 +33,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 // }));
 
 initializePassport(passport);
+initializePassportGoogle(passport);
 
 app.use(
     session({
@@ -50,9 +52,18 @@ app.get("/", (req, res) => {
     res.send("Hello!");
 });
 
+app.get("/auth/google", passport.authenticate('google', {scope:["profile"]}));
+
 app.get("/loginfail", (req, res) => {
     res.status(400).send();
 });
+
+app.get('/auth/google/callback', 
+  passport.authenticate('google', { 
+    failureRedirect: 'https://knitlove.herokuapp.com/login', 
+    successRedirect: 'https://knitlove.herokuapp.com' 
+  })
+);
 
 app.post("/login", passport.authenticate('local', {
     failureRedirect: "/loginfail"
