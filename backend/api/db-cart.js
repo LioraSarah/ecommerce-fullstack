@@ -5,7 +5,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             console.log(details.productSize);
             pool.query(`INSERT INTO public.cart(id, user_id, product_id, quantity, size)
-            VALUES (DEFAULT, ${details.userId}, ${details.productId}, ${details.quantity}, ${details.productSize});`, (err, result) => {
+            VALUES (DEFAULT, ${details.userId}, ${details.productId}, ${details.quantity}, "${details.productSize}");`, (err, result) => {
                 if (!err) {
                     return resolve(result);
                 } else {
