@@ -8,7 +8,7 @@ import { addItem } from "../../../../features/cartSlice.js";
 import { selectCurrentProduct, setCurrentProduct } from '../../../../features/currentProductSlice.js';
 import { selectUserId } from '../../../../features/loginSlice.js';
 import "./ProductPage.css";
-import "../../../../../public/index.css";
+import "../../../../index.css";
 
 export function ProductPage() {
 
