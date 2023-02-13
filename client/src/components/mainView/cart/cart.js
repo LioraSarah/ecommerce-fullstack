@@ -70,7 +70,13 @@ export const Cart = () => {
     return <h2>Loading...</h2>
   }
 
-  
+  const calcTotal = (items) => {
+    let total = 0;
+    for (let i=0; i<items.length; i++) {
+      total += items[i].price;
+    }
+    return total;
+  }
 
   return (
     <article className="cart-container">
@@ -83,7 +89,7 @@ export const Cart = () => {
                 <img src={`../../../media/${item.image_url}.png`} alt={item.product_name} className="cart-item-img" />
                 <div className="info">
                     <h4>{item.product_name}</h4>
-                  <p className='info-p'>size: { }<br />
+                  <p className='info-p'>size: {item.size}<br />
                     quantity: {'1'}<br />
                     price: {item.price}$
                   </p>
@@ -96,7 +102,7 @@ export const Cart = () => {
             </li>
           ))}
         </ul>
-        <h5 id="total">total: { }</h5>
+        <h5 id="total">total: {calcTotal(cartItemsPreview)}</h5>
         <div className="main-button checkout-btn">check out</div>
       </div>
     </article>

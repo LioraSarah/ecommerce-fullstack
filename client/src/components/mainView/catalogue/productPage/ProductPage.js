@@ -1,5 +1,5 @@
 //import './Header.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
@@ -11,7 +11,7 @@ import "./ProductPage.css";
 import "../../../../index.css";
 
 export function ProductPage() {
-
+    const [size, setSize] = useState();
     let { productId } = useParams();
     const { category } = useParams();
     const productURL = `/${category}/${productId}`;
@@ -71,19 +71,22 @@ export function ProductPage() {
     const addToCart = () => {
         const cartItem = {
             ...product,
+            product_size: size,
             product_url: productURL
         };
         dispatch(addItem(cartItem));
         if (userId) {
             try {
-                addItemMutation.mutate({ productId: product.id, userId: userId, quantity: 1, product_url: productURL });
+                addItemMutation.mutate({ productId: product.id, userId: userId, quantity: 1, product_size: size, product_url: productURL });
             } catch (err) {
                 console.log(err);
             }
         }
     }
 
-
+    const handleSizeChange= (e) => {
+        setSize(e.target.value);
+    }
 
     return (
         <div id="prod">
@@ -103,9 +106,9 @@ export function ProductPage() {
                             <div id="size" className="info-section">
                                 <label>size:</label><br />
                                 <div className="bold-option">
-                                    <input name="size" type="radio" value="s" /> s
-                                    <input name="size" type="radio" value="m" /> m
-                                    <input name="size" type="radio" value="l" /> l
+                                    <input name="size" type="radio" value="s" onChange={handleSizeChange}/> s
+                                    <input name="size" type="radio" value="m" onChange={handleSizeChange}/> m
+                                    <input name="size" type="radio" value="l" onChange={handleSizeChange}/> l
                                 </div>
                             </div>
 
