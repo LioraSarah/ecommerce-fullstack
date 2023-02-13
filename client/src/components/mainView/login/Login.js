@@ -24,9 +24,11 @@ export function Login() {
             });
             dispatch(setUser(response.data));
             dispatch(setAuthenticated(true));
+            navigate('/');
             return response;
         } catch (err) {
             console.log(err);
+            alert("There's an error with your log-in, please check if email and password is correct");
             return err;
         }  
     };
@@ -38,7 +40,6 @@ export function Login() {
     const onSubmit = (data) => {
         try {
             addUserMutation.mutate(data);
-            navigate('/');
         } catch (err) {
             alert("There was a problem with your log-in")
             console.log("the error is - " + err);
