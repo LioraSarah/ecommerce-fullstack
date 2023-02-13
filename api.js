@@ -50,12 +50,12 @@ app.get("/", (req, res) => {
     res.send("Hello!");
 });
 
-app.get("/login", (req, res) => {
-    res.send("Oh no!");
+app.get("/loginfail", (req, res) => {
+    res.status(400).send();
 });
 
 app.post("/login", passport.authenticate('local', {
-    failureRedirect: "/login"
+    failureRedirect: "/loginfail"
 }), (req, res) => {
     if (req.user) {
         const user = {
