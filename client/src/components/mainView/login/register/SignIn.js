@@ -18,6 +18,7 @@ export function SignIn() {
                 url: "/register"
             });
             alert("The registration was successful!");
+            navigate('/login');
             return response;
         } catch (err) {
             const constraint = err.response.data.constraint;
@@ -35,7 +36,6 @@ export function SignIn() {
     const onSubmit = (data) => {
         try {
             const response = addUserMutation.mutate({newUser: data});
-            navigate('/login');
         } catch (err) {
             console.log(err);
         }
