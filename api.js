@@ -158,6 +158,7 @@ app.get("/shopcart", async (req, res) => {
 app.delete("/shopcart", async (req, res) => {
     const { itemInfo } = req.body;
     const response = cart.deleteItem(itemInfo);
+    res.status(204).send();
 });
 
 app.get("*", (req, res) => {
