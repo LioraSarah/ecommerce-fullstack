@@ -11,7 +11,7 @@ import "./ProductPage.css";
 import "../../../../index.css";
 
 export function ProductPage() {
-    const [size, setSize] = useState();
+    const [size, setSize] = useState('');
     let { productId } = useParams();
     const { category } = useParams();
     const productURL = `/${category}/${productId}`;
