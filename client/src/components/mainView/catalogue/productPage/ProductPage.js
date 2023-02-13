@@ -77,7 +77,7 @@ export function ProductPage() {
         dispatch(addItem(cartItem));
         if (userId) {
             try {
-                addItemMutation.mutate({ productId: product.id, userId: userId, quantity: 1, size, product_url: productURL });
+                addItemMutation.mutate({ productId: product.id, userId: userId, quantity: 1, size: size, product_url: productURL });
             } catch (err) {
                 console.log(err);
             }
