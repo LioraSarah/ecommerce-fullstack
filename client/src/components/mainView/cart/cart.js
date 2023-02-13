@@ -45,11 +45,9 @@ export const Cart = () => {
   const removeItemFromDB = async (itemInfo) => {
     try {
       const response = await axios.delete("/shopcart", { data: itemInfo });
-      alert("The remove was successful!");
       return response;
     } catch (err) {
       console.log(err);
-      alert("error!");
     }
   }
 
