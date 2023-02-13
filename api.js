@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 // }));
 
 initializePassport(passport);
-initializePassportGoogle(passport);
+// initializePassportGoogle(passport);
 
 app.use(
     session({
