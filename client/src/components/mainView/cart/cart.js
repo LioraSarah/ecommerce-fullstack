@@ -10,7 +10,6 @@ import "./cart.css";
 export const Cart = () => {
 
   const dispatch = useDispatch();
-  const cartItemsPreview = useSelector(selectCartItems);
   const userId = useSelector(selectUserId);
 
   const onSuccess = (data) => {
@@ -34,6 +33,8 @@ export const Cart = () => {
     }
   );
   console.log("cart");
+
+  const cartItemsPreview = useSelector(selectCartItems);
 
   useEffect(() => {
     refetch();
