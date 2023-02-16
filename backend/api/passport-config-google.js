@@ -7,8 +7,19 @@ function initializePassportGoogle (passport) {
         clientSecret: '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',
         callbackURL: "/auth/google/callback"
       },
-      function(accessToken, refreshToken, profile, done) {
-          done(null, profile);
+      function (req, accessToken, refreshToken, profile, done) {
+        console.log("profile:");
+        console.log(profile);
+        // const userData = {
+        //   id: profile.id,
+        //   email: profile.emails[0],
+        //   firstname: profile.name.givenName,
+        //   lastname: profile.name.familyName,
+        //   picture: profile.photos[0],
+        //   authType: 'oauth'
+        // }
+        // req._user = userData;
+        return done(null, profile);
       }
     ));
 
