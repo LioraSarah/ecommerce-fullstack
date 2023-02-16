@@ -9,7 +9,7 @@ function initializePassportGoogle (passport) {
       },
       function (req, accessToken, refreshToken, profile, done) {
         console.log("profile:");
-        console.log(profile);
+        console.log(profile.emails);
         // const userData = {
         //   id: profile.id,
         //   email: profile.emails[0],
