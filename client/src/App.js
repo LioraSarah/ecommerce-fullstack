@@ -32,6 +32,8 @@ function App() {
         url: "/user"
       });
       if (response.data) {
+        console.log("ji");
+        console.log(response.data);
         dispatch(setUser(response.data));
         dispatch(setAuthenticated(true));
       }
