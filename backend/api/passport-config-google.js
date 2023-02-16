@@ -3,8 +3,8 @@ require('dotenv').config();
 
 function initializePassportGoogle (passport) {
     passport.use(new GoogleStrategy({
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        clientID: '504948731334-bkoesvifmjg80dvnka7iccr21hdifum4.apps.googleusercontent.com',
+        clientSecret: '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',
         callbackURL: "/auth/google/callback"
       },
       function(accessToken, refreshToken, profile, done) {
