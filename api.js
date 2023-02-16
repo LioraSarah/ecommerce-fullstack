@@ -59,14 +59,14 @@ app.get("/loginfail", (req, res) => {
     res.status(400).send();
 });
 
-// app.get("/logingoogle", (req, res) => {
-
-// }
+app.get("/logingoogle", (req, res) => {
+    res.status(200).send();
+};
 
 app.get('/auth/google/callback', 
   passport.authenticate('google', { 
     failureRedirect: 'https://knitlove.herokuapp.com/login', 
-    successRedirect: '/logingoogle' 
+    successRedirect: 'https://knitlove.herokuapp.com/' 
   })
 );
 
