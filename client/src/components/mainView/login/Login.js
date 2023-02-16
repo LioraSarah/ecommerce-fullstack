@@ -59,7 +59,7 @@ export function Login() {
                 <p id="signup-p">don't have a user? <NavLink to="/register" id="signup-link">sign-up</NavLink></p>
                 <input type="submit" value="LOG IN" className='main-button' id="login-button"/>
             </form>
-            <button onClick={googleLogin}><img src='./media/google.png' alt='google' class="google-icon"/>Log in with Google</button>
+            <button onClick={googleLogin}><img src='./media/google.png' alt='google' class="google-icon"/>Log in with Google (in development)</button>
         </article>
     );
 }
