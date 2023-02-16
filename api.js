@@ -12,6 +12,7 @@ const initializePassportGoogle = require("./backend/api/passport-config-google")
 const bcrypt = require('bcrypt');
 const corsOptions = require('./backend/config/corsOptions');
 const cookieParser = require('cookie-parser');
+require('dotenv').config()
 
 const path = require("path");
 const PORT = process.env.PORT || 4000;
@@ -33,7 +34,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 // }));
 
 initializePassport(passport);
-// initializePassportGoogle(passport);
+initializePassportGoogle(passport);
 
 app.use(
     session({
@@ -52,7 +53,7 @@ app.get("/", (req, res) => {
     res.send("Hello!");
 });
 
-// app.get("/auth/google", passport.authenticate('google', {scope:["profile"]}));
+app.get("/auth/google", passport.authenticate('google', {scope:["profile"]}));
 
 app.get("/loginfail", (req, res) => {
     res.status(400).send();
@@ -62,12 +63,12 @@ app.get("/loginfail", (req, res) => {
 
 // }
 
-// app.get('/auth/google/callback', 
-//   passport.authenticate('google', { 
-//     failureRedirect: 'https://knitlove.herokuapp.com/login', 
-//     successRedirect: '/logingoogle' 
-//   })
-// );
+app.get('/auth/google/callback', 
+  passport.authenticate('google', { 
+    failureRedirect: 'https://knitlove.herokuapp.com/login', 
+    successRedirect: '/logingoogle' 
+  })
+);
 
 app.post("/login", passport.authenticate('local', {
     failureRedirect: "/loginfail"
