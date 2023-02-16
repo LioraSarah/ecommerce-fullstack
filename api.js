@@ -61,7 +61,7 @@ app.get("/loginfail", (req, res) => {
 
 app.get("/logingoogle", (req, res) => {
     res.status(200).send();
-};
+});
 
 app.get('/auth/google/callback', 
   passport.authenticate('google', { 
