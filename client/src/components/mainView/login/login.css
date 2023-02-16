@@ -42,3 +42,8 @@
     align-items: center;
     justify-content: center;
 }
+
+.google-icon {
+    width: 30px;
+    height: 30px;
+}
