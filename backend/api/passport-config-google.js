@@ -1,4 +1,5 @@
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+require('dotenv').config();
 
 function initializePassportGoogle (passport) {
     passport.use(new GoogleStrategy({

@@ -12,7 +12,7 @@ const initializePassportGoogle = require("./backend/api/passport-config-google")
 const bcrypt = require('bcrypt');
 const corsOptions = require('./backend/config/corsOptions');
 const cookieParser = require('cookie-parser');
-require('dotenv').config()
+require('dotenv').config();
 
 const path = require("path");
 const PORT = process.env.PORT || 4000;
