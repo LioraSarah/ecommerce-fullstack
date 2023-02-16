@@ -8,7 +8,7 @@ function initializePassportGoogle (passport) {
         callbackURL: "/auth/google/callback"
       },
       function(accessToken, refreshToken, profile, done) {
-          done(err, profile);
+          done(null, profile);
       }
     ));
 
