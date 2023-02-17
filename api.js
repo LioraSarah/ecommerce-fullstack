@@ -87,9 +87,9 @@ app.post("/login", passport.authenticate('local', {
 });
 
 app.get("/user", (req, res)=>{
-    if (req.user) {
-        console.log("user:");
-        console.log(typeof req.user);
+    console.log('profile:')
+    console.log(req.profile);
+    if (typeof req.user === 'object') {
         const user = {
             id: req.user.id,
             firstName: req.user.first_name,
@@ -97,6 +97,9 @@ app.get("/user", (req, res)=>{
             email: req.user.email
         }
         res.status(200).send(user);
+    } else if (req._user) {
+        console.log(req._user);
+        res.status(200).send(req._user);
     } else {
         res.status(200).send();
     }
