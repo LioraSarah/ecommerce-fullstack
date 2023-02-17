@@ -8,17 +8,13 @@ function initializePassportGoogle (passport) {
         callbackURL: "/auth/google/callback"
       },
       function (req, accessToken, refreshToken, profile, done) {
-        console.log("profile:");
-        console.log(profile);
-        // const userData = {
-        //   id: profile.id,
-        //   email: profile.emails[0],
-        //   firstname: profile.name.givenName,
-        //   lastname: profile.name.familyName,
-        //   picture: profile.photos[0],
-        //   authType: 'oauth'
-        // }
-        // req._user = userData;
+        const userData = {
+          id: profile.id,
+          first_name: profile.name.givenName,
+          last_name: profile.name.familyName,
+          email: ''
+        }
+        req._user = userData;
         return done(null, profile);
       }
     ));
