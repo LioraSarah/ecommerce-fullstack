@@ -14,7 +14,7 @@ function initializePassportGoogle (passport) {
           last_name: profile.name.familyName,
           email: ''
         }
-        req._user = userData;
+        req.profile = userData;
         return done(null, profile);
       }
     ));

@@ -87,9 +87,8 @@ app.post("/login", passport.authenticate('local', {
 });
 
 app.get("/user", (req, res)=>{
-    console.log('profile:')
-    console.log(req.profile);
     if (typeof req.user === 'object') {
+        console.log('user local');
         const user = {
             id: req.user.id,
             firstName: req.user.first_name,
@@ -97,10 +96,12 @@ app.get("/user", (req, res)=>{
             email: req.user.email
         }
         res.status(200).send(user);
-    } else if (req._user) {
-        console.log(req._user);
-        res.status(200).send(req._user);
+    } else if (req.profile) {
+        console.log('google:');
+        console.log(req.profile);
+        res.status(200).send(req.profile);
     } else {
+        console.log('none');
         res.status(200).send();
     }
 });
