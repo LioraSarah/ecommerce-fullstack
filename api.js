@@ -59,16 +59,11 @@ app.get("/loginfail", (req, res) => {
     res.status(400).send();
 });
 
-app.get("/logingoogle", (req, res) => {
-    res.status(200).send();
-});
-
 app.get('/auth/google/callback', 
-  passport.authenticate('google', { 
-    failureRedirect: 'https://knitlove.herokuapp.com/login', 
-    successRedirect: 'https://knitlove.herokuapp.com/' 
-  })
-);
+  passport.authenticate('google', {
+    failureRedirect: "/loginfail",
+    successRedirect: "/login"
+}));
 
 app.post("/login", passport.authenticate('local', {
     failureRedirect: "/loginfail"
