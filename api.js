@@ -59,10 +59,24 @@ app.get("/loginfail", (req, res) => {
     res.status(400).send();
 });
 
+app.get("/logingoogle", (req, res)=> {
+    if (req.user) {
+        const user = {
+            id: req.user.id,
+            firstName: req.user.first_name,
+            lastName: req.user.last_name,
+            email: req.user.email
+        }
+        res.status(200).send(user);
+    } else {
+        res.status(400).send();
+    }
+})
+
 app.get('/auth/google/callback', 
   passport.authenticate('google', {
     failureRedirect: "/loginfail",
-    successRedirect: "/login"
+    successRedirect: "/logingoogle"
 }));
 
 app.post("/login", passport.authenticate('local', {
