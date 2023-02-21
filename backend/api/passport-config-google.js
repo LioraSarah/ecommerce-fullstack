@@ -17,8 +17,8 @@ function initializePassportGoogle(passport) {
         if (!user) {
           const userData = {
             id: profile.id,
-            first_name: profile.name.givenName,
-            last_name: profile.name.familyName,
+            first_name: profile._json.givenName,
+            last_name: profile._json.familyName,
             email: ''
           }
           await google.createGoogleUser(userData);
@@ -39,7 +39,7 @@ function initializePassportGoogle(passport) {
 
   passport.deserializeUser(async (id, done) => {
     try {
-      const user = google.findUserByGoogleId(id);
+      const user = await google.findUserByGoogleId(id);
       return done(null, user);
     } catch (err) {
       return done(err);
