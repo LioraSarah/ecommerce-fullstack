@@ -19,7 +19,7 @@ function initializePassportGoogle(passport) {
             last_name: profile.name.familyName,
             email: ''
           }
-          await login.createGoogleUser(userData);
+          await google.createGoogleUser(userData);
           user = userData;
         }
         return done(null, user);
