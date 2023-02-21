@@ -61,6 +61,8 @@ app.get("/loginfail", (req, res) => {
 
 app.get("/logingoogle", (req, res)=> {
     if (req.user) {
+        console.log("req.user:");
+        console.log(req.user);
         const user = {
             id: req.user.id,
             firstName: req.user.first_name,

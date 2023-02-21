@@ -9,6 +9,8 @@ function initializePassportGoogle(passport) {
     callbackURL: "/auth/google/callback"
   },
     async function (req, accessToken, refreshToken, profile, done) {
+      console.log("profile:");
+      console.log(profile);
       let user;
       try {
         user = await google.findUserByGoogleId(profile.id);
@@ -22,6 +24,8 @@ function initializePassportGoogle(passport) {
           await google.createGoogleUser(userData);
           user = userData;
         }
+        console.log("user:");
+        console.log(user);
         return done(null, user);
       } catch (err) {
         return done(err, null);
