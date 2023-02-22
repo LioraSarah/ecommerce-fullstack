@@ -23,7 +23,8 @@
 }
 
 #login-button {
-    padding: 13px 43px;
+    padding: 13px 0;
+    width: 100%;
 }
 
 .input-general {
