@@ -11,7 +11,7 @@ function initializePassportGoogle(passport) {
     async function (req, accessToken, refreshToken, profile, done) {
       let user;
       console.log("profile mail:");
-      console.log(profile.email);
+      console.log(profile.emails);
       try {
         user = await google.findUserByGoogleId(profile.id);
         if (!user) {

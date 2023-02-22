@@ -53,7 +53,7 @@ app.get("/", (req, res) => {
     res.send("Hello!");
 });
 
-app.get("/auth/google", passport.authenticate('google', {scope:["profile","email"]}));
+app.get("/auth/google", passport.authenticate('google', {scope:["profile","emails"]}));
 
 app.get("/loginfail", (req, res) => {
     res.status(400).send();
