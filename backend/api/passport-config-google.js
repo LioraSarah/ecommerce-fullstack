@@ -10,15 +10,15 @@ function initializePassportGoogle(passport) {
   },
     async function (req, accessToken, refreshToken, profile, done) {
       console.log("profile:");
-      console.log(profile);
+      console.log(profile._json.given_name);
       let user;
       try {
         user = await google.findUserByGoogleId(profile.id);
         if (!user) {
           const userData = {
             id: profile.id,
-            first_name: profile._json.givenName,
-            last_name: profile._json.familyName,
+            first_name: profile._json.given_name,
+            last_name: profile._json.family_name,
             email: ''
           }
           await google.createGoogleUser(userData);
