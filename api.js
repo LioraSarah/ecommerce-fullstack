@@ -97,7 +97,8 @@ app.post("/login", passport.authenticate('local', {
 
 app.get("/user", (req, res)=>{
     if (req.user) {
-        console.log(req.user);
+        console.log("in api");
+          console.log(req.user.email);
         const user = {
             id: req.user.id,
             firstName: req.user.first_name,

@@ -10,8 +10,6 @@ function initializePassportGoogle(passport) {
   },
     async function (req, accessToken, refreshToken, profile, done) {
       let user;
-      console.log("profile mail:");
-      console.log(profile.emails);
       try {
         user = await google.findUserByGoogleId(profile.id);
         if (!user) {
@@ -19,10 +17,12 @@ function initializePassportGoogle(passport) {
             id: profile.id,
             firstName: profile._json.given_name,
             lastName: profile._json.family_name,
-            email: ''
+            email: profile.emails[0].value
           }
           await google.createGoogleUser(userData);
           user = userData;
+          console.log("in initial");
+          console.log(user.email);
         }
         return done(null, user);
       } catch (err) {
