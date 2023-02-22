@@ -61,8 +61,6 @@ app.get("/loginfail", (req, res) => {
 
 app.get("/logingoogle", (req, res)=> {
     if (req.user) {
-        console.log("req.user:");
-        console.log(req.user);
         const user = {
             id: req.user.id,
             firstName: req.user.first_name,
@@ -77,8 +75,8 @@ app.get("/logingoogle", (req, res)=> {
 
 app.get('/auth/google/callback', 
   passport.authenticate('google', {
-    failureRedirect: "/loginfail",
-    successRedirect: "/logingoogle"
+    failureRedirect: "https://knitlove.herokuapp.com/login",
+    successRedirect: "https://knitlove.herokuapp.com/"
 }));
 
 app.post("/login", passport.authenticate('local', {
@@ -98,8 +96,8 @@ app.post("/login", passport.authenticate('local', {
 });
 
 app.get("/user", (req, res)=>{
-    if (typeof req.user === 'object') {
-        console.log('user local');
+    if (req.user) {
+        console.log(req.user);
         const user = {
             id: req.user.id,
             firstName: req.user.first_name,
@@ -107,10 +105,6 @@ app.get("/user", (req, res)=>{
             email: req.user.email
         }
         res.status(200).send(user);
-    } else if (req.profile) {
-        console.log('google:');
-        console.log(req.profile);
-        res.status(200).send(req.profile);
     } else {
         console.log('none');
         res.status(200).send();
