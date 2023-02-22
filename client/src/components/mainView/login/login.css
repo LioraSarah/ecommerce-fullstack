@@ -47,3 +47,12 @@
     width: 30px;
     height: 30px;
 }
+
+#google-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(222, 139, 171);
+    color: white;
+    gap: 10px;
+}
