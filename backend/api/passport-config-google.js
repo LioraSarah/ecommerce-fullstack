@@ -17,8 +17,8 @@ function initializePassportGoogle(passport) {
         if (!user) {
           const userData = {
             id: profile.id,
-            first_name: profile._json.given_name,
-            last_name: profile._json.family_name,
+            firstName: profile._json.given_name,
+            lastName: profile._json.family_name,
             email: ''
           }
           await google.createGoogleUser(userData);
