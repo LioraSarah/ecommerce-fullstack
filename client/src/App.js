@@ -17,12 +17,14 @@ function App() {
   const userId = useSelector(selectUserId);
 
     const onSuccess = (data) => {
-      dispatch(setUser(data));
+      if (data.user) {
+        dispatch(setUser(data.user));
         dispatch(setAuthenticated(true));
+      }
     }
 
     const {
-        data: user,
+        data,
         status,
         refetch
     } = useQuery(["isVerified"], async () => {
