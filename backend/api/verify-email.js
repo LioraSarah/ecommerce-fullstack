@@ -11,7 +11,14 @@ const transporter = nodemailer.createTransport({
 
 const sendVerificationEmail = async (token, email) => {
 
+    console.log("email to send mail:");
+    console.log(email);
+    console.log("token in mail:");
+    console.log(token);
+
     const user = await login.findUserByMail(email);
+    console.log("find user to send mail:");
+    console.log(user);
 
     const mailConfigurations = {
   
@@ -31,6 +38,8 @@ const sendVerificationEmail = async (token, email) => {
     };
 
     transporter.sendMail(mailConfigurations, function(error, info){
+        console.log("error in sendmail");
+        console.log(error);
         if (error) throw new Error(error);
         console.log('Email Sent Successfully');
         console.log(info);
