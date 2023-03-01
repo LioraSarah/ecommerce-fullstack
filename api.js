@@ -16,6 +16,7 @@ const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const nodemailer = require('nodemailer');
 const {v4: uuidv4} = require('uuid');
+var randomstring = require("randomstring");
 
 const path = require("path");
 const PORT = process.env.PORT || 4000;
