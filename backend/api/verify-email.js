@@ -38,9 +38,11 @@ const sendVerificationEmail = async (token, email) => {
     };
 
     transporter.sendMail(mailConfigurations, function(error, info){
+        if (error) {
         console.log("error in sendmail");
         console.log(error);
-        if (error) throw new Error(error);
+        throw new Error(error);
+    }
         console.log('Email Sent Successfully');
         console.log(info);
     });
@@ -57,4 +59,4 @@ const verifyUser = (token, userId) => {
     }
 };
 
-module.exports = sendVerificationEmail, verifyUser;
+module.exports = { sendVerificationEmail, verifyUser };
