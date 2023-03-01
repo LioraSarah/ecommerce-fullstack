@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from 'react-redux';
 import {
-  setUser, setAuthenticated
+  setUser, setAuthenticated, isVerified
 } from '../../../features/loginSlice';
 import "./login.css";
 import { useMutation } from '@tanstack/react-query';
@@ -39,7 +39,11 @@ export function Login() {
     const { register, handleSubmit } = useForm();
     const onSubmit = (data) => {
         try {
-            addUserMutation.mutate(data);
+            if(isVerified) {
+                addUserMutation.mutate(data);
+            } else {
+                alert("You haven't verified your email yet!")
+            }
         } catch (err) {
             alert("There was a problem with your log-in")
             console.log("the error is - " + err);

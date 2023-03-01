@@ -5,6 +5,7 @@ const session = require("express-session");
 const store = new session.MemoryStore();
 const passport = require("passport");
 const login = require("./backend/api/db-login");
+const verify = require("./backend/api/verify-email");
 const catalogue = require("./backend/api/db-catalogue");
 const cart = require("./backend/api/db-cart");
 const initializePassport = require("./backend/api/passport-config");
@@ -13,6 +14,8 @@ const bcrypt = require('bcrypt');
 const corsOptions = require('./backend/config/corsOptions');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
+const nodemailer = require('nodemailer');
+const {v4: uuidv4} = require('uuid');
 
 const path = require("path");
 const PORT = process.env.PORT || 4000;
@@ -25,6 +28,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const bodyParser = require("body-parser");
+const { constants } = require('http2');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
@@ -79,10 +83,21 @@ app.get('/auth/google/callback',
     successRedirect: "https://knitlove.herokuapp.com/"
 }));
 
+app.get("/verify/:id/:token", (res, req) => {
+    const { id } = req.params;
+    const { token } = req.params;
+    const verifiedUser = verify.verifyUser(token, id);
+    if (verifiedUser) {
+        res.redirect(200, path)
+    } else {
+        res.redirect(500, path)
+    }
+});
+
 app.post("/login", passport.authenticate('local', {
     failureRedirect: "/loginfail"
 }), (req, res) => {
-    if (req.user) {
+    if (req.user && req.user.verified) {
         const user = {
             id: req.user.id,
             firstName: req.user.first_name,
@@ -103,7 +118,8 @@ app.get("/user", (req, res)=>{
             id: req.user.id,
             firstName: req.user.first_name,
             lastName: req.user.last_name,
-            email: req.user.email
+            email: req.user.email,
+            verified: req.user.verified
         }
         res.status(200).send(user);
     } else {
@@ -125,12 +141,20 @@ app.delete("/logout", (req, res, next) => {
 
 app.post("/register", async (req, res) => {
     const { newUser } = req.body;
+
+    const verification_token = randomstring.generate({
+        length: 64
+    });
+    newUser.verification_token = verification_token;
+    newUser.verified = false;
+
     const password = newUser.password;
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
         newUser.password = hashedPassword;
         const response = await login.createUser(newUser);
-        res.status(201).send();
+        verify.sendVerificationEmail(verification_token, newUser.email);
+        res.status(201).send(response);
     } catch (err) {
         res.status(500).json(err);
     }
