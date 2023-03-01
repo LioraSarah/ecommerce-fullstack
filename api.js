@@ -156,7 +156,7 @@ app.post("/register", async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         newUser.password = hashedPassword;
         const response = await login.createUser(newUser);
-        verify.sendVerificationEmail(verification_token, newUser.email);
+        await verify.sendVerificationEmail(verification_token, newUser.email);
         res.status(201).send(response);
     } catch (err) {
         res.status(500).json(err);
