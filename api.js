@@ -143,9 +143,7 @@ app.delete("/logout", (req, res, next) => {
 app.post("/register", async (req, res) => {
     const { newUser } = req.body;
 
-    const verification_token = randomstring.generate({
-        length: 64
-    });
+    const verification_token = randomstring.generate();
     newUser.verification_token = verification_token;
     newUser.verified = false;
 
