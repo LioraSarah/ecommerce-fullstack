@@ -5,7 +5,7 @@ const session = require("express-session");
 const store = new session.MemoryStore();
 const passport = require("passport");
 const login = require("./backend/api/db-login");
-const verify = require("./backend/api/verify-email");
+const verifyMail = require("./backend/api/verify-email");
 const catalogue = require("./backend/api/db-catalogue");
 const cart = require("./backend/api/db-cart");
 const initializePassport = require("./backend/api/passport-config");
@@ -156,7 +156,7 @@ app.post("/register", async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         newUser.password = hashedPassword;
         const response = await login.createUser(newUser);
-        await verify.sendVerificationEmail(verification_token, newUser.email);
+        await verifyMail.sendVerificationEmail(verification_token, newUser.email);
         res.status(201).send(response);
     } catch (err) {
         res.status(500).json(err);
