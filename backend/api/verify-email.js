@@ -48,13 +48,14 @@ const sendVerificationEmail = async (token, email) => {
     });
 };
 
-const verifyUser = (token, userId) => {
+const verifyUser = async (token, userId) => {
     const id = Number(userId);
-    console.log("id is: " + id + "of type: " + typeof id);
-    const user = login.findUserById(id);
+    const user = await login.findUserById(id);
+    console.log("in verifyuser:");
+    console.log(user);
     const userToken = user.verification_token;
     if (token === userToken) {
-        login.setVerified(id);
+        await login.setVerified(id);
         return user;
     } else {
         return null;

@@ -84,12 +84,12 @@ app.get('/auth/google/callback',
     successRedirect: "https://knitlove.herokuapp.com/"
 }));
 
-app.get("/verify/:id/:token", (req, res) => {
+app.get("/verify/:id/:token", async (req, res) => {
     const id = req.params.id;
     const token = req.params.token;
     console.log("request params:");
     console.log(req.params);
-    const verifiedUser = verifyMail.verifyUser(token, id);
+    const verifiedUser = await verifyMail.verifyUser(token, id);
     if (verifiedUser) {
         res.status(200).send();
     } else {
