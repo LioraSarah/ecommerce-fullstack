@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
@@ -15,12 +15,14 @@ export function Verify() {
 
     const onSuccess = (data) => {
         if (data) {
+            console.log("in on success: " + data);
             dispatch(setIsVerified(data));
         }
     }
 
     const {
         data: isVerified,
+        refetch
     } = useQuery(["isVerified"], async () => {
         if (token) {
             const res = await axios({
@@ -28,6 +30,7 @@ export function Verify() {
                 withCredentials: true,
                 url: `/verify/user/${id}/${token}`
             });
+            console.log(res.data);
             return res.data;
         }
     },
@@ -35,6 +38,11 @@ export function Verify() {
             onSuccess,
         }
     );
+
+    useEffect(()=>{
+        refetch();
+        console.log(isVerified);
+      });
     
     if (!token) {
         return (
@@ -44,7 +52,6 @@ export function Verify() {
                 </article>
         )
     }
-   
 
     if (isVerified) {
         return (
