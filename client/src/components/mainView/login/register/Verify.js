@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-    setIsVerified
+    setIsVerified, selectIsVerified;
 } from '../../../../features/loginSlice';
 import { useParams } from 'react-router-dom';
 
@@ -12,6 +12,8 @@ export function Verify() {
     const {id, token} = useParams();
 
     const dispatch = useDispatch();
+    
+    const isVerified = useSelector(selectIsVerified);
 
     const onSuccess = (data) => {
         if (data) {
@@ -21,10 +23,9 @@ export function Verify() {
     }
 
     const {
-        data: isVerified,
-        refetch
-    } = useQuery(["isVerified"], async () => {
-        if (token) {
+        data,
+    } = useQuery(["verified"], async () => {
+        if (token && !isVerified) {
             const res = await axios({
                 method: "GET",
                 withCredentials: true,
@@ -38,11 +39,6 @@ export function Verify() {
             onSuccess,
         }
     );
-
-    useEffect(()=>{
-        refetch();
-        console.log(isVerified);
-      });
     
     if (!token) {
         return (

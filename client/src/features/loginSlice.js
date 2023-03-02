@@ -42,7 +42,7 @@ export const selectFirstName = (state) => state.user.firstName;
 export const selectLastName = (state) => state.user.lastName;
 export const selectEmail = (state) => state.user.email;
 export const selectIsAuthenticated = (state) => state.user.isAuthenticated;
-export const isVerified = (state) => state.user.isVerified;
+export const selectIsVerified = (state) => state.user.isVerified;
 
 export const { loaduser, setUser, setAuthenticated, logOut, setIsVerified } = userSlice.actions;
 export default userSlice.reducer;
