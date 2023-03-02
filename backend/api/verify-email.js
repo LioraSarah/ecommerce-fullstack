@@ -49,10 +49,12 @@ const sendVerificationEmail = async (token, email) => {
 };
 
 const verifyUser = (token, userId) => {
-    const user = login.findUserById(userId);
+    const id = Number(userId);
+    console.log("id is: " + id + "of type: " + typeof id);
+    const user = login.findUserById(id);
     const userToken = user.verification_token;
     if (token === userToken) {
-        login.setVerified(userId);
+        login.setVerified(id);
         return user;
     } else {
         return null;
