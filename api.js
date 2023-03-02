@@ -91,9 +91,9 @@ app.get("/verify/user/:id/:token", async (req, res) => {
     console.log(req.params);
     const verifiedUser = await verifyMail.verifyUser(token, id);
     if (verifiedUser) {
-        res.status(200).send();
+        res.status(200).send(true);
     } else {
-        res.status(500).send();
+        res.status(200).send(false);
     }
 });
 
