@@ -89,9 +89,9 @@ app.get("/verify/:id/:token", (res, req) => {
     const { token } = req.params;
     const verifiedUser = verify.verifyUser(token, id);
     if (verifiedUser) {
-        res.redirect(200, path)
+        res.status(200).send();
     } else {
-        res.redirect(500, path)
+        res.status(500).send();
     }
 });
 

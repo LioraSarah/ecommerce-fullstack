@@ -5,30 +5,46 @@ import { useDispatch } from 'react-redux';
 import {
     setIsVerified
 } from '../../../../features/loginSlice';
+import { useParams } from 'react-router-dom';
 
 export function Verify() {
+
+    const {id, token} = useParams();
 
     const dispatch = useDispatch();
 
     const onSuccess = (data) => {
-        dispatch(setIsVerified(data));
+        if (data) {
+            dispatch(setIsVerified(data));
+        }
     }
 
     const {
         data: isVerified,
-        status,
     } = useQuery(["isVerified"], async () => {
-        const res = await axios({
-            method: "GET",
-            withCredentials: true,
-            url: "/user"
-        });
-        return res.data.user.verified;
+        if (token) {
+            const res = await axios({
+                method: "GET",
+                withCredentials: true,
+                url: `/verify/${id}/${token}`
+            });
+            console.log(res);
+        }
     },
         {
             onSuccess,
         }
     );
+    
+    if (!token) {
+        return (
+            <article className='content-wrapper'>
+                    <h3>A verification link has been sent to your Email!</h3>
+                    <p>Please enter you email and check the link in order to proceed with the sign-up</p>
+                </article>
+        )
+    }
+   
 
     if (isVerified) {
         return (

@@ -7,6 +7,7 @@ import { Cart } from "./cart/cart.js";
 import { Login } from "./login/Login.js";
 import { SignIn } from "./login/register/SignIn.js";
 import { Profile } from './login/profile/Profile.js';
+import { Verify } from "./login/register/Verify.js";
 import "./mainView.css";
 
 export const MainView = () => {
@@ -27,6 +28,8 @@ export const MainView = () => {
                     element={<SignIn />} />
                 <Route path={"/profile"}
                     element={<Profile />} />
+                    <Route path={"/verify/:id?/:token?"}
+                    element={<Verify />} />
             </Routes>
         </section>
     )

@@ -18,7 +18,7 @@ export function SignIn() {
                 url: "/register"
             });
             alert("The registration was successful!");
-            navigate('/login');
+            navigate('/verify');
             return response;
         } catch (err) {
             const constraint = err.response.data.constraint;
