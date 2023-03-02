@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    setIsVerified, selectIsVerified;
+    setIsVerified, selectIsVerified
 } from '../../../../features/loginSlice';
 import { useParams } from 'react-router-dom';
 
