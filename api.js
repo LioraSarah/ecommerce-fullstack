@@ -84,7 +84,7 @@ app.get('/auth/google/callback',
     successRedirect: "https://knitlove.herokuapp.com/"
 }));
 
-app.get("/verify/:id/:token", async (req, res) => {
+app.get("/verify/user/:id/:token", async (req, res) => {
     const id = req.params.id;
     const token = req.params.token;
     console.log("request params:");

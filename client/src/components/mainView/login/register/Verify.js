@@ -26,7 +26,7 @@ export function Verify() {
             const res = await axios({
                 method: "GET",
                 withCredentials: true,
-                url: `/verify/${id}/${token}`
+                url: `/verify/user/${id}/${token}`
             });
             console.log(res);
         }
