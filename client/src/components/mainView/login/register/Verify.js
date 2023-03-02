@@ -53,18 +53,19 @@ export function Verify() {
         )
     }
 
-    if (isVerified) {
-        return (
-            <article className='content-wrapper'>
-                <h3>Your email is now verified!</h3>
-                <p>You can now proceed to log-in with you email and password!</p>
-            </article>
-        );
-    } else {
+    if (!isVerified) {
+
         <article className='content-wrapper'>
             <h3>It seems there is a problem verifying your email</h3>
             <p>Please try again.</p>
         </article>
-    }
+    } 
+
+    return (
+        <article className='content-wrapper'>
+            <h3>Your email is now verified!</h3>
+            <p>You can now proceed to log-in with you email and password!</p>
+        </article>
+    );
 
 }
