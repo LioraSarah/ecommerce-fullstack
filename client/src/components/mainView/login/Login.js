@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-  setUser, setAuthenticated, isVerified
+  setUser, setAuthenticated, selectIsVerified
 } from '../../../features/loginSlice';
 import "./login.css";
 import { useMutation } from '@tanstack/react-query';
@@ -13,6 +13,8 @@ import axios from 'axios';
 export function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const isVerified = useSelector(selectIsVerified);
 
     const loginUser = async (user) => {
         try {
