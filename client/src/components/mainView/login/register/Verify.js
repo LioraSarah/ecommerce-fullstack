@@ -28,7 +28,7 @@ export function Verify() {
                 withCredentials: true,
                 url: `/verify/user/${id}/${token}`
             });
-            console.log(res);
+            return res.data;
         }
     },
         {
