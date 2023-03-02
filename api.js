@@ -89,7 +89,7 @@ app.get("/verify/:id/:token", (req, res) => {
     const token = req.params.token;
     console.log("request params:");
     console.log(req.params);
-    const verifiedUser = verify.verifyUser(token, id);
+    const verifiedUser = verifyMail.verifyUser(token, id);
     if (verifiedUser) {
         res.status(200).send();
     } else {
