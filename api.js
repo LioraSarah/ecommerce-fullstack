@@ -105,7 +105,8 @@ app.post("/login", passport.authenticate('local', {
             id: req.user.id,
             firstName: req.user.first_name,
             lastName: req.user.last_name,
-            email: req.user.email
+            email: req.user.email,
+            verified: req.user.verified
         }
         res.status(200).send(user);
     } else {

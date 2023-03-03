@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  setUser, setAuthenticated, selectIsVerified
+    setUser, setAuthenticated, selectIsVerified
 } from '../../../features/loginSlice';
 import "./login.css";
 import { useMutation } from '@tanstack/react-query';
@@ -24,15 +24,19 @@ export function Login() {
                 withCredentials: true,
                 url: "/login"
             });
-            dispatch(setUser(response.data));
-            dispatch(setAuthenticated(true));
-            navigate('/');
-            return response;
+            if (response.data.user.verified) {
+                dispatch(setUser(response.data));
+                dispatch(setAuthenticated(true));
+                navigate('/');
+                return response;
+            } else {
+                alert("You haven't verified your email yet!");
+            }
         } catch (err) {
             console.log(err);
             alert("There's an error with your log-in, please check if email and password are correct");
             return err;
-        }  
+        }
     };
 
     const addUserMutation = useMutation(loginUser);
@@ -41,11 +45,7 @@ export function Login() {
     const { register, handleSubmit } = useForm();
     const onSubmit = (data) => {
         try {
-            if(isVerified) {
-                addUserMutation.mutate(data);
-            } else {
-                alert("You haven't verified your email yet!")
-            }
+            addUserMutation.mutate(data);
         } catch (err) {
             alert("There was a problem with your log-in")
             console.log("the error is - " + err);
@@ -63,9 +63,9 @@ export function Login() {
                 <input type="email" id="email" className='input-general' name="email" placeholder='EMAIL' {...register("email", { required: true })} />
                 <input type="password" id="password" className='input-general' name="password" placeholder='PASSWORD' {...register("password", { required: true })} />
                 <p id="signup-p">don't have a user? <NavLink to="/register" id="signup-link">sign-up</NavLink></p>
-                <input type="submit" value="LOG IN" className='main-button' id="login-button"/>
+                <input type="submit" value="LOG IN" className='main-button' id="login-button" />
             </form>
-            <button onClick={googleLogin} id="google-button"><img src='./media/google.png' alt='google' class="google-icon"/>Log in with Google</button>
+            <button onClick={googleLogin} id="google-button"><img src='./media/google.png' alt='google' class="google-icon" />Log in with Google</button>
         </article>
     );
 }

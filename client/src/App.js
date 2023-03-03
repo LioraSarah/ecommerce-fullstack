@@ -27,7 +27,7 @@ function App() {
         data,
         status,
         refetch
-    } = useQuery(["isVerified"], async () => {
+    } = useQuery(["user"], async () => {
       const response = await axios({
         method: "GET",
         withCredentials: true,
