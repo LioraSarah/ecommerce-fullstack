@@ -30,11 +30,12 @@ export function Login() {
                 navigate('/');
                 return response;
             } else {
+                console.log(response);
                 alert("You haven't verified your email yet!");
             }
         } catch (err) {
             console.log(err);
-            alert("There's an error with your log-in, please check if email and password are correct");
+            alert("There's an error with your log-in, please check if email and password are correct or if your email is verified");
             return err;
         }
     };

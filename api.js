@@ -109,8 +109,10 @@ app.post("/login", passport.authenticate('local', {
             verified: req.user.verified
         }
         res.status(200).send(user);
+    } else if (req.user) {
+        res.status(400).send(req.user.verified);
     } else {
-        res.status(400).send();
+        res.status(401).send();
     }
 });
 
