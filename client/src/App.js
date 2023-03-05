@@ -19,8 +19,8 @@ function App() {
     const onSuccess = (data) => {
       console.log("in success");
       console.log(data);
-      if (data.user) {
-        dispatch(setUser(data.user));
+      if (data) {
+        dispatch(setUser(data));
         dispatch(setAuthenticated(true));
       }
     }
