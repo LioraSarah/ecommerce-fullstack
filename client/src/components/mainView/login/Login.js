@@ -33,8 +33,11 @@ export function Login() {
             }
         } catch (err) {
             console.log(err);
-            alert("There's an error with your log-in, please check if email and password are correct");
-            return err;
+            if (err.response.status === 400) {
+                alert("Please verify your email first!")
+            } else {
+                alert("There's an error with your log-in, please check if email and password are correct");
+            }
         }
     };
 
