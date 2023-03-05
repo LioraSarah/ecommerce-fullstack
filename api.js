@@ -100,6 +100,7 @@ app.get("/verify/user/:id/:token", async (req, res) => {
 app.post("/login", passport.authenticate('local', {
     failureRedirect: "/loginfail"
 }), (req, res) => {
+    console.log(req.user);
     if (req.user && req.user.verified) {
         const user = {
             id: req.user.id,

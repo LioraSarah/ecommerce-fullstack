@@ -24,15 +24,17 @@ export function Login() {
                 withCredentials: true,
                 url: "/login"
             });
-            if (response.data.user.verified) {
+            console.log(response);
+            if (response.data.user) {
                 dispatch(setUser(response.data));
                 dispatch(setAuthenticated(true));
                 navigate('/');
                 return response;
-            } else {
-                console.log(response);
-                alert("You haven't verified your email yet!");
             }
+            // } else if () {
+            //     console.log(response);
+            //     alert("You haven't verified your email yet!");
+            // }
         } catch (err) {
             console.log(err);
             alert("There's an error with your log-in, please check if email and password are correct or if your email is verified");
