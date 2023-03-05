@@ -113,7 +113,7 @@ app.post("/login", passport.authenticate('local', {
     } else if (req.user) {
         res.status(400).send(req.user.verified);
     } else {
-        res.status(401).send();
+        res.status(500).send();
     }
 });
 
