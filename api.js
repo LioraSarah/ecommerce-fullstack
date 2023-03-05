@@ -118,6 +118,7 @@ app.post("/login", passport.authenticate('local', {
 });
 
 app.get("/user", (req, res)=>{
+    console.log(req.user);
     if (req.user) {
         console.log("in api");
           console.log(req.user.email);

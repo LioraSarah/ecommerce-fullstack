@@ -33,6 +33,8 @@ function App() {
         withCredentials: true,
         url: "/user"
       });
+      console.log("in app user query");
+      console.log(response.data);
         return response.data
     },
         {
