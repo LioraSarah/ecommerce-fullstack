@@ -17,6 +17,8 @@ function App() {
   const userId = useSelector(selectUserId);
 
     const onSuccess = (data) => {
+      console.log("in success");
+      console.log(data);
       if (data.user) {
         dispatch(setUser(data.user));
         dispatch(setAuthenticated(true));
