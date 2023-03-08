@@ -40,6 +40,11 @@
     left: 0;
 }
 
+#productPrice {
+    margin: 0;
+    padding: 0;
+}
+
 .view-p {
     font-weight: 100;
 }

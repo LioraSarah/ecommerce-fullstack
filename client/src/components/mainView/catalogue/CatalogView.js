@@ -71,8 +71,8 @@ export function CatalogueView() {
                 {/* <button className="hidden-button" >add to cart</button> */}
               </div>
             </NavLink>
-            <h4>{item.product_name}</h4>
-            <p>{item.price}$</p>
+            <h4 id="productName">{item.product_name}</h4>
+            <p id="productPrice">{item.price}$</p>
           </div>
         ))}
       </div>
