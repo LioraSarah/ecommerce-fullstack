@@ -58,7 +58,7 @@ app.get("/", (req, res) => {
     res.send("Hello!");
 });
 
-app.get("/auth/google", passport.authenticate('google', {scope:["profile","https://www.googleapis.com/auth/userinfo.email"]}));
+app.get("/auth/google", passport.authenticate('google', {scope:["profile","https://www.googleapis.com/auth/userinfo.email"], prompt: 'select_account'}));
 
 app.get("/loginfail", (req, res) => {
     res.status(400).send();
