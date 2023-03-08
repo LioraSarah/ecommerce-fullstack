@@ -28,6 +28,8 @@ main {
     display: flex;
     flex-direction: column;
     height: 100%;
+    position: relative;
+    margin-bottom: 50px;
 }
 
 #footer-div {
