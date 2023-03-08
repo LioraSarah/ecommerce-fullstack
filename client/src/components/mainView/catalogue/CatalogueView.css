@@ -43,11 +43,13 @@
 #productPrice {
     margin: 0;
     padding: 0;
+    margin-bottom: 5px;
 }
 
 #productName {
     margin: 0;
     padding: 0;
+    margin-top: 5px;
 }
 
 .view-p {
