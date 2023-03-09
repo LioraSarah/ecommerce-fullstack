@@ -86,7 +86,7 @@ app.get('/auth/google/callback',
     successRedirect: "https://knitlove.herokuapp.com/"
 }));
 
-app.get("/auth/facebook", passport.authenticate('facebook', {scope:["profile"], prompt: 'select_account'}));
+app.get("/auth/facebook", passport.authenticate('facebook'));
 
 // app.get("/logingoogle", (req, res)=> {
 //     if (req.user) {
