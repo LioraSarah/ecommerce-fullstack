@@ -20,7 +20,7 @@ function initializePassportFacebook(passport) {
             id: profile.id,
             first_name: profile.name.givenName,
             last_name: profile.name.familyName,
-            email: profile.name.givenName
+            email: profile.emails[0].value
           }
           console.log("in faceboog strategy user");
           console.log(userData);
