@@ -11,6 +11,8 @@ function initializePassportFacebook(passport) {
   },
     async function (accessToken, refreshToken, profile, done) {
       let user;
+      console.log("in faceboog strategy");
+      console.log(profile);
       try {
         user = await facebook.findUserByFacebookId(profile.id);
         if (!user) {
@@ -20,6 +22,8 @@ function initializePassportFacebook(passport) {
             lastName: profile.last_name,
             email: profile.email
           }
+          console.log("in faceboog strategy user");
+          console.log(userData);
           await facebook.createFacebookUser(userData);
           user = userData;
           console.log("in initial facebook");
