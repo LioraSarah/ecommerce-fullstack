@@ -20,8 +20,12 @@ function initializePassportFacebook(passport) {
           const userData = {
             id: profile.id,
             first_name: profile.name.givenName,
-            last_name: profile.name.familyName,
-            email: profile.emails[0].value
+            last_name: profile.name.familyName
+          }
+          if (profile.emails) {
+            userData.email = profile.emails[0].value;
+          } else {
+            userData.email = 'Not Provided';
           }
           console.log("in faceboog strategy user");
           console.log(userData);
