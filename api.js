@@ -10,6 +10,7 @@ const catalogue = require("./backend/api/db-catalogue");
 const cart = require("./backend/api/db-cart");
 const initializePassport = require("./backend/api/passport-config");
 const initializePassportGoogle = require("./backend/api/passport-config-google");
+const initializePassportFacebook = require("./backend/api/passport-config-facebook");
 const bcrypt = require('bcrypt');
 const corsOptions = require('./backend/config/corsOptions');
 const cookieParser = require('cookie-parser');
@@ -40,6 +41,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 initializePassport(passport);
 initializePassportGoogle(passport);
+initializePassportFacebook(passport);
 
 app.use(
     session({
@@ -76,10 +78,32 @@ app.get("/logingoogle", (req, res)=> {
     } else {
         res.status(400).send();
     }
-})
+});
 
 app.get('/auth/google/callback', 
   passport.authenticate('google', {
+    failureRedirect: "https://knitlove.herokuapp.com/login",
+    successRedirect: "https://knitlove.herokuapp.com/"
+}));
+
+app.get("/auth/facebook", passport.authenticate('facebook', {scope:["profile"], prompt: 'select_account'}));
+
+// app.get("/logingoogle", (req, res)=> {
+//     if (req.user) {
+//         const user = {
+//             id: req.user.id,
+//             firstName: req.user.first_name,
+//             lastName: req.user.last_name,
+//             email: req.user.email
+//         }
+//         res.status(200).send(user);
+//     } else {
+//         res.status(400).send();
+//     }
+// })
+
+app.get('/auth/facebook/callback', 
+  passport.authenticate('facebook', {
     failureRedirect: "https://knitlove.herokuapp.com/login",
     successRedirect: "https://knitlove.herokuapp.com/"
 }));
@@ -144,8 +168,6 @@ app.delete("/logout", (req, res, next) => {
         res.status(200).send();
     });
 });
-//     if ()
-//     });
 
 app.post("/register", async (req, res) => {
     const { newUser } = req.body;
