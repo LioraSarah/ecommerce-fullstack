@@ -105,8 +105,7 @@ app.get("/auth/facebook", passport.authenticate('facebook', {scope: ['email'], a
 app.get('/auth/facebook/callback', 
   passport.authenticate('facebook', {
     failureRedirect: "https://knitlove.herokuapp.com/login",
-    successRedirect: "https://knitlove.herokuapp.com/",
-    scope: ['email']
+    successRedirect: "https://knitlove.herokuapp.com/"
 }));
 
 app.get("/verify/user/:id/:token", async (req, res) => {
