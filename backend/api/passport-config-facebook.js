@@ -6,7 +6,7 @@ function initializePassportFacebook(passport) {
   passport.use(new FacebookStrategy({
     clientID: '539946144789992',
     clientSecret: '8b2bbb28bf014d13912ffefc589b0d7c',
-    callbackURL: "/auth/facebook/callback",
+    callbackURL: "https://knitlove.herokuapp.com/auth/facebook/callback",
     profileFields: ['id', 'first_name', 'last_name', 'email']
   },
     async function (accessToken, refreshToken, profile, done) {
