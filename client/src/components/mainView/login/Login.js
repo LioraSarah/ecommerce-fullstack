@@ -55,7 +55,7 @@ export function Login() {
     };
 
     const facebookLogin = () => {
-        window.open("/auth/facebook", "_self");
+        window.open("https://knitlove.herokuapp.com/auth/facebook", "_self");
     };
 
     return (
