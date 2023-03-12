@@ -8,7 +8,8 @@ export const userSlice = createSlice({
     lastName: '',
     email: '',
     isAuthenticated: false,
-    isVerified: false
+    isVerified: false,
+    userType: ''
   },
   reducers: {
     loaduser(state, action) {
@@ -20,6 +21,7 @@ export const userSlice = createSlice({
       state.lastName = action.payload.lastName;
       state.email = action.payload.email;
       state.isVerified = action.payload.isVerified;
+      state.userType = action.payload.userType;
     },
     setAuthenticated(state, action) {
       state.isAuthenticated = action.payload;
@@ -43,6 +45,7 @@ export const selectLastName = (state) => state.user.lastName;
 export const selectEmail = (state) => state.user.email;
 export const selectIsAuthenticated = (state) => state.user.isAuthenticated;
 export const selectIsVerified = (state) => state.user.isVerified;
+export const selectUserType = (state) => state.user.userType;
 
 export const { loaduser, setUser, setAuthenticated, logOut, setIsVerified } = userSlice.actions;
 export default userSlice.reducer;

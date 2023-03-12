@@ -17,7 +17,8 @@ function initializePassportGoogle(passport) {
             id: profile.id,
             firstName: profile._json.given_name,
             lastName: profile._json.family_name,
-            email: profile.emails[0].value
+            email: profile.emails[0].value,
+            userType: 'google'
           }
           await google.createGoogleUser(userData);
           user = userData;

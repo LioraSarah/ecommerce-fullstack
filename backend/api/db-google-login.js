@@ -22,8 +22,8 @@ module.exports = {
         return new Promise((resolve, reject)=>{ 
             try {
                 pool.query(
-                    `INSERT INTO public."google_users" (id, email, first_name, last_name)
-                        VALUES ('${user.id}', '${user.email}', '${user.firstName}', '${user.lastName}');`, (err, result) => {
+                    `INSERT INTO public."google_users" (id, email, first_name, last_name, user_type)
+                        VALUES ('${Number(user.id)}', '${user.email}', '${user.firstName}', '${user.lastName}', '${user.userType}');`, (err, result) => {
                     if (!err) {
                          return resolve("Your register was successful!");
                     } else {

@@ -4,13 +4,14 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { selectCartItems } from "../../../features/cartSlice";
 import { loadCart, removeItem, setCart } from "../../../features/cartSlice.js";
-import { selectUserId, loaduser } from '../../../features/loginSlice';
+import { selectUserId, loaduser, selectUserType } from '../../../features/loginSlice';
 import "./cart.css";
 
 export const Cart = () => {
 
   const dispatch = useDispatch();
   const userId = useSelector(selectUserId);
+  const userType = useSelector(selectUserType);
 
   const onSuccess = (data) => {
     dispatch(setCart(data));

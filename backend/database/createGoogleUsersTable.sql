@@ -3,10 +3,11 @@
 -- DROP TABLE IF EXISTS public.users;
 
 CREATE TABLE google_users(
-    id character varying PRIMARY KEY NOT NULL,
+    id integer PRIMARY KEY NOT NULL,
     email character varying NOT NULL,
     first_name character varying NOT NULL,
     last_name character varying NOT NULL,
+    user_type character varying COLLATE pg_catalog."default" NOT NULL,
     cart_id integer
 );
 

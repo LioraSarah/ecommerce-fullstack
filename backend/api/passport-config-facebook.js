@@ -19,7 +19,8 @@ function initializePassportFacebook(passport) {
           const userData = {
             id: profile.id,
             first_name: profile.name.givenName,
-            last_name: profile.name.familyName
+            last_name: profile.name.familyName,
+            userType: 'facebook'
           }
           if (profile.emails) {
             userData.email = profile.emails[0].value;

@@ -151,7 +151,8 @@ app.get("/user", (req, res)=>{
             firstName: req.user.first_name,
             lastName: req.user.last_name,
             email: req.user.email,
-            verified: req.user.verified
+            verified: req.user.verified,
+            userType: req.user.user_type
         }
         res.status(200).send(user);
     } else {
@@ -176,6 +177,7 @@ app.post("/register", async (req, res) => {
     const verification_token = randomstring.generate();
     newUser.verification_token = verification_token;
     newUser.verified = false;
+    newUser.userType = 'local';
 
     console.log("user token:");
     console.log(newUser.verification_token);

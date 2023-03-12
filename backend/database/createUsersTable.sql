@@ -8,6 +8,7 @@ CREATE TABLE users(
     password character varying COLLATE pg_catalog."default" NOT NULL,
     first_name character varying COLLATE pg_catalog."default" NOT NULL,
     last_name character varying COLLATE pg_catalog."default" NOT NULL,
+    user_type character varying COLLATE pg_catalog."default" NOT NULL,
     verification_token character varying,
     verified boolean,
     cart_id integer,
