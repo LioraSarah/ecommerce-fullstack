@@ -5,7 +5,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             console.log(details.productSize);
             pool.query(`INSERT INTO public.cart(id, user_id, product_id, quantity, size)
-            VALUES (DEFAULT, ${details.userId}, ${details.productId}, ${details.quantity}, '${details.productSize}');`, (err, result) => {
+            VALUES (DEFAULT, '${details.userId}', ${details.productId}, ${details.quantity}, '${details.productSize}');`, (err, result) => {
                 if (!err) {
                     return resolve(result);
                 } else {
@@ -22,7 +22,7 @@ module.exports = {
                 FROM public.cart
                 JOIN public.products 
                 ON public.cart.product_id = public.products.id
-                WHERE public.cart.user_id = ${userId}`, (err, result) => {
+                WHERE public.cart.user_id = '${userId}'`, (err, result) => {
                 if (!err) {
                     return resolve(result.rows);
                 } else {

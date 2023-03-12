@@ -11,7 +11,7 @@ function initializePassportGoogle(passport) {
     async function (req, accessToken, refreshToken, profile, done) {
       let user;
       try {
-        user = await google.findUserByGoogleId(Number(profile.id));
+        user = await google.findUserByGoogleId(profile.id);
         if (!user) {
           const userData = {
             id: profile.id,

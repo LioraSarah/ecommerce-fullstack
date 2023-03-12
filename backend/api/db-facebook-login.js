@@ -5,7 +5,7 @@ module.exports = {
         return new Promise((resolve, reject)=>{ 
             try {
                 pool.query(
-                    `SELECT * FROM public.facebook_users WHERE id=${id}`, (err, result) => {
+                    `SELECT * FROM public.facebook_users WHERE id='${id}'`, (err, result) => {
                     if (!err) {
                          return resolve(result.rows[0]);
                     } else {
@@ -23,7 +23,7 @@ module.exports = {
             try {
                 pool.query(
                     `INSERT INTO public."facebook_users" (id, email, first_name, last_name, user_type)
-                        VALUES (${Number(user.id)}, '${user.email}', '${user.first_name}', '${user.last_name}', '${user.userType}');`, (err, result) => {
+                        VALUES ('${(user.id)}', '${user.email}', '${user.first_name}', '${user.last_name}', '${user.userType}');`, (err, result) => {
                     if (!err) {
                          return resolve("Your register was successful!");
                     } else {

@@ -7,7 +7,7 @@ module.exports = {
                 console.log("id is:");
                 console.log(typeof id);
                 pool.query(
-                    `SELECT * FROM public.google_users WHERE id=${id}`, (err, result) => {
+                    `SELECT * FROM public.google_users WHERE id='${id}'`, (err, result) => {
                     if (!err) {
                          return resolve(result.rows[0]);
                     } else {
@@ -23,12 +23,9 @@ module.exports = {
     createGoogleUser: async (user) => {
         return new Promise((resolve, reject)=>{ 
             try {
-                const userId = Number(user.id);
-                console.log('user id is:');
-                console.log(typeof userId);
                 pool.query(
                     `INSERT INTO public."google_users" (id, email, first_name, last_name, user_type)
-                        VALUES (${userId}, '${user.email}', '${user.firstName}', '${user.lastName}', '${user.userType}');`, (err, result) => {
+                        VALUES ('${user.id}', '${user.email}', '${user.firstName}', '${user.lastName}', '${user.userType}');`, (err, result) => {
                     if (!err) {
                          return resolve("Your register was successful!");
                     } else {

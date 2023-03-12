@@ -3,7 +3,7 @@
 -- DROP TABLE IF EXISTS public.users;
 
 CREATE TABLE google_users(
-    id integer PRIMARY KEY NOT NULL,
+    id character varying PRIMARY KEY NOT NULL,
     email character varying NOT NULL,
     first_name character varying NOT NULL,
     last_name character varying NOT NULL,
