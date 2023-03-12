@@ -5,7 +5,7 @@ module.exports = {
         return new Promise((resolve, reject)=>{ 
             try {
                 pool.query(
-                    `SELECT * FROM public.facebook_users WHERE id='${id}'`, (err, result) => {
+                    `SELECT * FROM public.facebook_users WHERE id=${id}`, (err, result) => {
                     if (!err) {
                          return resolve(result.rows[0]);
                     } else {
