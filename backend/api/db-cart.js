@@ -36,7 +36,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             pool.query(
                 `DELETE FROM cart
-            WHERE user_id = ${itemInfo.userId} AND product_id = ${itemInfo.productId};`, (err, result) => {
+            WHERE user_id = '${itemInfo.userId}' AND product_id = ${itemInfo.productId};`, (err, result) => {
                 if (!err) {
                     return resolve(result);
                 } else {
