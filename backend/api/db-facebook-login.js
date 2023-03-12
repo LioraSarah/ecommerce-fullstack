@@ -23,7 +23,7 @@ module.exports = {
             try {
                 pool.query(
                     `INSERT INTO public."facebook_users" (id, email, first_name, last_name, user_type)
-                        VALUES ('${Number(user.id)}', '${user.email}', '${user.first_name}', '${user.last_name}', '${user.userType}');`, (err, result) => {
+                        VALUES (${Number(user.id)}, '${user.email}', '${user.first_name}', '${user.last_name}', '${user.userType}');`, (err, result) => {
                     if (!err) {
                          return resolve("Your register was successful!");
                     } else {

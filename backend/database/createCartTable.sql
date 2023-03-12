@@ -4,7 +4,7 @@
 
 CREATE TABLE cart(
     id SERIAL PRIMARY KEY NOT NULL,
-    user_id integer NOT NULL,
+    user_id character varying NOT NULL,
     product_id integer NOT NULL,
     quantity integer NOT NULL,
     size character varying COLLATE pg_catalog."default"
