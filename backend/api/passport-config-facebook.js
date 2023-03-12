@@ -14,7 +14,7 @@ function initializePassportFacebook(passport) {
       console.log("in faceboog strategy");
       console.log(profile);
       try {
-        user = await facebook.findUserByFacebookId(profile.id);
+        user = await facebook.findUserByFacebookId(Number(profile.id));
         if (!user) {
           const userData = {
             id: profile.id,
