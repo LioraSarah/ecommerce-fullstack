@@ -225,7 +225,13 @@ app.post("/shopcart", async (req, res) => {
     console.log(productSize);
     console.log("in api");
     try {
-        const response = await cart.addToCart({ userId, productId, quantity, productSize });
+        const findItem = cart.getItemInCart(userId, productId);
+        let response;
+        if (!findItem) {
+            response = await cart.addToCart({ userId, productId, quantity, productSize });
+        } else {
+            response = cart.updateQuantity(userId, productId, quantity);
+        }
         res.status(200).send(response);
     } catch (error) {
         console.log(error);

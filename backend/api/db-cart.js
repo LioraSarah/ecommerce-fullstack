@@ -32,6 +32,38 @@ module.exports = {
             );
         });
     },
+    getItemInCart: async (userId, productId) => {
+        return new Promise((resolve, reject) => {
+            pool.query(
+                `SELECT *
+                FROM public.cart
+                WHERE public.cart.user_id = '${userId}' 
+                AND public.cart.product_id = ${productId};`, (err, result) => {
+                if (!err) {
+                    return resolve(result.rows);
+                } else {
+                    return reject(err);
+                }
+            }
+            );
+        });
+    },
+    updateQuantity: async (userId, productId, quantity) => {
+        return new Promise((resolve, reject) => {
+            pool.query(
+                `UPDATE public.cart 
+                SET quantity = ${quantity}
+                WHERE public.cart.user_id = '${userId}' 
+                AND public.cart.product_id = ${productId};`, (err, result) => {
+                if (!err) {
+                    return resolve(result.rows);
+                } else {
+                    return reject(err);
+                }
+            }
+            );
+        });
+    },
     deleteItem: async (itemInfo) => {
         return new Promise((resolve, reject) => {
             pool.query(

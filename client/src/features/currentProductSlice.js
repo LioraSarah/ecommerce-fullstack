@@ -8,12 +8,16 @@ export const currentProductSlice = createSlice({
   reducers: {
     setCurrentProduct(state, action) {
       state.product = action.payload;
-    }
+    },
+    setQuantity(state, action) {
+      state.product.quantity = action.payload;
+  }
   }
 });
 
 export const selectCurrentProduct = (state) => state.currentProduct.product;
+export const selectQuantity = (state) => state.currentProduct.product.quantity;
 
-export const { setCurrentProduct } = currentProductSlice.actions;
+export const { setCurrentProduct, setQuantity } = currentProductSlice.actions;
 
 export default currentProductSlice.reducer;

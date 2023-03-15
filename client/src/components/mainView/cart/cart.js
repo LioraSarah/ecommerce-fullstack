@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { selectCartItems } from "../../../features/cartSlice";
-import { loadCart, removeItem, setCart } from "../../../features/cartSlice.js";
+import { loadCart, removeItem, setCart, addItem, updateQuantity } from "../../../features/cartSlice.js";
 import { selectUserId, loaduser, selectUserType } from '../../../features/loginSlice';
 import "./cart.css";
+import {findInCart} from '../helper.js';
 
 export const Cart = () => {
 
@@ -54,6 +55,18 @@ export const Cart = () => {
 
   const removeItemMutation = useMutation(removeItemFromDB);
 
+  
+  const updateItemInDB = async (itemInfo) => {
+    try {
+      const response = await axios.post("/shopcart", { data: itemInfo });
+      return response;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const updateItemMutation = useMutation(updateItemInDB);
+
   const handleRemoveClick = (e) => {
     if (userId) {
       try {
@@ -62,13 +75,14 @@ export const Cart = () => {
         console.log(err);
       }
     }
-    dispatch(removeItem(e.target.name));
+    const index = findInCart(cartItemsPreview ,e.target.name);
+    dispatch(removeItem(index));
     dispatch(loadCart());
-  }
+  };
 
   if (status === "loading") {
     return <h2>Loading...</h2>
-  }
+  };
 
   const calcTotal = (items) => {
     let total = 0;
@@ -76,6 +90,42 @@ export const Cart = () => {
       total += items[i].price;
     }
     return total;
+  };
+
+  const decreaseItem = (e) => {
+    console.log(e);
+    // const index = findInCart(cartItemsPreview, e.target.class);
+    // const newQuantity = cartItemsPreview[index].quantity - 1;
+    // if (newQuantity) {
+    //   dispatch(updateQuantity({index: index, quantity: newQuantity}));
+      // const itemInfo = cartItemsPreview[index];
+      // console.log("indecrease");
+      // console.log(itemInfo);
+      // console.log("quantity");
+      // console.log(newQuantity);
+      // try {
+      //   updateItemMutation.mutate({ itemInfo: itemInfo});
+      // } catch (err) {
+      //   console.log(err);
+      // }
+    // } 
+    //also change in database!!!
+  };
+
+  const increaseItem = (e) => {
+    console.log(e);
+    // const index = findInCart(cartItemsPreview, e.target.class);
+    // const newQuantity = cartItemsPreview[index].quantity + 1;
+    // if (newQuantity <= 3) {
+    //   dispatch(updateQuantity({index: index, quantity: newQuantity}));
+      // const itemInfo = cartItemsPreview[index];
+      // try {
+      //   updateItemMutation.mutate({ itemInfo: itemInfo});
+      // } catch (err) {
+      //   console.log(err);
+      // }
+    // }
+    //also change in database!!!
   }
 
   return (
@@ -90,7 +140,7 @@ export const Cart = () => {
                 <div className="info">
                     <h4>{item.product_name}</h4>
                   <p className='info-p'>size: {item.size}<br />
-                    quantity: {'1'}<br />
+                    <span onClick={decreaseItem} className={item.product_name}> - </span>quantity: {item.quantity}<span onClick={increaseItem} className={item.product_name}> + </span><br />
                     price: {item.price}$
                   </p>
                 </div>
