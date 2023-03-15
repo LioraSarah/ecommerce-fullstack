@@ -16,7 +16,6 @@ export const currentProductSlice = createSlice({
 });
 
 export const selectCurrentProduct = (state) => state.currentProduct.product;
-export const selectQuantity = (state) => state.currentProduct.product.quantity;
 
 export const { setCurrentProduct, setQuantity } = currentProductSlice.actions;
 

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { addItem, selectCartItems, updateQuantity } from "../../../../features/cartSlice.js";
-import { setCurrentProduct, selectQuantity, setQuantity } from '../../../../features/currentProductSlice.js';
+import { setCurrentProduct } from '../../../../features/currentProductSlice.js';
 import { selectUserId } from '../../../../features/loginSlice.js';
 import "./ProductPage.css";
 import "../../../../index.css";
@@ -13,11 +13,10 @@ import { findInCart } from '../../helper.js';
 
 export function ProductPage() {
     const [size, setSize] = useState('');
+    const [quantity, setItemQuantity] = useState(1);
     let { productId } = useParams();
     const { category } = useParams();
     const productURL = `/${category}/${productId}`;
-
-    const quantity = useSelector(selectQuantity);
     const cart = useSelector(selectCartItems);
 
     console.log(productId);
@@ -86,7 +85,7 @@ export function ProductPage() {
     const addToCart = () => {
         const index = findInCart(cart, product.product_name);
         if (index >= 0) {
-            const newQuantity = cart[index].quantity + 1;
+            const newQuantity = cart[index].quantity + quantity;
             if (newQuantity <= 3) {
                 dispatch(updateQuantity({ index: index, quantity: newQuantity }));
                 const itemInfo = cart[index];
@@ -125,7 +124,7 @@ export function ProductPage() {
     };
 
     const handleQuantityChange = (e) => {
-        setQuantity(Number(e.target.value));
+        setItemQuantity(Number(e.target.value));
     };
 
     return (
