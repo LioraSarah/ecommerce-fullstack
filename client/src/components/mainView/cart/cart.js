@@ -93,7 +93,7 @@ export const Cart = () => {
   };
 
   const decreaseItem = (e) => {
-    console.log(e);
+    console.log(e.target.className);
     // const index = findInCart(cartItemsPreview, e.target.class);
     // const newQuantity = cartItemsPreview[index].quantity - 1;
     // if (newQuantity) {
@@ -114,7 +114,7 @@ export const Cart = () => {
   };
 
   const increaseItem = (e) => {
-    console.log(e);
+    console.log(e.target.className);
     // const index = findInCart(cartItemsPreview, e.target.class);
     // const newQuantity = cartItemsPreview[index].quantity + 1;
     // if (newQuantity <= 3) {
@@ -143,7 +143,7 @@ export const Cart = () => {
                 <div className="info">
                     <h4>{item.product_name}</h4>
                   <p className='info-p'>size: {item.size}<br />
-                    <span onClick={decreaseItem} className={item.product_name}> - </span>quantity: {item.quantity}<span onClick={increaseItem} className={item.product_name}> + </span><br />
+                    quantity: <span onClick={decreaseItem} className={item.product_name}> - </span> {item.quantity}<span onClick={increaseItem} className={item.product_name}> + </span><br />
                     price: {item.price}$
                   </p>
                 </div>
