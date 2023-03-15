@@ -9,7 +9,7 @@ import { setCurrentProduct, selectQuantity, setQuantity } from '../../../../feat
 import { selectUserId } from '../../../../features/loginSlice.js';
 import "./ProductPage.css";
 import "../../../../index.css";
-import { findInCart } from '../../helper';
+import { findInCart } from '../../helper.js';
 
 export function ProductPage() {
     const [size, setSize] = useState('');

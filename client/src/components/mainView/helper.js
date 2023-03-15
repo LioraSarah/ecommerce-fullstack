@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { addItem } from "../../features/cartSlice.js";
 
-const addItemToCart = (userId, product, quantity, size, productURL, dispatch, addItemMutation) => {
+export const addItemToCart = (userId, product, quantity, size, productURL, dispatch, addItemMutation) => {
     const cartItem = {
         ...product,
         quantity: quantity,
@@ -18,7 +18,7 @@ const addItemToCart = (userId, product, quantity, size, productURL, dispatch, ad
     }
 };
 
-const addItemToDB = async (itemInfo) => {
+export const addItemToDB = async (itemInfo) => {
     try {
         const response = await axios.post("/shopcart", itemInfo);
         return response;
@@ -29,8 +29,6 @@ const addItemToDB = async (itemInfo) => {
 
 };
 
-const findInCart = (cart, itemName) => {
+export const findInCart = (cart, itemName) => {
     return cart.findIndex((item) => item.product_name === itemName);
 };
-
-module.exports = { addItemToCart, addItemToDB, findInCart};
