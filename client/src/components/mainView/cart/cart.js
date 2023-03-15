@@ -103,13 +103,14 @@ export const Cart = () => {
       // console.log(itemInfo);
       // console.log("quantity");
       // console.log(newQuantity);
-      // try {
+      //if (userId) {
+        // try {
       //   updateItemMutation.mutate({ itemInfo: itemInfo});
       // } catch (err) {
       //   console.log(err);
       // }
+      //}
     // } 
-    //also change in database!!!
   };
 
   const increaseItem = (e) => {
@@ -119,11 +120,13 @@ export const Cart = () => {
     // if (newQuantity <= 3) {
     //   dispatch(updateQuantity({index: index, quantity: newQuantity}));
       // const itemInfo = cartItemsPreview[index];
-      // try {
+      //if (userId) {
+        // try {
       //   updateItemMutation.mutate({ itemInfo: itemInfo});
       // } catch (err) {
       //   console.log(err);
       // }
+      //}
     // }
     //also change in database!!!
   }

@@ -84,7 +84,7 @@ export function ProductPage() {
     const productPrice = product.price;
 
     const addToCart = () => {
-        const index = findInCart(cart, product.id);
+        const index = findInCart(cart, product.product_name);
         if (index >= 0) {
             const newQuantity = cart[index].quantity + 1;
             if (newQuantity <= 3) {
@@ -94,11 +94,13 @@ export function ProductPage() {
                 console.log(itemInfo);
                 console.log("quantity");
                 console.log(newQuantity);
+                if (userId) {
                 try {
-                    updateItemMutation.mutate({ itemInfo: itemInfo });
+                    updateItemMutation.mutate({ userId: userId, productId: itemInfo.id, quantity: newQuantity, size: itemInfo.size });
                 } catch (err) {
                     console.log(err);
                 }
+            }
             }
         } else {
             const cartItem = {
