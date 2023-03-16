@@ -85,7 +85,7 @@ export function ProductPage() {
 
     const addToCart = () => {
         const index = findInCart(cart, product.product_name);
-        if (index >= 0 && cart[index].size === size) {
+        if (index >= 0) {
             const newQuantity = cart[index].quantity + quantity;
             if (newQuantity <= 3) {
                 dispatch(updateQuantity({ index: index, quantity: newQuantity }));
