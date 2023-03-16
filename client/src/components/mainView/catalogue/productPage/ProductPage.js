@@ -168,7 +168,7 @@ export function ProductPage() {
 
                         {/* <input type="submit" value="ADD" /> */}
                         <NavLink onClick={addToCart} to="/cart">
-                            <button type="button" className="main-button add">add to cart</button>
+                            <input type="submit" value="ADD TO CART" className="main-button add" />
                         </NavLink>
 
                     </div>
