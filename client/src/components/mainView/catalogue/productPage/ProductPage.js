@@ -84,7 +84,7 @@ export function ProductPage() {
 
     const addToCart = () => {
         const index = findInCart(cart, product.product_name);
-        if (index >= 0) {
+        if (index >= 0 && cart[index].size === size) {
             const newQuantity = cart[index].quantity + quantity;
             if (newQuantity <= 3) {
                 dispatch(updateQuantity({ index: index, quantity: newQuantity }));
@@ -145,7 +145,7 @@ export function ProductPage() {
                             <div id="size" className="info-section">
                                 <label>size:</label><br />
                                 <div className="bold-option">
-                                    <input name="size" type="radio" value="s" onChange={handleSizeChange} /> s
+                                    <input name="size" type="radio" value="s" onChange={handleSizeChange} required/> s
                                     <input name="size" type="radio" value="m" onChange={handleSizeChange} /> m
                                     <input name="size" type="radio" value="l" onChange={handleSizeChange} /> l
                                 </div>
