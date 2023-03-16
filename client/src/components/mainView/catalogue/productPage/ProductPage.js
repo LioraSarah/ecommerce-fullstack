@@ -1,6 +1,6 @@
 //import './Header.css';
 import React, { useEffect, useState } from 'react';
-import { NavLink, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -18,6 +18,7 @@ export function ProductPage() {
     const { category } = useParams();
     const productURL = `/${category}/${productId}`;
     const cart = useSelector(selectCartItems);
+    const navigate = useNavigate();
 
     console.log(productId);
 
@@ -117,6 +118,7 @@ export function ProductPage() {
                 }
             }
         }
+        navigate('/cart');
     };
 
     const handleSizeChange = (e) => {
@@ -167,9 +169,7 @@ export function ProductPage() {
                         </div>
 
                         {/* <input type="submit" value="ADD" /> */}
-                        <NavLink onClick={addToCart} to="/cart">
-                            <input type="submit" value="ADD TO CART" className="main-button add" />
-                        </NavLink>
+                        <input type="submit" value="ADD TO CART" className="main-button add" onClick={addToCart}/>
 
                     </div>
 
