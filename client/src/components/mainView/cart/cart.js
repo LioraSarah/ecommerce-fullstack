@@ -95,7 +95,7 @@ export const Cart = () => {
   const decreaseItem = (e) => {
     console.log("e.target.className");
     console.log(e.target.className);
-    const index = findInCart(cartItemsPreview, e.target.class);
+    const index = findInCart(cartItemsPreview, e.target.className);
     console.log(index);
     // const index = findInCart(cartItemsPreview, e.target.class);
     // const newQuantity = cartItemsPreview[index].quantity - 1;
@@ -118,8 +118,9 @@ export const Cart = () => {
 
   const increaseItem = (e) => {
     console.log("e.target.className");
+    console.log(cartItemsPreview);
     console.log(e.target.className);
-    const index = findInCart(cartItemsPreview, e.target.class);
+    const index = findInCart(cartItemsPreview, e.target.className);
     console.log(index);
     // const newQuantity = cartItemsPreview[index].quantity + 1;
     // if (newQuantity <= 3) {
