@@ -97,23 +97,22 @@ export const Cart = () => {
     console.log(e.target.className);
     const index = findInCart(cartItemsPreview, e.target.className);
     console.log(index);
-    // const index = findInCart(cartItemsPreview, e.target.class);
-    // const newQuantity = cartItemsPreview[index].quantity - 1;
-    // if (newQuantity) {
-    //   dispatch(updateQuantity({index: index, quantity: newQuantity}));
-      // const itemInfo = cartItemsPreview[index];
-      // console.log("indecrease");
-      // console.log(itemInfo);
-      // console.log("quantity");
-      // console.log(newQuantity);
-      //if (userId) {
-        // try {
-      //   updateItemMutation.mutate({ itemInfo: itemInfo});
-      // } catch (err) {
-      //   console.log(err);
-      // }
-      //}
-    // } 
+    const newQuantity = cartItemsPreview[index].quantity - 1;
+    if (newQuantity) {
+      dispatch(updateQuantity({index: index, quantity: newQuantity}));
+      const itemInfo = cartItemsPreview[index];
+      console.log("indecrease");
+      console.log(itemInfo);
+      console.log("quantity");
+      console.log(newQuantity);
+      if (userId) {
+        try {
+        updateItemMutation.mutate({ itemInfo: itemInfo});
+      } catch (err) {
+        console.log(err);
+      }
+      }
+    } 
   };
 
   const increaseItem = (e) => {
@@ -122,18 +121,18 @@ export const Cart = () => {
     console.log(e.target.className);
     const index = findInCart(cartItemsPreview, e.target.className);
     console.log(index);
-    // const newQuantity = cartItemsPreview[index].quantity + 1;
-    // if (newQuantity <= 3) {
-    //   dispatch(updateQuantity({index: index, quantity: newQuantity}));
-      // const itemInfo = cartItemsPreview[index];
-      //if (userId) {
-        // try {
-      //   updateItemMutation.mutate({ itemInfo: itemInfo});
-      // } catch (err) {
-      //   console.log(err);
-      // }
-      //}
-    // }
+    const newQuantity = cartItemsPreview[index].quantity + 1;
+    if (newQuantity <= 3) {
+      dispatch(updateQuantity({index: index, quantity: newQuantity}));
+      const itemInfo = cartItemsPreview[index];
+      if (userId) {
+        try {
+        updateItemMutation.mutate({ itemInfo: itemInfo});
+      } catch (err) {
+        console.log(err);
+      }
+      }
+    }
     //also change in database!!!
   }
 
