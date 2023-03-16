@@ -118,7 +118,6 @@ export function ProductPage() {
                 }
             }
         }
-        navigate('/cart');
     };
 
     const handleSizeChange = (e) => {
@@ -129,12 +128,16 @@ export function ProductPage() {
         setItemQuantity(Number(e.target.value));
     };
 
+    const navigateToCart = () => {
+        navigate('/cart');
+    };
+
     return (
         <div id="prod">
             <div id="flex-div">
                 <div className="catalog-container content-wrapper">
                     <img src={`../media/${productImage}.png`} alt={product.product_name} className="product-img" />
-                    <form className="product-description">
+                    <form className="product-description" onSubmit={navigateToCart}>
 
                         <h3 className="product-h3 info-section">{product.product_name}</h3>
                         <div className="description">
@@ -147,7 +150,7 @@ export function ProductPage() {
                             <div id="size" className="info-section">
                                 <label>size:</label><br />
                                 <div className="bold-option">
-                                    <input name="size" type="radio" value="s" onChange={handleSizeChange} required/> s
+                                    <input name="size" type="radio" value="s" onChange={handleSizeChange} required /> s
                                     <input name="size" type="radio" value="m" onChange={handleSizeChange} /> m
                                     <input name="size" type="radio" value="l" onChange={handleSizeChange} /> l
                                 </div>
