@@ -6,6 +6,7 @@ import {
     setIsVerified, selectIsVerified
 } from '../../../../features/loginSlice';
 import { useParams } from 'react-router-dom';
+import "./verify.css";
 
 export function Verify() {
 
@@ -42,7 +43,7 @@ export function Verify() {
     
     if (!token) {
         return (
-            <article className='content-wrapper'>
+            <article className='content-wrapper verify'>
                     <h3>A verification link has been sent to your Email!</h3>
                     <p>Please enter you email and check the link in order to proceed with the sign-up</p>
                 </article>
@@ -51,14 +52,14 @@ export function Verify() {
 
     if (!isVerified) {
 
-        <article className='content-wrapper'>
+        <article className='content-wrapper verify'>
             <h3>It seems there is a problem verifying your email</h3>
             <p>Please try again.</p>
         </article>
     } 
 
     return (
-        <article className='content-wrapper'>
+        <article className='content-wrapper verify'>
             <h3>Your email is now verified!</h3>
             <p>You can now proceed to log-in with you email and password!</p>
         </article>
