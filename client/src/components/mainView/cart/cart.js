@@ -81,7 +81,7 @@ export const Cart = () => {
   };
 
   if (status === "loading") {
-    return <h2>Loading...</h2>
+    return <h2 className="loading">Loading...</h2>
   };
 
   const calcTotal = (items) => {

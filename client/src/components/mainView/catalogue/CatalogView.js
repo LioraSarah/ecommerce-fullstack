@@ -40,7 +40,7 @@ export function CatalogueView() {
   }, [category, dispatch]);
 
   if (status === "loading") {
-    return <h2>Loading...</h2>
+    return <h2 className="loading">Loading...</h2>
   }
 
   function handleMouseOver(e) {

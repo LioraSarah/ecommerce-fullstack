@@ -76,7 +76,7 @@ export function ProductPage() {
     }, [product, dispatch]);
 
     if (status === "loading" || status === "error") {
-        return <h2>Loading...</h2>
+        return <h2 className="loading">Loading...</h2>
     }
 
     const productImage = product.image_url;
