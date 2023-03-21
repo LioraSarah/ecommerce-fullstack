@@ -83,7 +83,8 @@ export function ProductPage() {
     const productMAterial = product.material;
     const productPrice = product.price;
 
-    const addToCart = () => {
+    const addToCart = (e) => {
+        e.preventDefault();
         const index = findInCart(cart, product.product_name);
         if (index >= 0) {
             const newQuantity = cart[index].quantity + quantity;
