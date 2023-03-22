@@ -87,14 +87,19 @@ export function ProductPage() {
         e.preventDefault();
         const index = findInCart(cart, product.product_name);
         if (index >= 0) {
-            const newQuantity = cart[index].quantity + quantity;
+            let newQuantity
+            if (cart[index].quantity <= 3) {
+                newQuantity = cart[index].quantity + quantity;
+            } else  {
+                newQuantity = quantity;
+            }
             if (newQuantity <= 3) {
                 dispatch(updateQuantity({ index: index, quantity: newQuantity }));
                 const itemInfo = cart[index];
                 console.log("indecrease");
                 console.log(itemInfo);
                 console.log("quantity");
-                console.log(newQuantity);
+                console.log(quantity);
                 if (userId) {
                 try {
                     updateItemMutation.mutate({ userId: userId, productId: itemInfo.id, quantity: newQuantity, size: itemInfo.size });
