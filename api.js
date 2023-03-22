@@ -229,7 +229,7 @@ app.post("/shopcart", async (req, res) => {
         const findItem = await cart.getItemInCart(userId, productId);
         console.log(findItem);
         let response;
-        if (!findItem) {
+        if (findItem.length === 0) {
             console.log("did not find");
             response = await cart.addToCart({ userId, productId, quantity, productSize });
         } else {
