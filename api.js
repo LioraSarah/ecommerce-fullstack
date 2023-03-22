@@ -226,7 +226,7 @@ app.post("/shopcart", async (req, res) => {
     console.log("in api post cart");
     try {
         console.log("find item");
-        const findItem = cart.getItemInCart(userId, productId);
+        const findItem = await cart.getItemInCart(userId, productId);
         console.log(findItem);
         let response;
         if (!findItem) {
