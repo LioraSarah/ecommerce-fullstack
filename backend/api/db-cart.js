@@ -40,6 +40,8 @@ module.exports = {
                 WHERE public.cart.user_id = '${userId}' 
                 AND public.cart.product_id = ${productId};`, (err, result) => {
                 if (!err) {
+                    console.log("cart item in db");
+                    console.log(result.rows)
                     return resolve(result.rows);
                 } else {
                     return reject(err);

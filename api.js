@@ -223,13 +223,17 @@ app.post("/shopcart", async (req, res) => {
     const { quantity } = req.body;
     const productSize = req.body.size;
     console.log(productSize);
-    console.log("in api");
+    console.log("in api post cart");
     try {
+        console.log("find item");
         const findItem = cart.getItemInCart(userId, productId);
+        console.log(findItem);
         let response;
         if (!findItem) {
+            console.log("did not find");
             response = await cart.addToCart({ userId, productId, quantity, productSize });
         } else {
+            console.log("did find");
             response = cart.updateQuantity(userId, productId, quantity);
         }
         res.status(200).send(response);
@@ -241,7 +245,10 @@ app.post("/shopcart", async (req, res) => {
 
 app.get("/shopcart", async (req, res) => {
     const { userId } = req.query;
+    console.log("in get cart");
+    console.log(userId);
     const userCart = await cart.getCart(userId);
+    console.log(userCart);
     res.status(200).send(userCart);
 });
 
