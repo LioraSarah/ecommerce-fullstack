@@ -87,7 +87,7 @@ export const Cart = () => {
   const calcTotal = (items) => {
     let total = 0;
     for (let i=0; i<items.length; i++) {
-      total += items[i].price;
+      total += items[i].price * item[i].quantity;
     }
     return total;
   };
