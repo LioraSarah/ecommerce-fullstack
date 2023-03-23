@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { selectCartItems } from "../../../features/cartSlice";
-import { loadCart, removeItem, setCart, addItem, updateQuantity } from "../../../features/cartSlice.js";
-import { selectUserId, loaduser, selectUserType } from '../../../features/loginSlice';
+import { loadCart, removeItem, setCart, updateQuantity } from "../../../features/cartSlice.js";
+import { selectUserId, selectUserType } from '../../../features/loginSlice';
 import "./cart.css";
 import {findInCart} from '../helper.js';
 
@@ -12,7 +12,6 @@ export const Cart = () => {
 
   const dispatch = useDispatch();
   const userId = useSelector(selectUserId);
-  const userType = useSelector(selectUserType);
 
   const onSuccess = (data) => {
     dispatch(setCart(data));
@@ -100,14 +99,18 @@ export const Cart = () => {
     const newQuantity = cartItemsPreview[index].quantity - 1;
     if (newQuantity) {
       dispatch(updateQuantity({index: index, quantity: newQuantity}));
-      const itemInfo = cartItemsPreview[index];
+      const userId = cartItemsPreview[index].user_id;
+      const productId = cartItemsPreview[index].product_id;
       console.log("indecrease");
-      console.log(itemInfo);
       console.log("quantity");
       console.log(newQuantity);
       if (userId) {
         try {
-        updateItemMutation.mutate({ itemInfo: itemInfo});
+        updateItemMutation.mutate({ itemInfo: {
+          userId: userId,
+          productId: productId,
+          quantity: newQuantity
+        }});
       } catch (err) {
         console.log(err);
       }
@@ -124,10 +127,15 @@ export const Cart = () => {
     const newQuantity = cartItemsPreview[index].quantity + 1;
     if (newQuantity <= 3) {
       dispatch(updateQuantity({index: index, quantity: newQuantity}));
-      const itemInfo = cartItemsPreview[index];
+      const userId = cartItemsPreview[index].user_id;
+      const productId = cartItemsPreview[index].product_id;
       if (userId) {
         try {
-        updateItemMutation.mutate({ itemInfo: itemInfo});
+        updateItemMutation.mutate({ itemInfo: {
+          userId: userId,
+          productId: productId,
+          quantity: newQuantity
+        }});
       } catch (err) {
         console.log(err);
       }
