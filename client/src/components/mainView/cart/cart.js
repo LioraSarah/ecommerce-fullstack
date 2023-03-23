@@ -57,7 +57,7 @@ export const Cart = () => {
   
   const updateItemInDB = async (itemInfo) => {
     try {
-      const response = await axios.post("/shopcart", { data: itemInfo });
+      const response = await axios.post("/shopcart", itemInfo);
       return response;
     } catch (err) {
       console.log(err);
