@@ -52,6 +52,8 @@ module.exports = {
     },
     updateQuantity: async (userId, productId, quantity) => {
         return new Promise((resolve, reject) => {
+            console.log("in update cart");
+            console.log(quantity);
             pool.query(
                 `UPDATE public.cart 
                 SET quantity = ${quantity}
