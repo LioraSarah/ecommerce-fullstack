@@ -224,7 +224,9 @@ app.post("/shopcart", async (req, res) => {
     const productSize = req.body.size;
     console.log("body");
     console.log(req.body);
-    console.log(productSize);
+    console.log(userId);
+    console.log(productId);
+    console.log(quantity);
     console.log("in api post cart");
     try {
         console.log("find item");
