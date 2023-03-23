@@ -106,11 +106,11 @@ export const Cart = () => {
       console.log(newQuantity);
       if (userId) {
         try {
-        updateItemMutation.mutate({ itemInfo: {
+        updateItemMutation.mutate({
           userId: userId,
           productId: productId,
           quantity: newQuantity
-        }});
+        });
       } catch (err) {
         console.log(err);
       }
@@ -131,11 +131,11 @@ export const Cart = () => {
       const productId = cartItemsPreview[index].product_id;
       if (userId) {
         try {
-        updateItemMutation.mutate({ itemInfo: {
+        updateItemMutation.mutate({
           userId: userId,
           productId: productId,
           quantity: newQuantity
-        }});
+        });
       } catch (err) {
         console.log(err);
       }
