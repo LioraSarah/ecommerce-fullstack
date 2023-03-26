@@ -54,7 +54,7 @@ export function CatalogueView() {
   function handleClick(e) {
     const id = e.target.closest('a').id;
     const product = products.find((product) => parseInt(id) === product.id);
-    dispatch(setCurrentProduct(product));
+    dispatch(setCurrentProduct({product: product, quantity: 1}));
   }
 
   return (
