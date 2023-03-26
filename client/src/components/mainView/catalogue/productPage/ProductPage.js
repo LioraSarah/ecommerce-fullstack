@@ -23,7 +23,7 @@ export function ProductPage() {
     console.log(productId);
 
     const onSuccess = (data) => {
-        dispatch(setCurrentProduct({product: data, quantity: 0}));
+        dispatch(setCurrentProduct({product: data, quantity: 1}));
     }
 
     const {
