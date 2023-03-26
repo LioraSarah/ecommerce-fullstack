@@ -8,7 +8,7 @@ CREATE TABLE products(
     price double precision NOT NULL,
     category character varying COLLATE pg_catalog."default" NOT NULL,
     material character varying COLLATE pg_catalog."default" NOT NULL,
-    quantity integer NOT NULL,
+    product_quantity integer NOT NULL,
     image_url character varying COLLATE pg_catalog."default"
 );
 

@@ -1,4 +1,4 @@
-INSERT INTO products (id, product_name, price, category, material, quantity, image_url)
+INSERT INTO products (id, product_name, price, category, material, product_quantity, image_url)
     VALUES (DEFAULT,'Butterfly Top',30,'tops','100% Cotton',10,'butterfly'),
     (DEFAULT,'Among The Crowd Top',35,'tops','Polyester Blend',10,'among_the_crowd'),
     (DEFAULT,'Tapissa One-Shoulder Top',50,'tops','100% Polyester',10,'tapissa'),

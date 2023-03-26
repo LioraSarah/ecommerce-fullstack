@@ -23,7 +23,7 @@ export function ProductPage() {
     console.log(productId);
 
     const onSuccess = (data) => {
-        dispatch(setCurrentProduct(data));
+        dispatch(setCurrentProduct({product: data, quantity: 0}));
     }
 
     const {
@@ -72,8 +72,8 @@ export function ProductPage() {
     }, [refetch]);
 
     useEffect(() => {
-        dispatch(setCurrentProduct(product));
-    }, [product, dispatch]);
+        dispatch(setCurrentProduct({product: product, quantity: quantity}));
+    }, [product, dispatch, quantity]);
 
     if (status === "loading" || status === "error") {
         return <h2 className="loading">Loading...</h2>
