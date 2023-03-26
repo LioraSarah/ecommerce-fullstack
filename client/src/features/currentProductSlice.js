@@ -8,7 +8,9 @@ export const currentProductSlice = createSlice({
   reducers: {
     setCurrentProduct(state, action) {
       state.product = action.payload.product;
-      state.product.quantity = action.payload.quantity;
+      if (state.product) {
+        state.product.quantity = action.payload.quantity;
+      }
     },
     setQuantity(state, action) {
       state.product.quantity = action.payload;
