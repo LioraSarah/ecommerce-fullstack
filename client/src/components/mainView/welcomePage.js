@@ -1,4 +1,3 @@
-//import './Header.css';
 import React from 'react';
 import "./welcomePage.css";
 import { ImageSlider } from './ImageSlider.js';

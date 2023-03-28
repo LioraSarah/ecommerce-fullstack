@@ -11,21 +11,20 @@ function initializePassportGoogle(passport) {
     async function (req, accessToken, refreshToken, profile, done) {
       let user;
       try {
+        //check if user already exists in database
         user = await google.findUserByGoogleId(profile.id);
-        if (!user) {
-          const userData = {
+        if (!user) { // if user doesn't exist - create it in database
+          const userData = { //gather all neccessary information from the google registration to save in databse
             id: profile.id,
             firstName: profile._json.given_name,
             lastName: profile._json.family_name,
             email: profile.emails[0].value,
             userType: 'google'
           }
-          await google.createGoogleUser(userData);
+          await google.createGoogleUser(userData); //create user in database with the information we gathered
           user = userData;
-          console.log("in initial");
-          console.log(user.email);
         }
-        return done(null, user);
+        return done(null, user); //give the user we created to passport library for further actions (login in)
       } catch (err) {
         return done(err, null);
       }

@@ -8,6 +8,7 @@ import { CgProfile } from 'react-icons/cg';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
+//navigation bar to show when user is loggen in - including a link to profile and logout option
 export const UserNav = () => {
     const firstName = useSelector(selectFirstName);
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ export const UserNav = () => {
 
     const handleClick = () => {
         logOutUserMutation.mutate();
-        navigate('/login');
+        navigate('/login'); // navigate to the login page after the user has logged out
     }
 
     return (

@@ -4,8 +4,6 @@ module.exports = {
     findUserByGoogleId: async (id) => {
         return new Promise((resolve, reject)=>{ 
             try {
-                console.log("id is:");
-                console.log(typeof id);
                 pool.query(
                     `SELECT * FROM public.google_users WHERE id='${id}'`, (err, result) => {
                     if (!err) {

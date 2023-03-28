@@ -11,14 +11,7 @@ const transporter = nodemailer.createTransport({
 
 const sendVerificationEmail = async (token, email) => {
 
-    console.log("email to send mail:");
-    console.log(email);
-    console.log("token in mail:");
-    console.log(token);
-
     const user = await login.findUserByMail(email);
-    console.log("find user to send mail:");
-    console.log(user);
 
     const mailConfigurations = {
   
@@ -51,8 +44,6 @@ const sendVerificationEmail = async (token, email) => {
 const verifyUser = async (token, userId) => {
     const id = Number(userId);
     const user = await login.findUserById(id);
-    console.log("in verifyuser:");
-    console.log(user);
     const userToken = user.verification_token;
     if (token === userToken) {
         await login.setVerified(id);

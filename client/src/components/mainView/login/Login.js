@@ -8,13 +8,12 @@ import {
 import "./login.css";
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-//import Cookies from 'js-cookie';
 
 export function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const isVerified = useSelector(selectIsVerified);
+    //const isVerified = useSelector(selectIsVerified);
 
     const loginUser = async (user) => {
         try {

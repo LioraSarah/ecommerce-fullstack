@@ -4,7 +4,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { selectCartItems } from "../../../features/cartSlice";
 import { loadCart, removeItem, setCart, updateQuantity } from "../../../features/cartSlice.js";
-import { selectUserId, selectUserType } from '../../../features/loginSlice';
+import { selectUserId } from '../../../features/loginSlice';
 import "./cart.css";
 import {findInCart} from '../helper.js';
 
@@ -13,17 +13,20 @@ export const Cart = () => {
   const dispatch = useDispatch();
   const userId = useSelector(selectUserId);
 
+//onSuccess method for useQuery, if success, set the cart in the redux state
   const onSuccess = (data) => {
     dispatch(setCart(data));
+    return data;
   }
 
+  //useQuery to query the cart from the backend
   const {
     data: cart,
     status,
     refetch
   } = useQuery(["cart"], async () => {
-    if (userId) {
-      console.log("in cart");
+    if (userId) { //only query the cart if the user is logged in
+      console.log("in cart query");
       console.log(userId);
       const res = await axios.get("/shopcart", { params: { userId: userId } });
       return res.data;
@@ -33,17 +36,17 @@ export const Cart = () => {
       onSuccess,
     }
   );
-  console.log("cart");
 
-  const cartItemsPreview = useSelector(selectCartItems);
 
-  useEffect(() => {
+  //const cartItemsPreview = useSelector(selectCartItems);
+
+  useEffect(() => { //refetch the cart everytime there is a change
     refetch();
     dispatch(loadCart());
   }
-    , [dispatch, cartItemsPreview, refetch]);
+    , [dispatch, refetch]);
 
-  const removeItemFromDB = async (itemInfo) => {
+  const removeItemFromDB = async (itemInfo) => { //function for useMutation
     try {
       const response = await axios.delete("/shopcart", { data: itemInfo });
       return response;
@@ -55,7 +58,7 @@ export const Cart = () => {
   const removeItemMutation = useMutation(removeItemFromDB);
 
   
-  const updateItemInDB = async (itemInfo) => {
+  const updateItemInDB = async (itemInfo) => { //also for useMutation
     try {
       const response = await axios.post("/shopcart", itemInfo);
       return response;
@@ -67,23 +70,23 @@ export const Cart = () => {
   const updateItemMutation = useMutation(updateItemInDB);
 
   const handleRemoveClick = (e) => {
-    if (userId) {
+    if (userId) { //remove from db only if neccessary - only if there is a logged in user
       try {
         removeItemMutation.mutate({ itemInfo: { userId: userId, productId: e.target.id } });
       } catch (err) {
         console.log(err);
       }
     }
-    const index = findInCart(cartItemsPreview ,e.target.name);
-    dispatch(removeItem(index));
-    dispatch(loadCart());
+    const index = findInCart(cart ,e.target.name);
+    dispatch(removeItem(index)); //remove item from redux cart state
+    dispatch(loadCart()); //then refetch the new cart
   };
 
-  if (status === "loading") {
+  if (status === "loading") { //if loading the cart
     return <h2 className="loading">Loading...</h2>
   };
 
-  const calcTotal = (items) => {
+  const calcTotal = (items) => { //calculate the total price of the cart item
     let total = 0;
     for (let i=0; i<items.length; i++) {
       total += items[i].price * items[i].quantity;
@@ -91,20 +94,21 @@ export const Cart = () => {
     return total;
   };
 
-  const decreaseItem = (e) => {
+  const decreaseItem = (e) => { //decrease the item quantity down until 1 and not under 1
     console.log("e.target.className");
     console.log(e.target.className);
-    const index = findInCart(cartItemsPreview, e.target.className);
+    console.log(cart);
+    const index = findInCart(cart, e.target.className); //find item to change quantity
     console.log(index);
-    const newQuantity = cartItemsPreview[index].quantity - 1;
-    if (newQuantity) {
-      dispatch(updateQuantity({index: index, quantity: newQuantity}));
-      const userId = cartItemsPreview[index].user_id;
-      const productId = cartItemsPreview[index].product_id;
+    const newQuantity = cart[index].quantity - 1;
+    if (newQuantity > 0) { //only change quantity if grater than 0
+      dispatch(updateQuantity({index: index, quantity: newQuantity})); //update quantity in redux state
+      const userId = cart[index].user_id;
+      const productId = cart[index].product_id;
       console.log("indecrease");
       console.log("quantity");
       console.log(newQuantity);
-      if (userId) {
+      if (userId) { //if a user is logged in, change quantity in db
         try {
         updateItemMutation.mutate({
           userId: userId,
@@ -120,15 +124,15 @@ export const Cart = () => {
 
   const increaseItem = (e) => {
     console.log("e.target.className");
-    console.log(cartItemsPreview);
+    console.log(cart);
     console.log(e.target.className);
-    const index = findInCart(cartItemsPreview, e.target.className);
+    const index = findInCart(cart, e.target.className);
     console.log(index);
-    const newQuantity = cartItemsPreview[index].quantity + 1;
+    const newQuantity = cart[index].quantity + 1;
     if (newQuantity <= 3) {
       dispatch(updateQuantity({index: index, quantity: newQuantity}));
-      const userId = cartItemsPreview[index].user_id;
-      const productId = cartItemsPreview[index].product_id;
+      const userId = cart[index].user_id;
+      const productId = cart[index].product_id;
       if (userId) {
         try {
         updateItemMutation.mutate({
@@ -141,7 +145,6 @@ export const Cart = () => {
       }
       }
     }
-    //also change in database!!!
   }
 
   return (
@@ -149,7 +152,7 @@ export const Cart = () => {
       <h3>your cart</h3>
       <div id="cart-cont">
         <ul id="cart-view">
-          {cartItemsPreview.map((item, index) => (
+          {cart.map((item, index) => (
             <li className="cart-view-item" key={index}>
               {/* <NavLink to={item.product_url} className='link-cart'> */}
                 <img src={`../../../media/${item.image_url}.png`} alt={item.product_name} className="cart-item-img" />
@@ -168,7 +171,7 @@ export const Cart = () => {
             </li>
           ))}
         </ul>
-        <h5 id="total">total: {calcTotal(cartItemsPreview)}$</h5>
+        <h5 id="total">total: {calcTotal(cart)}$</h5>
         <div className="main-button checkout-btn">check out</div>
       </div>
     </article>

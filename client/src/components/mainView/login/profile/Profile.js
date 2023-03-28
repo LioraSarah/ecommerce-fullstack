@@ -1,4 +1,3 @@
-//import './Header.css';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from "react-router-dom";
@@ -22,8 +21,6 @@ export const Profile = () => {
                 <li><span className="info-title">Email:</span> {email}</li>
             </ul>
             </div>
-
-            {/* <div id="line"></div> */}
 
             <NavLink to="/cart" id="profile-cart">To my cart</NavLink>
         </article>

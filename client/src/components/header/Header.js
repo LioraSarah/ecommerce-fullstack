@@ -7,6 +7,7 @@ import { UserNav } from './UseNav';
 import { GuestNav } from './GuestNav';
 
 export const Header = () => {
+    // check if user is logged in - in order to show the right navigation bar
     const isAuthenticated = useSelector(selectIsAuthenticated);
     return (
         <div>

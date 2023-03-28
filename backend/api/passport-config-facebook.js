@@ -11,30 +11,25 @@ function initializePassportFacebook(passport) {
   },
     async function (accessToken, refreshToken, profile, done) {
       let user;
-      console.log("in faceboog strategy");
-      console.log(profile);
       try {
+        //check if user already exists in database
         user = await facebook.findUserByFacebookId(profile.id);
-        if (!user) {
-          const userData = {
+        if (!user) { // if user doesn't exist - create it in database
+          const userData = { //gather all neccessary information from the facebook registration to save in databse
             id: profile.id,
             first_name: profile.name.givenName,
             last_name: profile.name.familyName,
             userType: 'facebook'
           }
-          if (profile.emails) {
+          if (profile.emails) { //if the user has provided email information to facebook, add it to the user details above
             userData.email = profile.emails[0].value;
-          } else {
+          } else { //otherwise, set a default value to the email information
             userData.email = 'Not Provided';
           }
-          console.log("in faceboog strategy user");
-          console.log(userData);
-          await facebook.createFacebookUser(userData);
+          await facebook.createFacebookUser(userData); //create user in database with the information we gathered
           user = userData;
-          console.log("in initial facebook");
-          console.log(user.email);
         }
-        return done(null, user);
+        return done(null, user); //give the user we created to passport library for further actions (login in)
       } catch (err) {
         return done(err, null);
       }

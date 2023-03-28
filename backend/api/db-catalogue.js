@@ -1,6 +1,7 @@
 const pool = require('./connection.js');
 
 module.exports = {
+    //get all items of a specific category from the products table in database
     getCategory: async (category) => {
         return new Promise((resolve, reject)=>{ 
             try {
@@ -18,6 +19,7 @@ module.exports = {
             }    
         });
     },
+    //get a specific item from the products table in database
     getItem: async (itemId) => {
         return new Promise((resolve, reject)=>{ 
             try {

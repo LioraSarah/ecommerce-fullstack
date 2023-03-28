@@ -1,6 +1,3 @@
-// import searchReducer from '../features/search/searchSlice.js';
-// import postPreviewsReducer from '../features/posts/postPreviewsSlice';
-// import subredditsReducer from '../features/subredditsSlice';
 import catalogueReducer from './features/catalogSlice';
 import cartReducer from './features/cartSlice';
 import userReducer from './features/loginSlice';

@@ -1,4 +1,3 @@
-// //import './Header.css';
 // import React from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { NavLink } from "react-router-dom";
@@ -10,11 +9,10 @@
 // export const CheckOut = () => {
 
 //     let { productID } = useParams();
-//     //filter = "" + filter;
 //     const dispatch = useDispatch();
 //     const catalogItemsPreview = useSelector(selectAllCatalog);
 //     const isLoadingCatalog = useSelector(isLoading);
-//     const productName = ""; //find a way to get the name out of productID
+//     const productName = "";
 //     const productColor = "";
 //     const productMAterial = "";
 //     const productPrice = "";

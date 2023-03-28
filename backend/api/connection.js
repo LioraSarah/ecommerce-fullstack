@@ -1,6 +1,7 @@
 const {Pool} = require('pg');
 require("dotenv").config();
 
+//connacting to the database in developing mode - lcal setup
 const devConfig = {
     "host": process.env.PG_HOST,
     "user": process.env.PG_USER,
@@ -12,9 +13,10 @@ const devConfig = {
     "idleTimeoutMillis": 0
 };
 
+//connecting to the database in production mode - Heroku setup
 const prodConfig = {
     connectionString: process.env.DATABASE_URL,
-    ssl: {      /* <----- Add SSL option */
+    ssl: { 
         require: true,
         rejectUnauthorized: false 
       }

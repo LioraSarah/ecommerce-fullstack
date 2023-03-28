@@ -54,6 +54,8 @@ module.exports = {
             }    
         });
     },
+    //When the user verified his email after registration: 
+    //set him to verified and return his details for further actions
     setVerified: async (userId) => {
         return new Promise((resolve, reject)=>{ 
             try {

@@ -1,7 +1,9 @@
 const pool = require('./connection.js');
 
 module.exports = {
+    //input: all the nessecary product information to store in cart
     addToCart: async (details) => {
+        //we are returning a promise in order to make the operation Asynchronic
         return new Promise((resolve, reject) => {
             console.log(details.productSize);
             pool.query(`INSERT INTO public.cart(id, user_id, product_id, quantity, size)
@@ -15,6 +17,8 @@ module.exports = {
 
         });
     },
+    //input: the user id to search in the cart
+    //output: all the cart item of thet user and their details
     getCart: async (userId) => {
         return new Promise((resolve, reject) => {
             pool.query(
@@ -32,6 +36,8 @@ module.exports = {
             );
         });
     },
+    //input: the user id to search and the specific item id to retrieve
+    //output: the specific item and all his details
     getItemInCart: async (userId, productId) => {
         return new Promise((resolve, reject) => {
             pool.query(
@@ -40,8 +46,6 @@ module.exports = {
                 WHERE public.cart.user_id = '${userId}' 
                 AND public.cart.product_id = ${productId};`, (err, result) => {
                 if (!err) {
-                    console.log("cart item in db");
-                    console.log(result.rows)
                     return resolve(result.rows);
                 } else {
                     return reject(err);
@@ -50,10 +54,11 @@ module.exports = {
             );
         });
     },
+    //when a user update the quantity of a specific item in his cart
     updateQuantity: async (userId, productId, quantity) => {
+        console.log("update quantity");
+        console.log(quantity);
         return new Promise((resolve, reject) => {
-            console.log("in update cart");
-            console.log(quantity);
             pool.query(
                 `UPDATE public.cart 
                 SET quantity = ${quantity}
@@ -68,6 +73,7 @@ module.exports = {
             );
         });
     },
+    //input: an object containing the user id and product id to remove
     deleteItem: async (itemInfo) => {
         return new Promise((resolve, reject) => {
             pool.query(
