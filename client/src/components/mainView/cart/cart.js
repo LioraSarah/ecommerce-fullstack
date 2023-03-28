@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -37,15 +37,6 @@ export const Cart = () => {
     }
   );
 
-
-  //const cartItemsPreview = useSelector(selectCartItems);
-
-  useEffect(() => { //refetch the cart everytime there is a change
-    refetch();
-    dispatch(loadCart());
-  }
-    , [dispatch, refetch]);
-
   const removeItemFromDB = async (itemInfo) => { //function for useMutation
     try {
       const response = await axios.delete("/shopcart", { data: itemInfo });
@@ -69,32 +60,7 @@ export const Cart = () => {
 
   const updateItemMutation = useMutation(updateItemInDB);
 
-  const handleRemoveClick = (e) => {
-    if (userId) { //remove from db only if neccessary - only if there is a logged in user
-      try {
-        removeItemMutation.mutate({ itemInfo: { userId: userId, productId: e.target.id } });
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    const index = findInCart(cart ,e.target.name);
-    dispatch(removeItem(index)); //remove item from redux cart state
-    dispatch(loadCart()); //then refetch the new cart
-  };
-
-  if (status === "loading") { //if loading the cart
-    return <h2 className="loading">Loading...</h2>
-  };
-
-  const calcTotal = (items) => { //calculate the total price of the cart item
-    let total = 0;
-    for (let i=0; i<items.length; i++) {
-      total += items[i].price * items[i].quantity;
-    }
-    return total;
-  };
-
-  const decreaseItem = (e) => { //decrease the item quantity down until 1 and not under 1
+  const decreaseItem = useCallback((e) => { //decrease the item quantity down until 1 and not under 1
     console.log("e.target.className");
     console.log(e.target.className);
     console.log(cart);
@@ -120,9 +86,9 @@ export const Cart = () => {
       }
       }
     } 
-  };
+  },  [cart, dispatch, updateItemMutation]);
 
-  const increaseItem = (e) => {
+  const increaseItem = useCallback((e) => {
     console.log("e.target.className");
     console.log(cart);
     console.log(e.target.className);
@@ -145,7 +111,41 @@ export const Cart = () => {
       }
       }
     }
+  }, [cart, dispatch, updateItemMutation]);
+
+
+  //const cartItemsPreview = useSelector(selectCartItems);
+
+  useEffect(() => { //refetch the cart everytime there is a change
+    refetch();
+    dispatch(loadCart());
   }
+    , [dispatch, refetch, decreaseItem, increaseItem]);
+
+  const handleRemoveClick = (e) => {
+    if (userId) { //remove from db only if neccessary - only if there is a logged in user
+      try {
+        removeItemMutation.mutate({ itemInfo: { userId: userId, productId: e.target.id } });
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    const index = findInCart(cart ,e.target.name);
+    dispatch(removeItem(index)); //remove item from redux cart state
+    dispatch(loadCart()); //then refetch the new cart
+  };
+
+  if (status === "loading") { //if loading the cart
+    return <h2 className="loading">Loading...</h2>
+  };
+
+  const calcTotal = (items) => { //calculate the total price of the cart item
+    let total = 0;
+    for (let i=0; i<items.length; i++) {
+      total += items[i].price * items[i].quantity;
+    }
+    return total;
+  };
 
   return (
     <article className="cart-container">
