@@ -12,12 +12,12 @@ export const Cart = () => {
 
   const dispatch = useDispatch();
   const userId = useSelector(selectUserId);
-  let cart = useSelector(selectCartItems);
+  const cartList = useSelector(selectCartItems);
+  let cart;
 
 //onSuccess method for useQuery, if success, set the cart in the redux state
   const onSuccess = (data) => {
     dispatch(setCart(data));
-    cart = data;
     return data;
   }
 
@@ -38,6 +38,12 @@ export const Cart = () => {
       onSuccess,
     }
   );
+
+  if (data) {
+    cart = data;
+  } else {
+    cart = cartList;
+  }
 
   const removeItemFromDB = async (itemInfo) => { //function for useMutation
     try {
