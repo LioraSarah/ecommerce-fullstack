@@ -85,6 +85,7 @@ export const Cart = () => {
         console.log(err);
       }
       }
+      dispatch(loadCart());
     } 
   },  [cart, dispatch, updateItemMutation]);
 
@@ -110,6 +111,7 @@ export const Cart = () => {
         console.log(err);
       }
       }
+      dispatch(loadCart());
     }
   }, [cart, dispatch, updateItemMutation]);
 
