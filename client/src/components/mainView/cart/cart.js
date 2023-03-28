@@ -12,16 +12,18 @@ export const Cart = () => {
 
   const dispatch = useDispatch();
   const userId = useSelector(selectUserId);
+  let cart = useSelector(selectCartItems);
 
 //onSuccess method for useQuery, if success, set the cart in the redux state
   const onSuccess = (data) => {
     dispatch(setCart(data));
+    cart = data;
     return data;
   }
 
   //useQuery to query the cart from the backend
   const {
-    data: cart,
+    data,
     status,
     refetch
   } = useQuery(["cart"], async () => {
