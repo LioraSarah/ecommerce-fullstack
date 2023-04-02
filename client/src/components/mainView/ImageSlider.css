@@ -102,3 +102,13 @@
     height: 400px;
     display: flex;
 }
+
+.slide {
+    width: 20%;
+    transition: 2s;
+}
+
+slide img {
+    width: 100vw;
+    height: 400px;
+}
