@@ -106,7 +106,6 @@
 
 .slide {
     width: 20%;
-    height: 100%;
     transition: 2s;
     display: flex;
 }
