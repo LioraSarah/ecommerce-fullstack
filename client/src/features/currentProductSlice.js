@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+//redox slice for the current product being clicked state
 export const currentProductSlice = createSlice({
   name: 'currentProduct',
   initialState: {

@@ -8,8 +8,8 @@ export const addItemToCart = (userId, product, quantity, size, productURL, dispa
         size: size,
         product_url: productURL
     };
-    dispatch(addItem(cartItem));
-    if (userId) {
+    dispatch(addItem(cartItem)); //save cart in redux state
+    if (userId) { //only if there is a logged in user, save cart in db
         try {
             addItemMutation.mutate({ productId: product.id, userId: userId, quantity: quantity, size: size, product_url: productURL });
         } catch (err) {
@@ -18,7 +18,7 @@ export const addItemToCart = (userId, product, quantity, size, productURL, dispa
     }
 };
 
-export const addItemToDB = async (itemInfo) => {
+export const addItemToDB = async (itemInfo) => { //for sending the request to backend
     try {
         const response = await axios.post("/shopcart", itemInfo);
         return response;
@@ -29,6 +29,7 @@ export const addItemToDB = async (itemInfo) => {
 
 };
 
+//find an item in given cart using item name
 export const findInCart = (cart, itemName) => {
     return cart.findIndex((item) => item.product_name === itemName);
 };

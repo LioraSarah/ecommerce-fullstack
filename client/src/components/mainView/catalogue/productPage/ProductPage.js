@@ -12,8 +12,8 @@ import "../../../../index.css";
 import { findInCart } from '../../helper.js';
 
 export function ProductPage() {
-    const [size, setSize] = useState('');
-    const [quantity, setItemQuantity] = useState(1);
+    const [size, setSize] = useState(''); //local state for controlling size selection
+    const [quantity, setItemQuantity] = useState(1); //local state for controlling quantity selection
     let { productId } = useParams();
     const { category } = useParams();
     const productURL = `/${category}/${productId}`;
@@ -22,8 +22,8 @@ export function ProductPage() {
 
     console.log(productId);
 
-    const onSuccess = (data) => {
-        dispatch(setCurrentProduct({product: data, quantity: 1}));
+    const onSuccess = (data) => { //onSuccess for useQuery
+        dispatch(setCurrentProduct({ product: data, quantity: 1 }));
     }
 
     const {
@@ -32,8 +32,6 @@ export function ProductPage() {
         refetch
     } = useQuery(["product"], async () => {
         const res = await axios.get("/product", { params: { productId: productId } });
-        console.log("in prod");
-        console.log(res.data);
         return res.data[0];
     },
         {
@@ -43,7 +41,7 @@ export function ProductPage() {
     const dispatch = useDispatch();
     const userId = useSelector(selectUserId);
 
-    const addItemToDB = async (itemInfo) => {
+    const addItemToDB = async (itemInfo) => { //for useMutation
         try {
             const response = await axios.post("/shopcart", itemInfo);
             return response;
@@ -56,7 +54,7 @@ export function ProductPage() {
 
     const addItemMutation = useMutation(addItemToDB);
 
-    const updateItemInDB = async (itemInfo) => {
+    const updateItemInDB = async (itemInfo) => { //for second useMutation
         try {
             const response = await axios.post("/shopcart", { data: itemInfo });
             return response;
@@ -72,10 +70,10 @@ export function ProductPage() {
     }, [refetch]);
 
     useEffect(() => {
-        dispatch(setCurrentProduct({product: product, quantity: quantity}));
+        dispatch(setCurrentProduct({ product: product, quantity: quantity }));
     }, [product, dispatch, quantity]);
 
-    if (status === "loading" || status === "error") {
+    if (status === "loading" || status === "error") { //if loading the product
         return <h2 className="loading">Loading...</h2>
     }
 
@@ -86,11 +84,11 @@ export function ProductPage() {
     const addToCart = (e) => {
         e.preventDefault();
         const index = findInCart(cart, product.product_name);
-        if (index >= 0) {
+        if (index >= 0) { //if item is already in cart, only update it's quantity in cart (up to 3)
             let newQuantity
-            if (cart[index].quantity <= 3) {
+            if (cart[index].quantity <= 3) { //only add quantity if less or equal to 3
                 newQuantity = cart[index].quantity + quantity;
-            } else  {
+            } else {
                 newQuantity = quantity;
             }
             if (newQuantity <= 3) {
@@ -100,15 +98,15 @@ export function ProductPage() {
                 console.log(itemInfo);
                 console.log("quantity");
                 console.log(quantity);
-                if (userId) {
-                try {
-                    updateItemMutation.mutate({ userId: userId, productId: itemInfo.id, quantity: newQuantity, size: itemInfo.size });
-                } catch (err) {
-                    console.log(err);
+                if (userId) { //only update in db if a user is logged in
+                    try {
+                        updateItemMutation.mutate({ userId: userId, productId: itemInfo.id, quantity: newQuantity, size: itemInfo.size });
+                    } catch (err) {
+                        console.log(err);
+                    }
                 }
             }
-            }
-        } else {
+        } else { //if item is not already in cart, add it to the cart
             const cartItem = {
                 ...product,
                 quantity: quantity,
@@ -116,7 +114,7 @@ export function ProductPage() {
                 product_url: productURL
             };
             dispatch(addItem(cartItem));
-            if (userId) {
+            if (userId) { // if a user is logged in, add the new item to db too
                 try {
                     addItemMutation.mutate({ productId: product.id, userId: userId, quantity: quantity, size: size, product_url: productURL });
                 } catch (err) {
@@ -124,7 +122,7 @@ export function ProductPage() {
                 }
             }
         }
-        navigate('/cart');
+        navigate('/cart'); //navigate to cart page after adding to cart
     };
 
     const handleSizeChange = (e) => {
@@ -175,7 +173,7 @@ export function ProductPage() {
                         </div>
 
                         {/* <input type="submit" value="ADD" /> */}
-                        <input type="submit" value="ADD TO CART" className="main-button add"/>
+                        <input type="submit" value="ADD TO CART" className="main-button add" />
 
                     </form>
 

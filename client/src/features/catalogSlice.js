@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+//redux slice of products catalogue state
 export const catalogueSlice = createSlice({
   name: 'catalogue',
   initialState: {

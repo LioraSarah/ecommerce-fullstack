@@ -14,11 +14,11 @@ export function CatalogueView() {
   const { category } = useParams();
   const dispatch = useDispatch();
 
-  const onSuccess = (data) => {
+  const onSuccess = (data) => { //for useQuery
     dispatch(setProducts(data));
   }
 
-  const {
+  const { //fetch products from backend by category
     data: products,
     status,
     refetch
@@ -39,11 +39,11 @@ export function CatalogueView() {
     dispatch(setCategorie(category));
   }, [category, dispatch]);
 
-  if (status === "loading") {
+  if (status === "loading") { //if products are loading
     return <h2 className="loading">Loading...</h2>
   }
 
-  function handleMouseOver(e) {
+  function handleMouseOver(e) { //mouse over a product to show css
     e.target.nextSibling.className = "visible-hover";
   }
 
@@ -51,10 +51,10 @@ export function CatalogueView() {
     e.target.nextSibling.className = "hidden-hover";
   }
 
-  function handleClick(e) {
-    const id = e.target.closest('a').id;
-    const product = products.find((product) => parseInt(id) === product.id);
-    dispatch(setCurrentProduct({product: product, quantity: 1}));
+  function handleClick(e) { //clicking on a product will set the current products in the redux state to the clicked product
+    const id = e.target.closest('a').id; //find closest element with the product id
+    const product = products.find((product) => parseInt(id) === product.id); //find product in products list
+    dispatch(setCurrentProduct({product: product, quantity: 1})); //set it to current
   }
 
   return (

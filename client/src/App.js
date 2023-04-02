@@ -15,15 +15,14 @@ function App() {
   const dispatch = useDispatch();
   const userId = useSelector(selectUserId);
 
-    const onSuccess = (data) => {
-      console.log("in success");
-      console.log(data);
+    const onSuccess = (data) => { //for useQuery
       if (data) {
-        dispatch(setUser(data));
+        dispatch(setUser(data)); //set user info in redux state
         dispatch(setAuthenticated(true));
       }
     }
 
+    //getting the logged in user info from db
     const {
         data,
         status,
@@ -34,8 +33,6 @@ function App() {
         withCredentials: true,
         url: "/user"
       });
-      console.log("in app user query");
-      console.log(response.data);
         return response.data
     },
         {
@@ -43,12 +40,11 @@ function App() {
         }
     );
 
+  //refetch the logged in user info at the beggining of every render
   useEffect(()=>{
     refetch();
     console.log(userId);
   });
-
-
 
   return (
       <div id="app">

@@ -2,10 +2,10 @@ import React from 'react';
 import "./welcomePage.css";
 import { ImageSlider } from './ImageSlider.js';
 
+//component for presenting the images slider at the home page
 export const WelcomePage = () => {
 
     const slides = [
-        './media/home.jpg',
         './media/slide2.jpg',
         './media/slide3.jpg',
         './media/slide4.jpeg'

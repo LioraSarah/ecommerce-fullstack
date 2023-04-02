@@ -12,6 +12,9 @@ import "./mainView.css";
 
 export const MainView = () => {
 
+    //notice in /verify route the id and token are optional
+    //clicking on "/verify" without the params will lead to "a verification link has been sent to your email"
+    //clicking on this route with id and token params will lead to user verification process
     return (
         <section id="main-section">
             <Routes>

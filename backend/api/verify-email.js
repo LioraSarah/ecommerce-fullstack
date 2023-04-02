@@ -9,6 +9,8 @@ const transporter = nodemailer.createTransport({
     }
 });  
 
+//send a verification link to the newely register user
+//the link includes his user id and a verification token for later comparison
 const sendVerificationEmail = async (token, email) => {
 
     const user = await login.findUserByMail(email);
@@ -41,11 +43,12 @@ const sendVerificationEmail = async (token, email) => {
     });
 };
 
+//verify user by comparing the token he sent to the server with the token saved ib db
 const verifyUser = async (token, userId) => {
     const id = Number(userId);
     const user = await login.findUserById(id);
     const userToken = user.verification_token;
-    if (token === userToken) {
+    if (token === userToken) { //if tokens match, set the user to verified
         await login.setVerified(id);
         return user;
     } else {

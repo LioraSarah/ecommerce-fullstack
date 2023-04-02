@@ -15,6 +15,7 @@ export function Login() {
 
     //const isVerified = useSelector(selectIsVerified);
 
+    //send request for user login in backend
     const loginUser = async (user) => {
         try {
             const response = await axios({
@@ -24,10 +25,10 @@ export function Login() {
                 url: "/login"
             });
             console.log(response);
-            if (response.data.verified) {
-                dispatch(setUser(response.data));
+            if (response.data.verified) { //only log in if user is verified
+                dispatch(setUser(response.data)); //set logged in user details in redux state 
                 dispatch(setAuthenticated(true));
-                navigate('/');
+                navigate('/'); //if login was successful, navigate to home page
                 return response;
             }
         } catch (err) {
@@ -39,7 +40,7 @@ export function Login() {
     const addUserMutation = useMutation(loginUser);
 
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm(); //using the react-form library to handle log in info
     const onSubmit = (data) => {
         try {
             addUserMutation.mutate(data);
@@ -49,11 +50,11 @@ export function Login() {
         }
     };
 
-    const googleLogin = () => {
+    const googleLogin = () => { //open google registration
         window.open("/auth/google", "_self");
     };
 
-    const facebookLogin = () => {
+    const facebookLogin = () => { //open facebook registration
         window.open("https://knitlove.herokuapp.com/auth/facebook", "_self");
     };
 

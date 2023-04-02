@@ -10,22 +10,24 @@ import "./verify.css";
 
 export function Verify() {
 
-    const {id, token} = useParams();
+    const {id, token} = useParams(); //optional params
 
     const dispatch = useDispatch();
     
     const isVerified = useSelector(selectIsVerified);
 
-    const onSuccess = (data) => {
+    const onSuccess = (data) => {//for useQuery
         if (data) {
             console.log("in on success: " + data);
             dispatch(setIsVerified(data));
         }
     }
 
+    //send user id and token to the backend in order to verify (comparing user tokens)
     const {
         data,
     } = useQuery(["verified"], async () => {
+        //if the user has provided a token and isn't already verified, send request
         if (token && !isVerified) {
             const res = await axios({
                 method: "GET",
@@ -41,7 +43,7 @@ export function Verify() {
         }
     );
     
-    if (!token) {
+    if (!token) { //if the users still hasn't clicked the verification link and didn't recieve his token
         return (
             <article className='content-wrapper verify'>
                     <h3>A verification link has been sent to your Email!</h3>
@@ -50,7 +52,7 @@ export function Verify() {
         )
     }
 
-    if (!isVerified) {
+    if (!isVerified) { //if the verification failed
 
         <article className='content-wrapper verify'>
             <h3>It seems there is a problem verifying your email</h3>
@@ -58,7 +60,7 @@ export function Verify() {
         </article>
     } 
 
-    return (
+    return ( //in case all of the above were false - the user now has a correct token and is verified
         <article className='content-wrapper verify'>
             <h3>Your email is now verified!</h3>
             <p>You can now proceed to log-in with you email and password!</p>

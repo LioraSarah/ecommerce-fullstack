@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, NavLink, Redirect } from 'react-router-
 // import PostPreviews from '../home/PostPreviews';
 import { selectCategories } from '../../features/catalogSlice';
 
+
+//this component is currently not in use
 export const Sidebar = () => {
     //const categories = useSelector(selectCategories);
 

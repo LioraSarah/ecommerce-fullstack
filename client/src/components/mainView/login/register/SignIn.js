@@ -9,7 +9,7 @@ import "./signIn.css";
 export function SignIn() {
     const navigate = useNavigate();
 
-    const addUser = async (user) => {
+    const addUser = async (user) => { //add registered new user details to db with useMutation
         try {
             const response = await axios({
                 method: "POST",
@@ -17,8 +17,8 @@ export function SignIn() {
                 withCredentials: true,
                 url: "/register"
             });
-            alert("The registration was successful!");
-            navigate('/verify');
+            alert("The registration was successful!"); //message to indicate the user for success
+            navigate('/verify'); //after success, navigate to the email verification message page
             return response;
         } catch (err) {
             const constraint = err.response.data.constraint;
@@ -31,7 +31,7 @@ export function SignIn() {
 
     const addUserMutation = useMutation(addUser);
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm(); //using the react-form library to handle sign in form
 
     const onSubmit = (data) => {
         try {

@@ -39,7 +39,7 @@ export const Cart = () => {
     }
   );
 
-  if (data) {
+  if (data) { //if there is a user logged in, use cart from db, otherwise, use local redux state cart
     cart = data;
   } else {
     cart = cartList;
@@ -68,11 +68,12 @@ export const Cart = () => {
 
   const updateItemMutation = useMutation(updateItemInDB);
 
+  //using useCallback because it is a dependency of useEffect
   const decreaseItem = useCallback((e) => { //decrease the item quantity down until 1 and not under 1
     console.log("e.target.className");
     console.log(e.target.className);
     console.log(cart);
-    const index = findInCart(cart, e.target.className); //find item to change quantity
+    const index = findInCart(cart, e.target.className); //find item in cart to change quantity
     console.log(index);
     const newQuantity = cart[index].quantity - 1;
     if (newQuantity > 0) { //only change quantity if grater than 0
@@ -93,22 +94,23 @@ export const Cart = () => {
         console.log(err);
       }
       }
-      dispatch(loadCart());
+      dispatch(loadCart()); //load redux cart to be up to date after quantity change
     } 
   },  [cart, dispatch, updateItemMutation]);
 
-  const increaseItem = useCallback((e) => {
+  //using useCallback because it is a dependency of useEffect
+  const increaseItem = useCallback((e) => { //increase the item quantity up until 3 and not above 3
     console.log("e.target.className");
     console.log(cart);
     console.log(e.target.className);
-    const index = findInCart(cart, e.target.className);
+    const index = findInCart(cart, e.target.className); //find item in cart to change quantity
     console.log(index);
     const newQuantity = cart[index].quantity + 1;
-    if (newQuantity <= 3) {
+    if (newQuantity <= 3) { //only change quantity if less than or equal to 3
       dispatch(updateQuantity({index: index, quantity: newQuantity}));
       const userId = cart[index].user_id;
       const productId = cart[index].product_id;
-      if (userId) {
+      if (userId) { //if a user is logged in, change quantity in db
         try {
         updateItemMutation.mutate({
           userId: userId,
@@ -119,14 +121,11 @@ export const Cart = () => {
         console.log(err);
       }
       }
-      dispatch(loadCart());
+      dispatch(loadCart()); //load redux cart to be up to date after quantity change
     }
   }, [cart, dispatch, updateItemMutation]);
 
-
-  //const cartItemsPreview = useSelector(selectCartItems);
-
-  useEffect(() => { //refetch the cart everytime there is a change
+  useEffect(() => { //refetch the cart everytime there is a change in the cart
     refetch();
     dispatch(loadCart());
   }
