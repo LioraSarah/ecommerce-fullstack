@@ -107,7 +107,6 @@
 .slide {
     width: 20%;
     transition: 2s;
-    display: flex;
 }
 
 slide img {
