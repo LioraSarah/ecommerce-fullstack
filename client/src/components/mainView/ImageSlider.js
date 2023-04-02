@@ -5,7 +5,7 @@ export const ImageSlider = (props) => {
     const { slides } = props;
 
     useEffect(() => {
-        const slideInterval = setInterval(nextSlide, 5000);
+        const slideInterval = setInterval(nextSlide(1), 5000);
         return () => clearInterval(slideInterval);
     }, []);
 
