@@ -14,10 +14,9 @@ export const ImageSlider = (props) => {
     };
 
     useEffect(() => {
-        let counter = 1;
-        const slideInterval = setInterval(nextSlide(counter), 5000);
+        const slideInterval = setInterval(nextSlide(1), 5000);
         return () => clearInterval(slideInterval);
-    }, []);
+    });
 
     return (
         <div className='slider-wrapper'>
