@@ -7,6 +7,7 @@ export const ImageSlider = (props) => {
     const nextSlide = (counter) => {
         document.getElementById('radio' + counter).checked = true;
         counter++;
+        console.log(counter);
         if (counter > 4) {
             counter = 1;
         }
