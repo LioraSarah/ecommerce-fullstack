@@ -73,3 +73,8 @@
     gap: 20px;
     color: rgb(120, 120, 120);
 }
+
+.qbtn {
+    background-color: #7FACFA;
+    color: white;
+}
