@@ -101,7 +101,6 @@
     width: 500%;
     height: 100%;
     display: flex;
-    position: relative;
 }
 
 .slide {
@@ -112,5 +111,5 @@
 .slide img {
     width: 100%;
     height: 100%;
-    object-fit: fill;
+    object-fit: cover;
 }
