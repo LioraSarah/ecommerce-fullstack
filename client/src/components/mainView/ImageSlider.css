@@ -105,11 +105,13 @@
 
 .slide {
     width: 20%;
+    height: 100%;
     transition: 2s;
+    display: flex;
 }
 
 slide img {
     width: 800px;
-    height: 400px;
+    height: 100%;
     object-fit: cover;
 }
