@@ -93,18 +93,18 @@
 
 .slider {
     width: 100vw;
-    height: 400px;
+    height: 100vh;
     overflow: hidden;
 }
 
 .slides {
     width: 500%;
-    height: 400px;
+    height: 100%;
     display: flex;
 }
 
 .slide {
-    width: 50%;
+    width: 20%;
     height: 100%;
     transition: 2s;
     display: flex;
