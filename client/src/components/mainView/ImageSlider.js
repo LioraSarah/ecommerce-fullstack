@@ -4,11 +4,6 @@ import './ImageSlider.css';
 export const ImageSlider = (props) => {
     const { slides } = props;
 
-    useEffect(() => {
-        const slideInterval = setInterval(nextSlide(1), 5000);
-        return () => clearInterval(slideInterval);
-    }, []);
-
     const nextSlide = (counter) => {
         document.getElementById('radio' + counter).checked = true;
         counter++;
@@ -16,6 +11,12 @@ export const ImageSlider = (props) => {
             counter = 1;
         }
     };
+
+    useEffect(() => {
+        let counter = 1;
+        const slideInterval = setInterval(nextSlide(counter), 5000);
+        return () => clearInterval(slideInterval);
+    }, []);
 
     return (
         <div className='slider-wrapper'>
