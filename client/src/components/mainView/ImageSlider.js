@@ -7,7 +7,7 @@ export const ImageSlider = (props) => {
     useEffect(() => {
         const slideInterval = setInterval(nextSlide, 5000);
         return () => clearInterval(slideInterval);
-    });
+    }, []);
 
     const nextSlide = (counter) => {
         document.getElementById('radio' + counter).checked = true;
