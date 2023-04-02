@@ -1,19 +1,19 @@
-import React, { useEffect, useState, useCallBack } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import './ImageSlider.css';
 
 export const ImageSlider = (props) => {
     const { slides } = props;
     const [counter, setCounter] = useState(1);
 
-    const nextSlide = useCallBack(() => {
+    const nextSlide = useCallback(() => {
         let radioBtn = document.getElementById('radio' + counter);
         console.log(radioBtn);
         radioBtn.checked = true;
-        setCounter(prevCounter=> prevCounter + 1);
+        setCounter(prevCounter => prevCounter + 1);
         if (counter > 4) {
             setCounter(1);
         }
-    }, []);
+    }, [counter]);
 
     useEffect(() => {
         const slideInterval = setInterval(nextSlide, 5000);
