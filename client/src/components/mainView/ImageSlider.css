@@ -94,7 +94,7 @@
 .slider {
     width: 100vw;
     height: 400px;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 .slides {
