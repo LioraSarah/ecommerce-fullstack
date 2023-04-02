@@ -6,13 +6,13 @@ export const ImageSlider = (props) => {
     const [counter, setCounter] = useState(1);
 
     const nextSlide = useCallback(() => {
+        if (counter > 4) {
+            setCounter(1);
+        }
         let radioBtn = document.getElementById('radio' + counter);
         console.log(radioBtn);
         radioBtn.checked = true;
         setCounter(prevCounter => prevCounter + 1);
-        if (counter > 4) {
-            setCounter(1);
-        }
     }, [counter]);
 
     useEffect(() => {
