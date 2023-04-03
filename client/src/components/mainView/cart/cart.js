@@ -102,7 +102,9 @@ export const Cart = () => {
   const increaseItem = useCallback((e) => { //increase the item quantity up until 3 and not above 3
     console.log("e.target.className");
     console.log(cart);
-    const productName = e.target.className.split(" ")[0];
+    const productClass = e.target.className;
+    const productClassArray = productClass.split(' ');
+    const productName = productClassArray[0];
     console.log(productName);
     const index = findInCart(cart, productName); //find item in cart to change quantity
     console.log(index);
