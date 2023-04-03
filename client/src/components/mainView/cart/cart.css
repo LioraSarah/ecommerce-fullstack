@@ -79,4 +79,6 @@
     color: white;
     cursor: pointer;
     margin: 0 3px;
+    text-align: center;
+    padding: 0 2px;
 }
