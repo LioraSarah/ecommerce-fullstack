@@ -75,7 +75,7 @@
 }
 
 .qbtn {
-    background-color: #7FACFA;
+    background-color: rgba(237, 174, 210, 0.65);
     color: white;
     cursor: pointer;
     margin: 0 3px;
