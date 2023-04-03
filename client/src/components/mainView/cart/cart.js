@@ -73,7 +73,7 @@ export const Cart = () => {
     console.log("e.target.className");
     console.log(cart);
     const productClass = e.target.className;
-    const productClassArray = productClass.split(' ');
+    const productClassArray = productClass.split(" qbtn");
     const productName = productClassArray[0];
     console.log(productName);
     const index = findInCart(cart, productName); //find item in cart to change quantity
@@ -106,7 +106,7 @@ export const Cart = () => {
     console.log("e.target.className");
     console.log(cart);
     const productClass = e.target.className;
-    const productClassArray = productClass.split(' ');
+    const productClassArray = productClass.split(" qbtn");
     const productName = productClassArray[0];
     console.log(productName);
     const index = findInCart(cart, productName); //find item in cart to change quantity
