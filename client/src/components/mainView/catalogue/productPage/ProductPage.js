@@ -122,6 +122,7 @@ export function ProductPage() {
                 }
             }
         }
+        console.log(cart);
         navigate('/cart'); //navigate to cart page after adding to cart
     };
 

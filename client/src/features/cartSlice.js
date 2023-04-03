@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'; 
+import { createSlice, current } from '@reduxjs/toolkit'; 
 
 //redux slice of cart state
 export const cartSlice = createSlice({
@@ -12,7 +12,7 @@ export const cartSlice = createSlice({
         },
         addItem(state, action) {
             state.items.push(action.payload);
-            console.log(state.items);
+            console.log(current(state));
             console.log("in cartslice");
         },
         updateQuantity(state, action) {
