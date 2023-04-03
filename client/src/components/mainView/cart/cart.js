@@ -100,10 +100,11 @@ export const Cart = () => {
 
   //using useCallback because it is a dependency of useEffect
   const increaseItem = useCallback((e) => { //increase the item quantity up until 3 and not above 3
-    console.log("e.target.id");
+    console.log("e.target.className");
     console.log(cart);
-    console.log(e.target.id);
-    const index = findInCart(cart, e.target.id); //find item in cart to change quantity
+    const productName = e.target.className.split(" ")[0];
+    console.log(productName);
+    const index = findInCart(cart, productName); //find item in cart to change quantity
     console.log(index);
     const newQuantity = cart[index].quantity + 1;
     if (newQuantity <= 3) { //only change quantity if less than or equal to 3
@@ -168,7 +169,7 @@ export const Cart = () => {
                 <div className="info">
                     <h4>{item.product_name}</h4>
                   <p className='info-p'>size: {item.size}<br />
-                    quantity: <span onClick={decreaseItem} className="qbtn" id="{item.product_name}" > - </span> {item.quantity}<span onClick={increaseItem} className="qbtn" id="{item.product_name}" > + </span><br />
+                    quantity: <span onClick={decreaseItem} className="{item.product_name} qbtn"> - </span> {item.quantity}<span onClick={increaseItem} className="{item.product_name} qbtn"> + </span><br />
                     price: {item.price}$
                   </p>
                 </div>
