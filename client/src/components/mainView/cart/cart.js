@@ -137,9 +137,8 @@ export const Cart = () => {
     refetch();
     dispatch(loadCart());
     console.log("in load cart");
-    console.log(cart);
   }
-    , [dispatch, refetch, decreaseItem, increaseItem, cart]);
+    , [dispatch, refetch, decreaseItem, increaseItem]);
 
   const handleRemoveClick = (e) => {
     if (userId) { //remove from db only if neccessary - only if there is a logged in user
