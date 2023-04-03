@@ -174,7 +174,7 @@ export const Cart = () => {
                 <div className="info">
                     <h4>{item.product_name}</h4>
                   <p className='info-p'>size: {item.size}<br />
-                    quantity: <span onClick={decreaseItem} className="{item.product_name} qbtn"> - </span> {item.quantity}<span onClick={increaseItem} className="{item.product_name} qbtn"> + </span><br />
+                    quantity: <span onClick={decreaseItem} className={item.product_name + " qbtn"}> - </span> {item.quantity}<span onClick={increaseItem} className={item.product_name + " qbtn"}> + </span><br />
                     price: {item.price}$
                   </p>
                 </div>
