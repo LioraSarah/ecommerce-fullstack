@@ -113,6 +113,8 @@ export function ProductPage() {
                 size: size,
                 product_url: productURL
             };
+            console.log("in add to cart");
+            console.log(quantity);
             dispatch(addItem(cartItem));
             if (userId) { // if a user is logged in, add the new item to db too
                 try {
