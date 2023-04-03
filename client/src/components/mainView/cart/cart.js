@@ -71,9 +71,12 @@ export const Cart = () => {
   //using useCallback because it is a dependency of useEffect
   const decreaseItem = useCallback((e) => { //decrease the item quantity down until 1 and not under 1
     console.log("e.target.className");
-    console.log(e.target.className);
     console.log(cart);
-    const index = findInCart(cart, e.target.className); //find item in cart to change quantity
+    const productClass = e.target.className;
+    const productClassArray = productClass.split(' ');
+    const productName = productClassArray[0];
+    console.log(productName);
+    const index = findInCart(cart, productName); //find item in cart to change quantity
     console.log(index);
     const newQuantity = cart[index].quantity - 1;
     if (newQuantity > 0) { //only change quantity if grater than 0
