@@ -17,7 +17,7 @@ export function ProductPage() {
     let { productId } = useParams();
     const { category } = useParams();
     const productURL = `/${category}/${productId}`;
-    const cart = useSelector(selectCartItems);
+    let cart = useSelector(selectCartItems);
     const navigate = useNavigate();
 
     console.log(productId);
@@ -115,8 +115,10 @@ export function ProductPage() {
             };
             console.log("in add to cart");
             console.log(quantity);
+            console.log(cartItem);
             dispatch(addItem(cartItem));
             if (userId) { // if a user is logged in, add the new item to db too
+                console.log("in userid add new");
                 try {
                     addItemMutation.mutate({ productId: product.id, userId: userId, quantity: quantity, size: size, product_url: productURL });
                 } catch (err) {

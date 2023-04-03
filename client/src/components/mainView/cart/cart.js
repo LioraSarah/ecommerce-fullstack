@@ -17,6 +17,7 @@ export const Cart = () => {
 
 //onSuccess method for useQuery, if success, set the cart in the redux state
   const onSuccess = (data) => {
+    console.log("on success cart");
     dispatch(setCart(data));
     return data;
   }
@@ -43,6 +44,7 @@ export const Cart = () => {
     cart = data;
   } else {
     cart = cartList;
+    console.log(cartList);
   }
 
   const removeItemFromDB = async (itemInfo) => { //function for useMutation
