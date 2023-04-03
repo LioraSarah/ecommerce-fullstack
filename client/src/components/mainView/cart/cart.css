@@ -77,4 +77,6 @@
 .qbtn {
     background-color: #7FACFA;
     color: white;
+    cursor: pointer;
+    margin: 0 3px;
 }
