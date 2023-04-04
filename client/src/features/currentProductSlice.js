@@ -9,17 +9,19 @@ export const currentProductSlice = createSlice({
   },
   reducers: {
     setCurrentProduct(state, action) {
-      state.product = action.payload.product;
-      console.log("in current slice");
-      console.log(current(state));
-      console.log(isEmptyObj(state.product));
-      if (!isEmptyObj(state.product)) {
-        state.product.quantity = action.payload.quantity;
+      if (action.payload.product) {
+        state.product = action.payload.product;
+        console.log("in current slice");
+        console.log(current(state));
+        console.log(isEmptyObj(state.product));
+        if (!isEmptyObj(state.product) && state.product.quantity) {
+          state.product.quantity = action.payload.quantity;
+        }
       }
     },
     setQuantity(state, action) {
       state.product.quantity = action.payload;
-  }
+    }
   }
 });
 
