@@ -33,3 +33,8 @@ export const addItemToDB = async (itemInfo) => { //for sending the request to ba
 export const findInCart = (cart, itemName) => {
     return cart.findIndex((item) => item.product_name === itemName);
 };
+
+//check if object is empty
+export const isEmptyObj = (obj) => {
+    return obj && Object.keys(obj).length === 0 && Object.getPrototypeOf(obj) === Object.prototype;
+}

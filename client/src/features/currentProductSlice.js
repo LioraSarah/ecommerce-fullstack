@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { isEmptyObj } from '../components/mainView/helper';
 
 //redox slice for the current product being clicked state
 export const currentProductSlice = createSlice({
@@ -9,7 +10,7 @@ export const currentProductSlice = createSlice({
   reducers: {
     setCurrentProduct(state, action) {
       state.product = action.payload.product;
-      if (state.product) {
+      if (!isEmptyObj(state.product)) {
         state.product.quantity = action.payload.quantity;
       }
     },
