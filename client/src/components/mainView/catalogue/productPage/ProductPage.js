@@ -143,7 +143,7 @@ export function ProductPage() {
             <div id="flex-div">
                 <div className="catalog-container content-wrapper">
                     <img src={`../media/${productImage}.png`} alt={product.product_name} className="product-img" />
-                    <form className="product-description" onSubmit={addToCart}>
+                    <div className="product-description">
 
                         <h3 className="product-h3 info-section">{product.product_name}</h3>
                         <div className="description">
@@ -178,9 +178,9 @@ export function ProductPage() {
                         </div>
 
                         {/* <input type="submit" value="ADD" /> */}
-                        <input type="submit" value="ADD TO CART" className="main-button add" />
+                        <input type="submit" value="ADD TO CART" className="main-button add" onClick={addToCart}/>
 
-                    </form>
+                    </div>
 
                 </div>
             </div>
