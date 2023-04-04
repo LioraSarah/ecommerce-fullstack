@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import { isEmptyObj } from '../components/mainView/helper';
 
 //redox slice for the current product being clicked state
@@ -10,6 +10,10 @@ export const currentProductSlice = createSlice({
   reducers: {
     setCurrentProduct(state, action) {
       state.product = action.payload.product;
+      console.log("in current slice");
+      console.log(current(state));
+      console.log(current(state.product));
+      console.log(isEmptyObj(state.product));
       if (!isEmptyObj(state.product)) {
         state.product.quantity = action.payload.quantity;
       }
