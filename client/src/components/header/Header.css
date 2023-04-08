@@ -89,6 +89,26 @@
     justify-content: center;
 }
 
+.toggle-button {
+    position: absolute;
+    top: 0.75rem;
+    left: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+}
+
+.toggle-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: #FFFFFF;
+    /* border-radius: 10px; */
+}
+
+/* .toggle-button .toggle-title {} */
+
 /*media queries*/
 @media screen and (max-width: 875px) {
     .navbar {
@@ -124,6 +144,14 @@
     }
 
     #active {
+        display: flex;
+    }
+
+    #bottomUl {
+        display:none;
+    }
+    
+    #bottomUl.active {
         display: flex;
     }
 
