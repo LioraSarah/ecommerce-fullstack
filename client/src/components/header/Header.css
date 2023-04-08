@@ -90,14 +90,11 @@
 }
 
 .toggle-button {
-    position: absolute;
-    top: 0.75rem;
-    left: 1rem;
     display: none;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-between;
     width: 30px;
-    height: 21px;
+    height: 21px; */
 }
 
 .toggle-button .bar {
@@ -150,7 +147,7 @@
     #bottomUl {
         display:none;
     }
-    
+
     #bottomUl.active {
         display: flex;
     }
