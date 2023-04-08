@@ -73,10 +73,15 @@ prod {
 
     .catalog-container {
         flex-direction: column;
+        justify-content: space-between;
     }
 
     .product-img {
         height: 250px;
         width: 100%;
+    }
+
+    .product-description {
+        align-self: center;
     }
 }
