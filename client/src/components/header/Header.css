@@ -80,6 +80,7 @@
     align-items: center;
     justify-content: center;
     font-size: 0.8rem;
+    position: relative;
 }
 
 .navbar-links ul {
