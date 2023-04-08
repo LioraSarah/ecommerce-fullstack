@@ -49,14 +49,17 @@
     height: 30px;
 }
 
-#google-button {
+#google-button, #facebook-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(237, 174, 210);
     color: white;
     gap: 10px;
     border: 0;
     padding: 7px 0;
     margin-top: 15px;
+}
+
+#google-button {
+    background-color: rgb(237, 174, 210);
 }
