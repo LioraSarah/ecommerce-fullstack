@@ -1,10 +1,9 @@
 .catalog-container {
     display: flex;
     align-items:center;
-    justify-content: center;
+    justify-content: space-around;
     column-gap: 85px;
     font-weight: 100;
-    padding: 0 10px;
     /* margin-left: 300px; */
 }
 
