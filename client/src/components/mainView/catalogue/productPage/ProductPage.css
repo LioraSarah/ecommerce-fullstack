@@ -1,7 +1,7 @@
 .catalog-container {
     display: flex;
     align-items:center;
-    justify-content: space-around;
+    justify-content: center;
     column-gap: 85px;
     font-weight: 100;
     /* margin-left: 300px; */
@@ -66,4 +66,12 @@
 prod {
     width: 100%;
     position: static;
+}
+
+/*media queries*/
+@media screen and (max-width: 875px) {
+    .product-img {
+        height: 250px;
+        width: 100%;
+    }
 }
