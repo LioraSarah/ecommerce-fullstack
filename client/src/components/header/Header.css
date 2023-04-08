@@ -135,6 +135,7 @@
         width: 100%;
         flex-direction: column;
         gap: 20px;
+        position:absolute;
     }
 
     .navbar-links ul li {
