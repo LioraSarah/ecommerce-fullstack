@@ -83,5 +83,6 @@ prod {
 
     .product-description {
         align-self: center;
+        text-align: center;
     }
 }
