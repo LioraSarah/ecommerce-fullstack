@@ -154,6 +154,7 @@
     }
 
     #bottomUl {
+        padding-top: .5rem;
         display:none;
     }
 
