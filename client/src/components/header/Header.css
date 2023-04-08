@@ -137,6 +137,7 @@
         gap: 20px;
         position:absolute;
         top: 124.06;
+        background-color: rgb(237, 174, 210);
     }
 
     .navbar-links ul li {
