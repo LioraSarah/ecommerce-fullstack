@@ -136,8 +136,9 @@
         flex-direction: column;
         gap: 20px;
         position:absolute;
-        top: 124.06;
+        top: 324.06;
         background-color: rgb(237, 174, 210);
+        z-index: 1;
     }
 
     .navbar-links ul li {
