@@ -155,6 +155,7 @@
 
     #bottomUl.active {
         display: flex;
+        margin-top: 10px;
     }
 
 }
