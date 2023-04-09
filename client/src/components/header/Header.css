@@ -82,6 +82,12 @@
     font-size: 0.8rem;
 }
 
+#bottomUl-container {
+    position: relative;
+    width: 100%;
+    display: block;
+}
+
 .navbar-links ul {
     gap: 200px;
     display: flex;
@@ -163,6 +169,7 @@
     }
 
     .toggle-button::after {
+        float: left;
         clear: both;
     }
 
