@@ -1,24 +1,18 @@
 const express = require('express');
 const app = express();
 const session = require("express-session");
-// const cookieSession = require("cookie-session");
-const store = new session.MemoryStore();
 const passport = require("passport");
-const login = require("./backend/api/db-login");
 const verifyMail = require("./backend/api/verify-email");
 const catalogue = require("./backend/api/db-catalogue");
-const cart = require("./backend/api/db-cart");
 const initializePassport = require("./backend/api/passport-config");
 const initializePassportGoogle = require("./backend/api/passport-config-google");
 const initializePassportFacebook = require("./backend/api/passport-config-facebook");
-const bcrypt = require('bcrypt');
 const corsOptions = require('./backend/config/corsOptions');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
-const nodemailer = require('nodemailer');
-const {v4: uuidv4} = require('uuid');
-const randomstring = require("randomstring");
 const cartRouter = require("./backend/api/cart-router");
+const catalogueRouter = require("./backend/api/catalogue-router");
+const registerRouter = require("./backend/api/register-router");
 
 const path = require("path");
 const PORT = process.env.PORT || 4000;
@@ -31,21 +25,20 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const bodyParser = require("body-parser");
-const { constants } = require('http2');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-// app.use(cookieSession({
-//     maxAge: 1000 * 60 * 60 * 24,
-//     keys: [process.env.COOKIE_KEY]
-// }));
-
+//routers (need improve, in progress)
 app.use('/shopcart', cartRouter);
+app.use('/catalogue', catalogueRouter);
+app.use("/register", registerRouter)
 
+//passport initialization
 initializePassport(passport);
 initializePassportGoogle(passport);
 initializePassportFacebook(passport);
 
+//session init
 app.use(
     session({
         secret: 'sessionsecret',
@@ -59,10 +52,7 @@ app.use(cookieParser('sessionsecret'));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/", (req, res) => {
-    res.send("Hello!");
-});
-
+//passport-google
 app.get("/auth/google", passport.authenticate('google', {scope:["profile","https://www.googleapis.com/auth/userinfo.email"], prompt: 'select_account'}));
 
 app.get("/loginfail", (req, res) => {
@@ -89,21 +79,8 @@ app.get('/auth/google/callback',
     successRedirect: "https://knitlove.herokuapp.com/"
 }));
 
+//passport-facebook
 app.get("/auth/facebook", passport.authenticate('facebook', {scope: ['email']}));
-
-// app.get("/logingoogle", (req, res)=> {
-//     if (req.user) {
-//         const user = {
-//             id: req.user.id,
-//             firstName: req.user.first_name,
-//             lastName: req.user.last_name,
-//             email: req.user.email
-//         }
-//         res.status(200).send(user);
-//     } else {
-//         res.status(400).send();
-//     }
-// })
 
 app.get('/auth/facebook/callback', 
   passport.authenticate('facebook', {
@@ -111,6 +88,7 @@ app.get('/auth/facebook/callback',
     successRedirect: "https://knitlove.herokuapp.com/"
 }));
 
+//user email verification
 app.get("/verify/user/:id/:token", async (req, res) => {
     const id = req.params.id;
     const token = req.params.token;
@@ -124,6 +102,7 @@ app.get("/verify/user/:id/:token", async (req, res) => {
     }
 });
 
+//passport local login
 app.post("/login", passport.authenticate('local', {
     failureRedirect: "/loginfail"
 }), (req, res) => {
@@ -144,6 +123,7 @@ app.post("/login", passport.authenticate('local', {
     }
 });
 
+//get user info from current session
 app.get("/user", (req, res)=>{
     console.log(req.user);
     if (req.user) {
@@ -164,6 +144,7 @@ app.get("/user", (req, res)=>{
     }
 });
 
+//passport logout
 app.delete("/logout", (req, res, next) => {
     req.logOut((err) => {
         if (err) {
@@ -173,41 +154,7 @@ app.delete("/logout", (req, res, next) => {
     });
 });
 
-app.post("/register", async (req, res) => {
-    const { newUser } = req.body;
-    console.log("user register:");
-    console.log(newUser);
-    const verification_token = randomstring.generate();
-    newUser.verification_token = verification_token;
-    newUser.verified = false;
-    newUser.userType = 'local';
-
-    console.log("user token:");
-    console.log(newUser.verification_token);
-
-    const password = newUser.password;
-    try {
-        const hashedPassword = await bcrypt.hash(password, 10);
-        newUser.password = hashedPassword;
-        const response = await login.createUser(newUser);
-        await verifyMail.sendVerificationEmail(verification_token, newUser.email);
-        res.status(201).send(response);
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
-
-app.get("/catalogue", async (req, res) => {
-    const { category } = req.query;
-    try {
-        const response = await catalogue.getCategory(category);
-        res.status(200).send(response);
-    } catch (error) {
-        console.log(error);
-        res.status(500).send(error);
-    }
-});
-
+//get current product info
 app.get("/product", async (req, res) => {
     const { productId } = req.query;
     try {
@@ -220,6 +167,7 @@ app.get("/product", async (req, res) => {
     }
 });
 
+//catch all other routes
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client/build/index.html"));
 });
@@ -227,5 +175,3 @@ app.get("*", (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is now listening at port ${PORT}`);
 });
-
-
