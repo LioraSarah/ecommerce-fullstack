@@ -159,7 +159,7 @@
     }
 
     #bottomUl {
-        padding-top: .4rem;
+        padding-top: 2rem;
         padding-bottom: 1rem;
         display:none;
     }
@@ -168,10 +168,10 @@
         display: flex;
     }
 
-    .toggle-button::after {
+    /* .toggle-button::after {
         float: left;
         clear: both;
-    }
+    } */
 
 }
 
