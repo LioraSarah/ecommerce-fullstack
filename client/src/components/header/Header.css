@@ -80,6 +80,9 @@
     align-items: center;
     justify-content: center;
     font-size: 0.8rem;
+}
+
+#bottomUl-container {
     position: relative;
 }
 
@@ -161,7 +164,6 @@
 
     #bottomUl.active {
         display: flex;
-        top: 44.06px;
     }
 
 }
