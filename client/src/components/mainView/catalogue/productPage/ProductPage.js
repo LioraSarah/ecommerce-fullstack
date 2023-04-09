@@ -141,7 +141,7 @@ export function ProductPage() {
     return (
         <div id="prod">
             <div id="flex-div">
-                <div className="catalog-container content-wrapper">
+                <div className="catalog-container">
                     <img src={`../media/${productImage}.png`} alt={product.product_name} className="product-img" />
                     <form className="product-description" onSubmit={addToCart}>
 
