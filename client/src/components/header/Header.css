@@ -73,7 +73,7 @@
     display: inline;
 }
 
-.navbar-links {
+.navbar-links, #bottomUl-container {
     background-color: rgb(237, 174, 210);
     padding: 10px 0;
     display: flex;
