@@ -38,58 +38,56 @@ export const Header = () => {
                     <span className='bar'></span> */}
                     <span className='toggle-title'>menu</span>
                 </div>
-                <div id="bottomUl-container">
-                    <ul className="list-general" id="bottomUl">
-                        <li>
-                            <NavLink
-                                className={({ isActive }) =>
-                                    isActive ? 'link' : 'link-active'
-                                }
-                                to={`/tops`} >
+                <ul className="list-general" id="bottomUl">
+                    <li>
+                        <NavLink
+                            className={({ isActive }) =>
+                                isActive ? 'link' : 'link-active'
+                            }
+                            to={`/tops`} >
 
-                                {/* {categories[0]} */}
-                                Tops
+                            {/* {categories[0]} */}
+                            Tops
 
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                className={({ isActive }) =>
-                                    isActive ? 'link' : 'link-active'
-                                }
-                                to={`/bottoms`}>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            className={({ isActive }) =>
+                                isActive ? 'link' : 'link-active'
+                            }
+                            to={`/bottoms`}>
 
-                                {/* {categories[1]} */}
-                                Bottoms
+                            {/* {categories[1]} */}
+                            Bottoms
 
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                className={({ isActive }) =>
-                                    isActive ? 'link' : 'link-active'
-                                }
-                                to={`/accessories`}>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            className={({ isActive }) =>
+                                isActive ? 'link' : 'link-active'
+                            }
+                            to={`/accessories`}>
 
-                                {/* {categories[2]} */}
-                                Accessories
+                            {/* {categories[2]} */}
+                            Accessories
 
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                className={({ isActive }) =>
-                                    isActive ? 'link' : 'link-active'
-                                }
-                                to={`/pets`}>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            className={({ isActive }) =>
+                                isActive ? 'link' : 'link-active'
+                            }
+                            to={`/pets`}>
 
-                                {/* {categories[3]} */}
-                                Pets
+                            {/* {categories[3]} */}
+                            Pets
 
-                            </NavLink>
-                        </li>
-                    </ul>
-                </div>
+                        </NavLink>
+                    </li>
+                </ul>
             </nav>
         </div>
     )
