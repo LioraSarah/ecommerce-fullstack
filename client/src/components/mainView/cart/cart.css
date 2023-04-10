@@ -59,7 +59,7 @@
 }
 
 #total {
-    text-align: right;
+    text-align: center;
 }
 
 .checkout-btn {
@@ -94,10 +94,6 @@
 
     .remove-button {
         margin-bottom: 20px;
-    }
-
-    #total {
-        text-align: center;
     }
 
     .cart-item-img {
