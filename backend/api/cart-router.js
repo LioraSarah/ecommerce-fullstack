@@ -1,6 +1,6 @@
 const express = require('express');
 const cartRouter = express.Router();
-const cart = require("./backend/api/db-cart");
+const cart = require("./db-cart");
 
 
 cartRouter.post("/", async (req, res) => {

@@ -2,8 +2,8 @@ const express = require('express');
 const registerRouter = express.Router();
 const randomstring = require("randomstring");
 const bcrypt = require('bcrypt');
-const login = require("./backend/api/db-login");
-const verifyMail = require("./backend/api/verify-email");
+const login = require("./db-login");
+const verifyMail = require("./verify-email");
 
 registerRouter.post("/", async (req, res) => {
     const { newUser } = req.body;

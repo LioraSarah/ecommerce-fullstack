@@ -52,6 +52,10 @@ app.use(cookieParser('sessionsecret'));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.get("/", (req, res) => {
+    res.send("Error loading front page");
+});
+
 //passport-google
 app.get("/auth/google", passport.authenticate('google', {scope:["profile","https://www.googleapis.com/auth/userinfo.email"], prompt: 'select_account'}));
 

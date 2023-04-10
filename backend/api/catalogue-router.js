@@ -1,6 +1,6 @@
 const express = require('express');
 const catalogueRouter = express.Router();
-const catalogue = require("./backend/api/db-catalogue");
+const catalogue = require("./db-catalogue");
 
 catalogueRouter.get("/", async (req, res) => {
     const { category } = req.query;
