@@ -89,10 +89,8 @@
 
 @media screen and (max-width: 875px) {
 
-    #cart-view {
-        display: flex;
+    .cart-view-item {
         flex-direction: column;
-        align-items: center;
         justify-content: center;
     }
 
