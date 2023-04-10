@@ -9,8 +9,6 @@
 .cart-container h3 {
     color: #7FACFA;
     font-weight: 800;
-    align-self: flex-start;
-    margin-left: 20%;
 }
 
 .cart-item-img {
@@ -32,7 +30,7 @@
     background-color: rgb(232, 231, 231);
 }
 
-#cart-view {
+.cart-view {
     padding: 0;
 }
 
@@ -64,7 +62,7 @@
 }
 
 #total {
-    text-align: right;
+    text-align: center;
 }
 
 .checkout-btn {
@@ -104,15 +102,6 @@
     .cart-item-img {
         height: 200px;
         width: 200px;
-    }
-
-    #total {
-        text-align: center;
-    }
-
-    .cart-container h3 {
-        align-self: center;
-        margin-left: 0;
     }
 
 }
