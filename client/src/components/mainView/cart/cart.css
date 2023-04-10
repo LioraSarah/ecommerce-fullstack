@@ -86,3 +86,14 @@
     text-align: center;
     padding: 0 2px;
 }
+
+@media screen and (max-width: 875px) {
+
+    #cart-view {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
