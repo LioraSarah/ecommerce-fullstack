@@ -47,16 +47,20 @@ function App() {
   });
 
   let location = useLocation();
-  const bottomUl = useMemo(() => document.getElementById("bottomUl"), []);
+  const bottomUl = document.getElementById("bottomUl");
 
   console.log("location");
   console.log(location);
   console.log("button menu");
   console.log(bottomUl);
 
-  // useEffect(() => {
-  //   bottomUl.classList.remove('active');
-  // }, [location, bottomUl]);
+  useEffect(() => {
+    const bottomUl = document.getElementById("bottomUl");
+    if (bottomUl && bottomUl.classList.contains('active')) {
+      console.log("change active");
+      bottomUl.classList.remove('active');
+    }
+  }, [location, bottomUl]);
 
   return (
       <div id="app">
