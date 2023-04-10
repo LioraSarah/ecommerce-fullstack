@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import './App.css';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { Header } from './components/header/Header.js';
 import { MainView } from './components/mainView/mainView.js';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import {
   setAuthenticated, setUser, selectUserId
 } from './features/loginSlice';
@@ -45,6 +45,13 @@ function App() {
     refetch();
     console.log(userId);
   });
+
+  let location = useLocation();
+  const bottomUl = useMemo(() => document.getElementById("bottomUl"), []);
+
+  React.useEffect(() => {
+    bottomUl.classList.remove('active');
+  }, [location, bottomUl]);
 
   return (
       <div id="app">
