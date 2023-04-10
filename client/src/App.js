@@ -49,9 +49,14 @@ function App() {
   let location = useLocation();
   const bottomUl = useMemo(() => document.getElementById("bottomUl"), []);
 
-  React.useEffect(() => {
-    bottomUl.classList.remove('active');
-  }, [location, bottomUl]);
+  console.log("location");
+  console.log(location);
+  console.log("button menu");
+  console.log(bottomUl);
+
+  // useEffect(() => {
+  //   bottomUl.classList.remove('active');
+  // }, [location, bottomUl]);
 
   return (
       <div id="app">
