@@ -9,6 +9,7 @@
 .cart-container h3 {
     color: #7FACFA;
     font-weight: 800;
+    font-size: 1.3rem;
 }
 
 .cart-item-img {
@@ -55,12 +56,12 @@
 .info h4 {
     color: #7FACFA;
     font-weight: 100;
-    font-size: 0.80rem;
+    font-size: 0.85rem;
 }
 
 .info-p {
     font-size: 0.75rem;
-    line-height: 0.2rem;
+    line-height: 1.2;
 }
 
 #total {
