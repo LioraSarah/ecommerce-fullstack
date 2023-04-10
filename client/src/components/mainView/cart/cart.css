@@ -104,6 +104,7 @@
 
     .cart-container h3 {
         align-self: center;
+        margin-left: 0;
     }
 
     .cart-item-img {
