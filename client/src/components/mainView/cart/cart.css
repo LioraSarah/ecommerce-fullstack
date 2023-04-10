@@ -7,7 +7,7 @@
 }
 
 .cart-container h3 {
-    color:#7FACFA;
+    color: #7FACFA;
     font-weight: 800;
     align-self: flex-start;
     margin-left: 20%;
@@ -17,7 +17,7 @@
     height: 100px;
     width: 100px;
     object-fit: cover;
-    object-position: 25% 25%; 
+    object-position: 25% 25%;
 }
 
 .cart-view-item {
@@ -68,7 +68,7 @@
     padding: 15px 25px;
     width: 135px;
     margin: 0 auto;
-    font-size: 0.9rem; 
+    font-size: 0.9rem;
 }
 
 .link-cart {
@@ -92,6 +92,23 @@
     .cart-view-item {
         flex-direction: column;
         justify-content: center;
+    }
+
+    .remove-button {
+        margin-bottom: 20px;
+    }
+
+    #total {
+        text-align: center;
+    }
+
+    .cart-container h3 {
+        align-self: center;
+    }
+
+    .cart-item-img {
+        height: 200px;
+        width: 200px;
     }
 
 }
