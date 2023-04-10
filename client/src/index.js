@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { createRoot } from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const container = document.getElementById('root');
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
@@ -21,7 +22,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <Router>
+          <App />
+        </Router>
       </QueryClientProvider>
     </Provider>
   </React.StrictMode>

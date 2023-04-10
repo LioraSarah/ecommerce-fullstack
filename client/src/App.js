@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { Header } from './components/header/Header.js';
 import { MainView } from './components/mainView/mainView.js';
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import {
   setAuthenticated, setUser, selectUserId
 } from './features/loginSlice';
@@ -60,7 +60,6 @@ function App() {
 
   return (
       <div id="app">
-        <Router>
           <header>
             <Header />
           </header>
@@ -71,7 +70,6 @@ function App() {
             </Routes>
           </main>
           {/* <footer><div id="footer-div"></div></footer> */}
-        </Router>
       </div>
   );
 }
