@@ -87,7 +87,8 @@ prod {
     left: 50%;
     top: 50%;
     display: block;
-    border: 3px solis white;
+    border: 3px solid white;
+    /*#7FACFA;*/
 }
 
 /*media queries*/
