@@ -71,11 +71,11 @@ prod {
 
 .popup-media {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
     z-index: 100;
-    width: 80%;
-    height: 80%;
+    max-width: 90%;
+    max-height: 75%;
     border: 3px solid white;
 }
 
