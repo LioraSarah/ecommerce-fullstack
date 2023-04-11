@@ -182,6 +182,11 @@ export function ProductPage() {
 
                     </form>
 
+                    <imagePopup>
+                        <div className="popup-media">
+                        <img src={`../media/${productImage}.png`} alt={product.product_name} />
+                        </div>
+                    </imagePopup>
                 </div>
             </div>
         </div>

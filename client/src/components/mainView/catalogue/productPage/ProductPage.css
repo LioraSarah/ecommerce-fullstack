@@ -69,6 +69,20 @@ prod {
     position: static;
 }
 
+.popup-media {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 80%;
+    height: 80%;
+    border: 3px solid white;
+}
+
+.popup-media img {
+    object-fit: contain;
+}
+
 /*media queries*/
 @media screen and (max-width: 875px) {
 
