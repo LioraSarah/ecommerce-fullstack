@@ -74,6 +74,11 @@ export function ProductPage() {
         dispatch(setCurrentProduct({ product: product, quantity: quantity }));
     }, [product, dispatch, quantity]);
 
+    useEffect(() => {
+        console.log('clicked');
+        console.log(isClicked);
+      }, [isClicked]);
+
     if (status === "loading" || status === "error") { //if loading the product
         return <h2 className="loading">Loading...</h2>
     }
@@ -139,14 +144,6 @@ export function ProductPage() {
         setItemQuantity(Number(e.target.value));
     };
 
-    const clickX = () => {
-        console.log("before")
-        console.log(isClicked); 
-        setClicked(false); 
-        console.log("after");
-        console.log(isClicked);
-    }
-
     return (
         <div id="prod">
             <div id="flex-div">
@@ -193,7 +190,7 @@ export function ProductPage() {
 
                     <imagePopup>
                         <div className="popup-media" style={{display: isClicked ? 'flex' : 'none'}} onClick={() => setClicked(true)}>
-                            <span onClick={clickX}>&times;</span>
+                            <span onClick={() => setClicked(false)} >&times;</span>
                         <img src={`../media/${productImage}.png`} alt={product.product_name} />
                         </div>
                     </imagePopup>
