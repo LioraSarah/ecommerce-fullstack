@@ -26,9 +26,9 @@ export function CatalogueView() {
     const res = await axios.get("/catalogue", { params: { category: category } });
     return res.data;
   },
-  {
-    onSuccess,
-  }
+    {
+      onSuccess,
+    }
   );
 
   useEffect(() => {
@@ -54,13 +54,22 @@ export function CatalogueView() {
   function handleClick(e) { //clicking on a product will set the current products in the redux state to the clicked product
     const id = e.target.closest('a').id; //find closest element with the product id
     const product = products.find((product) => parseInt(id) === product.id); //find product in products list
-    dispatch(setCurrentProduct({product: product, quantity: 1})); //set it to current
+    dispatch(setCurrentProduct({ product: product, quantity: 1 })); //set it to current
+  }
+
+  function sortByPrice() {
+    products.sort((a, b) => {
+      return a.price - b.price;
+    });
   }
 
   return (
     <article id="catalogue-container" className='content-wrapper'>
       <h3 id="category-h3">{category}</h3>
       <div className="catalogue-view">
+        <p>
+          sort by: <span>name</span> | <span onClick={sortByPrice}>price</span>
+        </p>
         {products.map((item) => (
           <div key={item.id} className="catalogue-view-item">
             <NavLink id={item.id} className="link" activeclassname="link-active" to={`/${category}/${item.id}`} onClick={handleClick}>
