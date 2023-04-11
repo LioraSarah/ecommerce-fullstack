@@ -91,6 +91,17 @@ prod {
     /*#7FACFA;*/
 }
 
+.popup-media span {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    z-index: 100;
+    user-select: none;
+}
+
 /*media queries*/
 @media screen and (max-width: 875px) {
 

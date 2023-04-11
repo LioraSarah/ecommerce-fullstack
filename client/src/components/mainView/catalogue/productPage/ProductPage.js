@@ -184,6 +184,7 @@ export function ProductPage() {
 
                     <imagePopup>
                         <div className="popup-media">
+                            <span>&times;</span>
                         <img src={`../media/${productImage}.png`} alt={product.product_name} />
                         </div>
                     </imagePopup>
