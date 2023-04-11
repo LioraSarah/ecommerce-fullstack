@@ -70,7 +70,7 @@ prod {
 }
 
 .popup-media {
-    position: fixed;
+    position: absolute;
     top: 20%;
     left: 20%;
     z-index: 100;
