@@ -14,6 +14,7 @@ import { findInCart } from '../../helper.js';
 export function ProductPage() {
     const [size, setSize] = useState(''); //local state for controlling size selection
     const [quantity, setItemQuantity] = useState(1); //local state for controlling quantity selection
+    const [isClicked, setClicked] = useState(false);
     let { productId } = useParams();
     const { category } = useParams();
     const productURL = `/${category}/${productId}`;
@@ -183,8 +184,8 @@ export function ProductPage() {
                     </form>
 
                     <imagePopup>
-                        <div className="popup-media">
-                            <span>&times;</span>
+                        <div className="popup-media" style={{display: isClicked ? 'flex' : 'none'}} onClick={() => setClicked(true)}>
+                            <span onClick={() => setClicked(false)}>&times;</span>
                         <img src={`../media/${productImage}.png`} alt={product.product_name} />
                         </div>
                     </imagePopup>
