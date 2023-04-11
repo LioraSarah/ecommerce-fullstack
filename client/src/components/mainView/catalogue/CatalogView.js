@@ -58,9 +58,11 @@ export function CatalogueView() {
   }
 
   function sortByPrice() {
-    products.sort((a, b) => {
-      return a.price - b.price;
-    });
+    if (products) {
+      products.sort((a, b) => {
+        return a.price - b.price;
+      });
+    }
   }
 
   return (
