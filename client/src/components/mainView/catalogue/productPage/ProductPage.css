@@ -84,8 +84,8 @@ prod {
     max-width: 95%;
     max-height: 95%;
     object-fit: contain;
-    left: 50%;
-    top: 50%;
+    left: 20%;
+    top: 10%;
     display: block;
     border: 3px solid white;
     /*#7FACFA;*/
