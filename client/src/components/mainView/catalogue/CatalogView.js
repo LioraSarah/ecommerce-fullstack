@@ -65,9 +65,9 @@ export function CatalogueView() {
       productsCopy.sort((a, b) => {
         return a.price - b.price;
       });
-      products = productsCopy;
       console.log("after sort");
-      console.log(products);
+      console.log(productsCopy);
+      dispatch(setProducts(productsCopy));
     }
   }
 
