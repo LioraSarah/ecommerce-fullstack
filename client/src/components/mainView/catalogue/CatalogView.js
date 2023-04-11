@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { NavLink, useParams } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import {
   setCategorie,
-  setProducts
+  setProducts,
+  selectAllItems
 } from '../../../features/catalogSlice';
 import { setCurrentProduct } from '../../../features/currentProductSlice';
 import "./CatalogueView.css";
@@ -13,13 +14,14 @@ import "./CatalogueView.css";
 export function CatalogueView() {
   const { category } = useParams();
   const dispatch = useDispatch();
+  const products = useSelector(selectAllItems);
 
   const onSuccess = (data) => { //for useQuery
     dispatch(setProducts(data));
   }
 
-  let { //fetch products from backend by category
-    data: products,
+  const { //fetch products from backend by category
+    data,
     status,
     refetch
   } = useQuery(["products"], async () => {
@@ -37,7 +39,8 @@ export function CatalogueView() {
 
   useEffect(() => {
     dispatch(setCategorie(category));
-  }, [category, dispatch]);
+    dispatch(setProducts(products));
+  }, [category, dispatch, products]);
 
   if (status === "loading") { //if products are loading
     return <h2 className="loading">Loading...</h2>
