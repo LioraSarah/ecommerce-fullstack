@@ -59,11 +59,15 @@ export function CatalogueView() {
 
   function sortByPrice() {
     if (products) {
+      console.log("before sort");
+      console.log(products);
       let productsCopy = [... products];
       productsCopy.sort((a, b) => {
         return a.price - b.price;
       });
       products = productsCopy;
+      console.log("after sort");
+      console.log(products);
     }
   }
 
