@@ -193,7 +193,7 @@ export function ProductPage() {
 
                     <imagePopup>
                         <div className="popup-media" style={{display: isClicked ? 'flex' : 'none'}} onClick={() => setClicked(true)}>
-                            <span onClick={}>&times;</span>
+                            <span onClick={clickX}>&times;</span>
                         <img src={`../media/${productImage}.png`} alt={product.product_name} />
                         </div>
                     </imagePopup>
