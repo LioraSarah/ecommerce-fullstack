@@ -94,7 +94,7 @@ prod {
 .popup-media span {
     position: absolute;
     top: 5px;
-    right: 5px;
+    right: 15px;
     font-size: 1.5rem;
     color: white;
     cursor: pointer;
