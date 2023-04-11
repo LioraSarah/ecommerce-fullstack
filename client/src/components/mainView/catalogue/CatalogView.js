@@ -64,9 +64,32 @@ export function CatalogueView() {
     if (products) {
       console.log("before sort");
       console.log(products);
-      let productsCopy = [... products];
+      let productsCopy = [...products];
       productsCopy.sort((a, b) => {
         return a.price - b.price;
+      });
+      console.log("after sort");
+      console.log(productsCopy);
+      dispatch(setProducts(productsCopy));
+    }
+  }
+
+  function sortByName() {
+    if (products) {
+      console.log("before sort");
+      console.log(products);
+      let productsCopy = [...products];
+      productsCopy.sort((a, b) => {
+        let fa = a.product_name.toLowerCase(),
+          fb = b.product_name.toLowerCase();
+
+        if (fa < fb) {
+          return -1;
+        }
+        if (fa > fb) {
+          return 1;
+        }
+        return 0;
       });
       console.log("after sort");
       console.log(productsCopy);
@@ -79,7 +102,7 @@ export function CatalogueView() {
       <h3 id="category-h3">{category}</h3>
       <div className="catalogue-view">
         <p>
-          sort by: <span>name</span> | <span onClick={sortByPrice}>price</span>
+          sort by: <span onClick={sortByName}>name</span> | <span onClick={sortByPrice}>price</span>
         </p>
         {products.map((item) => (
           <div key={item.id} className="catalogue-view-item">
