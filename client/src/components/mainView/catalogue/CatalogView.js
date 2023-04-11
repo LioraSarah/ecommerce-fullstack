@@ -18,7 +18,7 @@ export function CatalogueView() {
     dispatch(setProducts(data));
   }
 
-  const { //fetch products from backend by category
+  let { //fetch products from backend by category
     data: products,
     status,
     refetch
@@ -59,9 +59,11 @@ export function CatalogueView() {
 
   function sortByPrice() {
     if (products) {
-      products.sort((a, b) => {
+      let productsCopy = [... products];
+      productsCopy.sort((a, b) => {
         return a.price - b.price;
       });
+      products = productsCopy;
     }
   }
 
