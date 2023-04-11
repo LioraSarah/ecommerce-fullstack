@@ -80,13 +80,12 @@ prod {
 }
 
 .popup-media img {
-    position: absolute;
     max-width: 95%;
     max-height: 90%;
     object-fit: contain;
-    left: 38%;
-    top: 5%;
     display: flex;
+    align-items: center;
+    justify-content: center;
     border: 3px solid white;
     /*#7FACFA;*/
 }
