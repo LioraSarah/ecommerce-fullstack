@@ -86,7 +86,7 @@ prod {
     object-fit: contain;
     left: 38%;
     top: 5%;
-    display: block;
+    display: flex;
     border: 3px solid white;
     /*#7FACFA;*/
 }
