@@ -77,7 +77,7 @@ export function ProductPage() {
     useEffect(() => {
         console.log('clicked');
         console.log(isClicked);
-      }, [isClicked]);
+    }, [isClicked]);
 
     if (status === "loading" || status === "error") { //if loading the product
         return <h2 className="loading">Loading...</h2>
@@ -189,9 +189,8 @@ export function ProductPage() {
                     </form>
 
                     <imagePopup>
-                        <div className="popup-media" style={{display: isClicked ? 'flex' : 'none'}}>
-                            <span onClick={() => setClicked(false)} >&times;</span>
-                        <img src={`../media/${productImage}.png`} alt={product.product_name} />
+                        <div className="popup-media" style={{ display: isClicked ? 'flex' : 'none' }} onClick={() => setClicked(false)} >
+                            <img src={`../media/${productImage}.png`} alt={product.product_name} />
                         </div>
                     </imagePopup>
                 </div>
