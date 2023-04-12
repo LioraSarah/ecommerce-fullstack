@@ -12,8 +12,7 @@ export const Cart = () => {
 
   const dispatch = useDispatch();
   const userId = useSelector(selectUserId);
-  const cartList = useSelector(selectCartItems);
-  let cart;
+  const cart = useSelector(selectCartItems);
 
   const queryCart = async () => {
     if (userId) { //only query the cart if the user is logged in
@@ -43,13 +42,6 @@ export const Cart = () => {
       onSuccess,
     }
   );
-
-  if (data) { //if there is a user logged in, use cart from db, otherwise, use local redux state cart
-    cart = data;
-  } else {
-    cart = cartList;
-    console.log(cartList);
-  }
 
   const removeItemFromDB = async (itemInfo) => { //function for useMutation
     try {
@@ -178,7 +170,7 @@ export const Cart = () => {
       <h3>your cart</h3>
       <div id="cart-cont">
         <ul id="cart-view">
-          {cart.map((item, index) => (
+          {cart?.map((item, index) => (
             <li className="cart-view-item" key={index}>
               {/* <NavLink to={item.product_url} className='link-cart'> */}
               <img src={`../../../media/${item.image_url}.png`} alt={item.product_name} className="cart-item-img" />
