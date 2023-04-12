@@ -11,10 +11,7 @@ export const cartSlice = createSlice({
             return(action.payload);
         },
         addItem(state, action) {
-            console.log(current(state));
             state.items.push(action.payload);
-            console.log(current(state));
-            console.log("in cartslice");
         },
         updateQuantity(state, action) {
             const index = action.payload.index;

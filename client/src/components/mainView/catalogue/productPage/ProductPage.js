@@ -74,11 +74,6 @@ export function ProductPage() {
         dispatch(setCurrentProduct({ product: product, quantity: quantity }));
     }, [product, dispatch, quantity]);
 
-    useEffect(() => {
-        console.log('clicked');
-        console.log(isClicked);
-    }, [isClicked]);
-
     if (status === "loading" || status === "error") { //if loading the product
         return <h2 className="loading">Loading...</h2>
     }
@@ -100,10 +95,6 @@ export function ProductPage() {
             if (newQuantity <= 3) {
                 dispatch(updateQuantity({ index: index, quantity: newQuantity }));
                 const itemInfo = cart[index];
-                console.log("indecrease");
-                console.log(itemInfo);
-                console.log("quantity");
-                console.log(quantity);
                 if (userId) { //only update in db if a user is logged in
                     try {
                         updateItemMutation.mutate({ userId: userId, productId: itemInfo.id, quantity: newQuantity, size: itemInfo.size });
@@ -119,9 +110,6 @@ export function ProductPage() {
                 size: size,
                 product_url: productURL
             };
-            console.log("in add to cart");
-            console.log(quantity);
-            console.log(cartItem);
             dispatch(addItem(cartItem));
             if (userId) { // if a user is logged in, add the new item to db too
                 console.log("in userid add new");

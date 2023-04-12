@@ -43,21 +43,14 @@ function App() {
   //refetch the logged in user info at the beggining of every render
   useEffect(()=>{
     refetch();
-    console.log(userId);
   });
 
   let location = useLocation();
   const bottomUl = document.getElementById("bottomUl");
 
-  console.log("location");
-  console.log(location);
-  console.log("button menu");
-  console.log(bottomUl);
-
   useEffect(() => {
     const bottomUl = document.getElementById("bottomUl");
     if (bottomUl && bottomUl.classList.contains('active')) {
-      console.log("change active");
       bottomUl.classList.remove('active');
     }
   }, [location, bottomUl]);

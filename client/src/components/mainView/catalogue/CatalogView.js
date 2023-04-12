@@ -62,22 +62,16 @@ export function CatalogueView() {
 
   function sortByPrice() { //for sorting the products view
     if (products) {
-      console.log("before sort");
-      console.log(products);
       let productsCopy = [...products];
       productsCopy.sort((a, b) => {
         return a.price - b.price;
       });
-      console.log("after sort");
-      console.log(productsCopy);
       dispatch(setProducts(productsCopy));
     }
   }
 
   function sortByName() { //for sorting the products view
     if (products) {
-      console.log("before sort");
-      console.log(products);
       let productsCopy = [...products];
       productsCopy.sort((a, b) => {
         let fa = a.product_name.toLowerCase(),
@@ -91,8 +85,6 @@ export function CatalogueView() {
         }
         return 0;
       });
-      console.log("after sort");
-      console.log(productsCopy);
       dispatch(setProducts(productsCopy));
     }
   }

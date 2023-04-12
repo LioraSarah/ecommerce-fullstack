@@ -11,7 +11,6 @@ export const currentProductSlice = createSlice({
     setCurrentProduct(state, action) {
       if (action.payload.product) {
         state.product = action.payload.product;
-        console.log(isEmptyObj(state.product));
         if (!isEmptyObj(state.product) && state.product.quantity) {
           state.product.quantity = action.payload.quantity;
         }
