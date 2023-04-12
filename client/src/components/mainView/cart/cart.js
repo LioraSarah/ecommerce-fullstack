@@ -6,7 +6,7 @@ import { selectCartItems } from "../../../features/cartSlice";
 import { loadCart, removeItem, setCart, updateQuantity } from "../../../features/cartSlice.js";
 import { selectUserId } from '../../../features/loginSlice';
 import "./cart.css";
-import {findInCart} from '../helper.js';
+import { findInCart } from '../helper.js';
 
 export const Cart = () => {
 
@@ -15,7 +15,7 @@ export const Cart = () => {
   const cartList = useSelector(selectCartItems);
   let cart;
 
-//onSuccess method for useQuery, if success, set the cart in the redux state
+  //onSuccess method for useQuery, if success, set the cart in the redux state
   const onSuccess = (data) => {
     console.log("on success cart");
     dispatch(setCart(data));
@@ -58,7 +58,7 @@ export const Cart = () => {
 
   const removeItemMutation = useMutation(removeItemFromDB);
 
-  
+
   const updateItemInDB = async (itemInfo) => { //also for useMutation
     try {
       const response = await axios.post("/shopcart", itemInfo);
@@ -71,7 +71,7 @@ export const Cart = () => {
   const updateItemMutation = useMutation(updateItemInDB);
 
   //using useCallback because it is a dependency of useEffect
-  const decreaseItem = useCallback((e) => { //decrease the item quantity down until 1 and not under 1
+  const decreaseItem = useCallback(async (e) => { //decrease the item quantity down until 1 and not under 1
     console.log("e.target.className");
     console.log(cart);
     const productClass = e.target.className;
@@ -82,7 +82,7 @@ export const Cart = () => {
     console.log(index);
     const newQuantity = cart[index].quantity - 1;
     if (newQuantity > 0) { //only change quantity if grater than 0
-      dispatch(updateQuantity({index: index, quantity: newQuantity})); //update quantity in redux state
+      dispatch(updateQuantity({ index: index, quantity: newQuantity })); //update quantity in redux state
       const userId = cart[index].user_id;
       const productId = cart[index].product_id;
       console.log("indecrease");
@@ -90,22 +90,23 @@ export const Cart = () => {
       console.log(newQuantity);
       if (userId) { //if a user is logged in, change quantity in db
         try {
-        updateItemMutation.mutate({
-          userId: userId,
-          productId: productId,
-          quantity: newQuantity
-        });
-        refetch();
-      } catch (err) {
-        console.log(err);
-      }
+          updateItemMutation.mutate({
+            userId: userId,
+            productId: productId,
+            quantity: newQuantity
+          });
+          const data = await refetch();
+          dispatch(setCart(data));
+        } catch (err) {
+          console.log(err);
+        }
       }
       dispatch(loadCart()); //load redux cart to be up to date after quantity change
-    } 
-  },  [cart, dispatch, updateItemMutation]);
+    }
+  }, [cart, dispatch, updateItemMutation, refetch]);
 
   //using useCallback because it is a dependency of useEffect
-  const increaseItem = useCallback((e) => { //increase the item quantity up until 3 and not above 3
+  const increaseItem = useCallback(async (e) => { //increase the item quantity up until 3 and not above 3
     console.log("e.target.className");
     console.log(cart);
     const productClass = e.target.className;
@@ -116,24 +117,25 @@ export const Cart = () => {
     console.log(index);
     const newQuantity = cart[index].quantity + 1;
     if (newQuantity <= 3) { //only change quantity if less than or equal to 3
-      dispatch(updateQuantity({index: index, quantity: newQuantity}));
+      dispatch(updateQuantity({ index: index, quantity: newQuantity }));
       const userId = cart[index].user_id;
       const productId = cart[index].product_id;
       if (userId) { //if a user is logged in, change quantity in db
         try {
-        updateItemMutation.mutate({
-          userId: userId,
-          productId: productId,
-          quantity: newQuantity
-        });
-        refetch();
-      } catch (err) {
-        console.log(err);
-      }
+          updateItemMutation.mutate({
+            userId: userId,
+            productId: productId,
+            quantity: newQuantity
+          });
+          const data = await refetch();
+          dispatch(setCart(data));
+        } catch (err) {
+          console.log(err);
+        }
       }
       dispatch(loadCart()); //load redux cart to be up to date after quantity change
     }
-  }, [cart, dispatch, updateItemMutation]);
+  }, [cart, dispatch, updateItemMutation, refetch]);
 
   useEffect(() => { //refetch the cart everytime there is a change in the cart
     refetch();
@@ -142,17 +144,19 @@ export const Cart = () => {
   }
     , [dispatch, refetch]);
 
-  const handleRemoveClick = (e) => {
+  const handleRemoveClick = async (e) => {
     if (userId) { //remove from db only if neccessary - only if there is a logged in user
       try {
         removeItemMutation.mutate({ itemInfo: { userId: userId, productId: e.target.id } });
-        refetch();
+        const data = await refetch();
+        dispatch(setCart(data));
       } catch (err) {
         console.log(err);
       }
+    } else {
+      const index = findInCart(cart, e.target.name);
+      dispatch(removeItem(index)); //remove item from redux cart state
     }
-    const index = findInCart(cart ,e.target.name);
-    dispatch(removeItem(index)); //remove item from redux cart state
     dispatch(loadCart()); //then refetch the new cart
   };
 
@@ -162,7 +166,7 @@ export const Cart = () => {
 
   const calcTotal = (items) => { //calculate the total price of the cart item
     let total = 0;
-    for (let i=0; i<items.length; i++) {
+    for (let i = 0; i < items.length; i++) {
       total += items[i].price * items[i].quantity;
     }
     return total;
@@ -176,19 +180,19 @@ export const Cart = () => {
           {cart.map((item, index) => (
             <li className="cart-view-item" key={index}>
               {/* <NavLink to={item.product_url} className='link-cart'> */}
-                <img src={`../../../media/${item.image_url}.png`} alt={item.product_name} className="cart-item-img" />
-                <div className="info">
-                    <h4>{item.product_name}</h4>
-                  <p className='info-p'>size: {item.size}<br />
-                    quantity: <span onClick={decreaseItem} className={item.product_name + " qbtn"}> - </span> {item.quantity}<span onClick={increaseItem} className={item.product_name + " qbtn"}> + </span><br />
-                    price: {item.price}$
-                  </p>
-                </div>
-                {/* </NavLink> */}
+              <img src={`../../../media/${item.image_url}.png`} alt={item.product_name} className="cart-item-img" />
+              <div className="info">
+                <h4>{item.product_name}</h4>
+                <p className='info-p'>size: {item.size}<br />
+                  quantity: <span onClick={decreaseItem} className={item.product_name + " qbtn"}> - </span> {item.quantity}<span onClick={increaseItem} className={item.product_name + " qbtn"}> + </span><br />
+                  price: {item.price}$
+                </p>
+              </div>
+              {/* </NavLink> */}
 
-                <button className="remove-button" onClick={handleRemoveClick} name={item.product_name} id={item.id}>
-                  remove
-                </button>
+              <button className="remove-button" onClick={handleRemoveClick} name={item.product_name} id={item.id}>
+                remove
+              </button>
             </li>
           ))}
         </ul>
