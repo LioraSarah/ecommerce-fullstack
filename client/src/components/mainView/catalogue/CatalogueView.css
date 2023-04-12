@@ -96,6 +96,7 @@
 
 .sort {
     cursor: pointer;
+    text-align: center;
 }
 
 .sort:hover {
