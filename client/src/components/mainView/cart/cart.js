@@ -34,7 +34,7 @@ export const Cart = () => {
   //useQuery to query the cart from the backend
   const {
     data,
-    status,
+    isLoading,
     refetch
   } = useQuery(["cart"], queryCart,
     {
@@ -137,7 +137,7 @@ export const Cart = () => {
     dispatch(loadCart());
     console.log("in load cart");
   }
-    , [dispatch, refetch]);
+    , [dispatch, refetch, isLoading]);
 
   const handleRemoveClick = async (e) => {
     if (userId) { //remove from db only if neccessary - only if there is a logged in user
@@ -152,7 +152,7 @@ export const Cart = () => {
     dispatch(loadCart()); //then refetch the new cart
   };
 
-  if (status === "loading") { //if loading the cart
+  if (isLoading) { //if loading the cart
     return <h2 className="loading">Loading...</h2>
   };
 
