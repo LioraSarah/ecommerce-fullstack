@@ -173,7 +173,7 @@ export function ProductPage() {
                                 <select name="quantity" id="quantity-select" value={quantity} onChange={handleQuantityChange}>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
-                                    <option value="2">3</option>
+                                    <option value="3">3</option>
                                     {/* { addOptions() } */}
                                 </select><br />
                             </div>

@@ -95,6 +95,7 @@ export const Cart = () => {
           productId: productId,
           quantity: newQuantity
         });
+        refetch();
       } catch (err) {
         console.log(err);
       }
@@ -125,6 +126,7 @@ export const Cart = () => {
           productId: productId,
           quantity: newQuantity
         });
+        refetch();
       } catch (err) {
         console.log(err);
       }
@@ -144,6 +146,7 @@ export const Cart = () => {
     if (userId) { //remove from db only if neccessary - only if there is a logged in user
       try {
         removeItemMutation.mutate({ itemInfo: { userId: userId, productId: e.target.id } });
+        refetch();
       } catch (err) {
         console.log(err);
       }
