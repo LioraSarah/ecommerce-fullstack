@@ -85,7 +85,7 @@ export const Cart = () => {
       dispatch(updateQuantity({ index: index, quantity: newQuantity })); //update quantity in redux state
       const userId = cart[index].user_id;
       const productId = cart[index].product_id;
-      console.log("indecrease");
+      console.log("in decrease");
       console.log("quantity");
       console.log(newQuantity);
       if (userId) { //if a user is logged in, change quantity in db
@@ -121,6 +121,9 @@ export const Cart = () => {
       dispatch(updateQuantity({ index: index, quantity: newQuantity }));
       const userId = cart[index].user_id;
       const productId = cart[index].product_id;
+      console.log("increase");
+      console.log("quantity");
+      console.log(newQuantity);
       if (userId) { //if a user is logged in, change quantity in db
         try {
           updateItemMutation.mutate({
