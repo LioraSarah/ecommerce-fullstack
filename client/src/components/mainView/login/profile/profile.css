@@ -27,6 +27,7 @@
     float: right;
     margin-right: 350px;
     margin-top: 30px;
+    text-align: center;
 }
 
 @media screen and (max-width: 875px) {
