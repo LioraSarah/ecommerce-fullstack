@@ -38,6 +38,7 @@
     }
 
     #profile-cart {
+        display: block;
         float: none;
         width: 30%;
         margin: 0 auto;
