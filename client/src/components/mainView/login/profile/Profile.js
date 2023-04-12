@@ -13,13 +13,13 @@ export const Profile = () => {
     return (
         <article className="profile">
             <div id="info-container">
-            <h3>Hi, <span>{firstName}</span></h3>
-            <h5>This is your info:</h5>
-            <ul id="profile-info">
-                <li><span className="info-title">First name:</span> {firstName}</li>
-                <li><span className="info-title">Last name:</span> {lastName}</li>
-                <li><span className="info-title">Email:</span> {email}</li>
-            </ul>
+                <h3>Hi, <span>{firstName}</span></h3>
+                <h5>This is your info:</h5>
+                <ul id="profile-info">
+                    <li><span className="info-title">First name:</span> {firstName}</li>
+                    <li><span className="info-title">Last name:</span> {lastName}</li>
+                    <li><span className="info-title">Email:</span> {email}</li>
+                </ul>
             </div>
 
             <NavLink to="/cart" id="profile-cart">To my cart</NavLink>
