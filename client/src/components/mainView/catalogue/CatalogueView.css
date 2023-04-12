@@ -94,9 +94,12 @@
     margin-bottom: 20px;
 }
 
+#sort-p {
+    text-align: center;
+}
+
 .sort {
     cursor: pointer;
-    text-align: center;
 }
 
 .sort:hover {

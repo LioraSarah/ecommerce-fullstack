@@ -100,7 +100,7 @@ export function CatalogueView() {
   return (
     <article id="catalogue-container" className='content-wrapper'>
       <h3 id="category-h3">{category}</h3>
-      <p>
+      <p id="sort-p">
         sort by: <span onClick={sortByName} className="sort">name</span> | <span onClick={sortByPrice} className="sort">price</span>
       </p>
       <div className="catalogue-view">
