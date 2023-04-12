@@ -146,10 +146,9 @@ export const Cart = () => {
       } catch (err) {
         console.log(err);
       }
-    } else {
+    }
       const index = findInCart(cart, e.target.name);
       dispatch(removeItem(index)); //remove item from redux cart state
-    }
     dispatch(loadCart()); //then refetch the new cart
   };
 
