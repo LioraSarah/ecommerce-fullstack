@@ -97,6 +97,7 @@ export const Cart = () => {
           });
           const data = await refetch();
           dispatch(setCart(data));
+          console.log("in refetch");
         } catch (err) {
           console.log(err);
         }
@@ -127,6 +128,7 @@ export const Cart = () => {
             productId: productId,
             quantity: newQuantity
           });
+          console.log("in refetch");
           const data = await refetch();
           dispatch(setCart(data));
         } catch (err) {
