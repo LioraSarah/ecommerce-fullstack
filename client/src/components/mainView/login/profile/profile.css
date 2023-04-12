@@ -39,7 +39,8 @@
 
     #profile-cart {
         margin: 0;
-        float: none;
+        float:none;
+        margin: 0 auto;
     }
 
     #profile-info li {
