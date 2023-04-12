@@ -38,7 +38,6 @@ export const Cart = () => {
     refetch
   } = useQuery(["cart"], queryCart,
     {
-      force: true,
       onSuccess,
     }
   );
@@ -134,13 +133,10 @@ export const Cart = () => {
 
   useEffect(() => { //refetch the cart everytime there is a change in the cart
     refetch();
-    if (data && !isLoading) {
-      dispatch(setCart(data));
-    }
     dispatch(loadCart());
     console.log("in load cart");
   }
-    , [dispatch, refetch, data, isLoading]);
+    , [dispatch, refetch]);
 
   const handleRemoveClick = async (e) => {
     if (userId) { //remove from db only if neccessary - only if there is a logged in user
