@@ -15,6 +15,15 @@ export const Cart = () => {
   const cartList = useSelector(selectCartItems);
   let cart;
 
+  const queryCart = async () => {
+    if (userId) { //only query the cart if the user is logged in
+      console.log("in cart query");
+      console.log(userId);
+      const res = await axios.get("/shopcart", { params: { userId: userId } });
+      return res.data;
+    };
+  };
+
   //onSuccess method for useQuery, if success, set the cart in the redux state
   const onSuccess = (data) => {
     console.log("on success cart");
@@ -28,15 +37,9 @@ export const Cart = () => {
     data,
     status,
     refetch
-  } = useQuery(["cart"], async () => {
-    if (userId) { //only query the cart if the user is logged in
-      console.log("in cart query");
-      console.log(userId);
-      const res = await axios.get("/shopcart", { params: { userId: userId } });
-      return res.data;
-    }
-  },
+  } = useQuery(["cart"], queryCart,
     {
+      force: true,
       onSuccess,
     }
   );
@@ -57,7 +60,7 @@ export const Cart = () => {
     }
   }
 
-  const removeItemMutation = useMutation(removeItemFromDB);
+  const removeItemMutation = useMutation(removeItemFromDB, {refetchQueries: [ {query: queryCart } ]});
 
 
   const updateItemInDB = async (itemInfo) => { //also for useMutation
@@ -69,7 +72,7 @@ export const Cart = () => {
     }
   }
 
-  const updateItemMutation = useMutation(updateItemInDB);
+  const updateItemMutation = useMutation(updateItemInDB, {refetchQueries: [ {query: queryCart } ]});
 
   //using useCallback because it is a dependency of useEffect
   const decreaseItem = async (e) => { //decrease the item quantity down until 1 and not under 1
@@ -96,8 +99,6 @@ export const Cart = () => {
             productId: productId,
             quantity: newQuantity
           });
-          const data = await refetch();
-          console.log("in refetch");
         } catch (err) {
           console.log(err);
         }
@@ -131,8 +132,6 @@ export const Cart = () => {
             productId: productId,
             quantity: newQuantity
           });
-          console.log("in refetch");
-          const data = await refetch();
         } catch (err) {
           console.log(err);
         }
@@ -152,7 +151,6 @@ export const Cart = () => {
     if (userId) { //remove from db only if neccessary - only if there is a logged in user
       try {
         removeItemMutation.mutate({ itemInfo: { userId: userId, productId: e.target.id } });
-        const data = await refetch();
       } catch (err) {
         console.log(err);
       }
