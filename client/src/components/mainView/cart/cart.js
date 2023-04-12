@@ -71,7 +71,7 @@ export const Cart = () => {
   const updateItemMutation = useMutation(updateItemInDB);
 
   //using useCallback because it is a dependency of useEffect
-  const decreaseItem = useCallback(async (e) => { //decrease the item quantity down until 1 and not under 1
+  const decreaseItem = async (e) => { //decrease the item quantity down until 1 and not under 1
     console.log("e.target.className");
     console.log(cart);
     const productClass = e.target.className;
@@ -104,10 +104,10 @@ export const Cart = () => {
       }
       dispatch(loadCart()); //load redux cart to be up to date after quantity change
     }
-  }, [cart, dispatch, updateItemMutation, refetch]);
+  };
 
   //using useCallback because it is a dependency of useEffect
-  const increaseItem = useCallback(async (e) => { //increase the item quantity up until 3 and not above 3
+  const increaseItem = async (e) => { //increase the item quantity up until 3 and not above 3
     console.log("e.target.className");
     console.log(cart);
     const productClass = e.target.className;
@@ -140,7 +140,7 @@ export const Cart = () => {
       }
       dispatch(loadCart()); //load redux cart to be up to date after quantity change
     }
-  }, [cart, dispatch, updateItemMutation, refetch]);
+  };
 
   useEffect(() => { //refetch the cart everytime there is a change in the cart
     refetch();
