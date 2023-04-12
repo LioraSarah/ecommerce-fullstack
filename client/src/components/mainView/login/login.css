@@ -45,12 +45,14 @@
     justify-content: center;
 }
 
-.google-icon, .facebook-icon {
+.google-icon,
+.facebook-icon {
     width: 30px;
     height: 30px;
 }
 
-#google-button, #facebook-button {
+#google-button,
+#facebook-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,4 +69,10 @@
 
 #facebook-button {
     color: #7FACFA;
+}
+
+@media screen and (max-width: 875px) {
+    #login-view {
+        width: 60%;
+    }
 }
