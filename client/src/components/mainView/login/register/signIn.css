@@ -26,3 +26,9 @@
     padding: 13px 43px;
     margin-top: 25px;
 }
+
+@media screen and (max-width: 875px) {
+    #signIn-view {
+        width: 60%;
+    }
+}
