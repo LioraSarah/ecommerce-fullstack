@@ -18,6 +18,7 @@ export const Cart = () => {
   //onSuccess method for useQuery, if success, set the cart in the redux state
   const onSuccess = (data) => {
     console.log("on success cart");
+    console.log(data);
     dispatch(setCart(data));
     return data;
   }
@@ -96,7 +97,6 @@ export const Cart = () => {
             quantity: newQuantity
           });
           const data = await refetch();
-          dispatch(setCart(data));
           console.log("in refetch");
         } catch (err) {
           console.log(err);
@@ -133,7 +133,6 @@ export const Cart = () => {
           });
           console.log("in refetch");
           const data = await refetch();
-          dispatch(setCart(data));
         } catch (err) {
           console.log(err);
         }
@@ -154,7 +153,6 @@ export const Cart = () => {
       try {
         removeItemMutation.mutate({ itemInfo: { userId: userId, productId: e.target.id } });
         const data = await refetch();
-        dispatch(setCart(data));
       } catch (err) {
         console.log(err);
       }
