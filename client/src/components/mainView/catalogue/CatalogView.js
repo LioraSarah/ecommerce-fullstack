@@ -60,7 +60,7 @@ export function CatalogueView() {
     dispatch(setCurrentProduct({ product: product, quantity: 1 })); //set it to current
   }
 
-  function sortByPrice() {
+  function sortByPrice() { //for sorting the products view
     if (products) {
       console.log("before sort");
       console.log(products);
@@ -74,7 +74,7 @@ export function CatalogueView() {
     }
   }
 
-  function sortByName() {
+  function sortByName() { //for sorting the products view
     if (products) {
       console.log("before sort");
       console.log(products);
@@ -100,10 +100,10 @@ export function CatalogueView() {
   return (
     <article id="catalogue-container" className='content-wrapper'>
       <h3 id="category-h3">{category}</h3>
+      <p>
+        sort by: <span onClick={sortByName} className="sort">name</span> | <span onClick={sortByPrice} className="sort">price</span>
+      </p>
       <div className="catalogue-view">
-        <p>
-          sort by: <span onClick={sortByName}>name</span> | <span onClick={sortByPrice}>price</span>
-        </p>
         {products.map((item) => (
           <div key={item.id} className="catalogue-view-item">
             <NavLink id={item.id} className="link" activeclassname="link-active" to={`/${category}/${item.id}`} onClick={handleClick}>
