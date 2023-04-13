@@ -133,3 +133,10 @@
 .radiobtn {
     display: none;
 }
+
+#banner-div {
+
+    position: absolute;
+    background-color: rgba(230, 140, 176, 0.8);
+    color: white;
+}
