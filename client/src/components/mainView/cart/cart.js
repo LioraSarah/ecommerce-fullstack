@@ -7,10 +7,12 @@ import { loadCart, removeItem, setCart, updateQuantity } from "../../../features
 import { selectUserId } from '../../../features/loginSlice';
 import "./cart.css";
 import { findInCart } from '../helper.js';
+import { useNavigate } from 'react-router-dom';
 
 export const Cart = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const userId = useSelector(selectUserId);
   const cart = useSelector(selectCartItems);
 
@@ -167,7 +169,7 @@ export const Cart = () => {
   const moveToProduct = (e) => {
     const itemPathArray = e.target.id.split("-");
     const itemPath = `/${itemPathArray[0]}/${itemPathArray[1]}`
-    console.log(itemPath);
+    navigate(itemPath);
   }
 
   return (
