@@ -17,6 +17,7 @@
     width: 100px;
     object-fit: cover;
     object-position: 25% 25%;
+    cursor: pointer;
 }
 
 .cart-view-item {
