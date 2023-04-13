@@ -7,6 +7,7 @@ import { BsCart2 } from 'react-icons/bs';
 import { CgProfile } from 'react-icons/cg';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
+import { clearCart } from '../../features/cartSlice';
 
 //navigation bar to show when user is loggen in - including a link to profile and logout option
 export const UserNav = () => {
@@ -30,6 +31,7 @@ export const UserNav = () => {
 
     const handleClick = () => {
         logOutUserMutation.mutate();
+        dispatch(clearCart);
         navigate('/login'); // navigate to the login page after the user has logged out
     }
 
