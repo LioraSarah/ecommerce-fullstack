@@ -86,7 +86,7 @@ export function ProductPage() {
         e.preventDefault();
         const index = findInCart(cart, product.product_name);
         console.log("cart zise");
-        console.log(cart[index].size);
+        console.log(cart[index]);
         console.log("item size");
         console.log(size);
         if (index >= 0 && cart[index].size === size) { //if item is already in cart with same size, only update it's quantity in cart (up to 3)
