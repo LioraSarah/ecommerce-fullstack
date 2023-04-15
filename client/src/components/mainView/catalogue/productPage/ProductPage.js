@@ -85,7 +85,11 @@ export function ProductPage() {
     const addToCart = (e) => {
         e.preventDefault();
         const index = findInCart(cart, product.product_name);
-        if (index >= 0 && cart[index].size === size) { //if item is already in cart, only update it's quantity in cart (up to 3)
+        console.log("cart zise");
+        console.log(cart[index].size);
+        console.log("item size");
+        console.log(size);
+        if (index >= 0 && cart[index].size === size) { //if item is already in cart with same size, only update it's quantity in cart (up to 3)
             let newQuantity
             if (cart[index].quantity <= 3) { //only add quantity if less or equal to 3
                 newQuantity = cart[index].quantity + quantity;
@@ -103,7 +107,7 @@ export function ProductPage() {
                     }
                 }
             }
-        } else { //if item is not already in cart, add it to the cart
+        } else { //if item is not already in cart or have different size, add it to the cart as new item
             const cartItem = {
                 ...product,
                 quantity: quantity,
