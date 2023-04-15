@@ -85,7 +85,7 @@ export function ProductPage() {
     const addToCart = (e) => {
         e.preventDefault();
         const index = findInCart(cart, product.product_name);
-        if (index >= 0) { //if item is already in cart, only update it's quantity in cart (up to 3)
+        if (index >= 0 && cart[index].size === size) { //if item is already in cart, only update it's quantity in cart (up to 3)
             let newQuantity
             if (cart[index].quantity <= 3) { //only add quantity if less or equal to 3
                 newQuantity = cart[index].quantity + quantity;
