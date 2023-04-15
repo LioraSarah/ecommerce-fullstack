@@ -4,19 +4,17 @@ const cart = require("./db-cart");
 
 
 cartRouter.post("/", async (req, res) => {
-    const { userId } = req.body;
-    const { productId } = req.body;
+    const { id } = req.body;
     const { quantity } = req.body;
     const productSize = req.body.size;
     console.log("body");
     console.log(req.body);
-    console.log(userId);
-    console.log(productId);
+    console.log(id)
     console.log(quantity);
     console.log("in api post cart");
     try {
         console.log("find item");
-        const findItem = await cart.getItemInCart(userId, productId);
+        const findItem = await cart.getItemInCart(id);
         console.log(findItem);
         let response;
         if (findItem.length === 0) {
@@ -24,7 +22,7 @@ cartRouter.post("/", async (req, res) => {
             response = await cart.addToCart({ userId, productId, quantity, productSize });
         } else {
             console.log("did find");
-            response = cart.updateQuantity(userId, productId, quantity);
+            response = cart.updateQuantity(id, quantity);
         }
         res.status(200).send(response);
     } catch (error) {
@@ -43,8 +41,8 @@ cartRouter.get("/", async (req, res) => {
 });
 
 cartRouter.delete("/", async (req, res) => {
-    const { itemInfo } = req.body;
-    const response = cart.deleteItem(itemInfo);
+    const { id } = req.body;
+    const response = cart.deleteItem(id);
     res.status(204).send();
 });
 

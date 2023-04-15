@@ -38,13 +38,12 @@ module.exports = {
     },
     //input: the user id to search and the specific item id to retrieve
     //output: the specific item and all his details
-    getItemInCart: async (userId, productId) => {
+    getItemInCart: async (id) => {
         return new Promise((resolve, reject) => {
             pool.query(
                 `SELECT *
                 FROM public.cart
-                WHERE public.cart.user_id = '${userId}' 
-                AND public.cart.product_id = ${productId};`, (err, result) => {
+                WHERE public.cart.id = ${id};`, (err, result) => {
                 if (!err) {
                     return resolve(result.rows);
                 } else {
@@ -55,15 +54,14 @@ module.exports = {
         });
     },
     //when a user update the quantity of a specific item in his cart
-    updateQuantity: async (userId, productId, quantity) => {
+    updateQuantity: async (id, quantity) => {
         console.log("update quantity");
         console.log(quantity);
         return new Promise((resolve, reject) => {
             pool.query(
                 `UPDATE public.cart 
                 SET quantity = ${quantity}
-                WHERE public.cart.user_id = '${userId}' 
-                AND public.cart.product_id = ${productId};`, (err, result) => {
+                WHERE public.cart.id = ${id};`, (err, result) => {
                 if (!err) {
                     return resolve(result.rows);
                 } else {
@@ -74,11 +72,11 @@ module.exports = {
         });
     },
     //input: an object containing the user id and product id to remove
-    deleteItem: async (itemInfo) => {
+    deleteItem: async (id) => {
         return new Promise((resolve, reject) => {
             pool.query(
                 `DELETE FROM cart
-            WHERE user_id = '${itemInfo.userId}' AND product_id = ${itemInfo.productId};`, (err, result) => {
+                WHERE public.cart.id = ${id};`, (err, result) => {
                 if (!err) {
                     return resolve(result);
                 } else {

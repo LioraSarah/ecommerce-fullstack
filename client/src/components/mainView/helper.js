@@ -30,9 +30,23 @@ export const addItemToDB = async (itemInfo) => { //for sending the request to ba
 };
 
 //find an item in given cart using item name
-export const findInCart = (cart, itemName) => {
-    return cart.findIndex((item) => item.product_name === itemName);
+export const findInCart = (cart, id) => {
+    return cart.findIndex((item) => item.id === id);
 };
+
+export function getIndexSize(arr, val, itemSize) {
+    let indexes = [], i = -1, j;
+    while ((i = arr.indexOf(val, i+1)) !== -1){
+        indexes.push(i);
+    };
+
+    for (j=0; j < indexes.length; j++){
+        if (arr[indexes[j]].size === itemSize) {
+            return indexes[j];
+        }
+    }
+    return -1;
+}
 
 //check if object is empty
 export const isEmptyObj = (obj) => {

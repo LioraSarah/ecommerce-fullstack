@@ -9,7 +9,7 @@ import { setCurrentProduct } from '../../../../features/currentProductSlice.js';
 import { selectUserId } from '../../../../features/loginSlice.js';
 import "./ProductPage.css";
 import "../../../../index.css";
-import { findInCart } from '../../helper.js';
+import { getIndexSize } from '../../helper.js';
 
 export function ProductPage() {
     const [size, setSize] = useState(''); //local state for controlling size selection
@@ -84,12 +84,12 @@ export function ProductPage() {
 
     const addToCart = (e) => {
         e.preventDefault();
-        const index = findInCart(cart, product.product_name);
+        const index = getIndexSize(cart, product.product_name, size);
         console.log("cart zise");
         console.log(cart[index]);
         console.log("item size");
         console.log(size);
-        if (index >= 0 && cart[index].size === size) { //if item is already in cart with same size, only update it's quantity in cart (up to 3)
+        if (index >= 0) { //if item is already in cart with same size, only update it's quantity in cart (up to 3)
             let newQuantity
             if (cart[index].quantity <= 3) { //only add quantity if less or equal to 3
                 newQuantity = cart[index].quantity + quantity;
@@ -101,7 +101,7 @@ export function ProductPage() {
                 const itemInfo = cart[index];
                 if (userId) { //only update in db if a user is logged in
                     try {
-                        updateItemMutation.mutate({ userId: userId, productId: itemInfo.id, quantity: newQuantity, size: itemInfo.size });
+                        updateItemMutation.mutate({ userId: userId, id: itemInfo.id, quantity: newQuantity, size: itemInfo.size });
                     } catch (err) {
                         console.log(err);
                     }
@@ -129,9 +129,7 @@ export function ProductPage() {
     };
 
     const handleSizeChange = (e) => {
-        console.log(e.target.value)
         setSize(e.target.value);
-        console.log(size);
     };
 
     const handleQuantityChange = (e) => {
