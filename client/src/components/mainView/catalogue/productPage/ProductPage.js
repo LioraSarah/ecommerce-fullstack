@@ -129,7 +129,9 @@ export function ProductPage() {
     };
 
     const handleSizeChange = (e) => {
+        console.log(e.target.value)
         setSize(e.target.value);
+        console.log(size);
     };
 
     const handleQuantityChange = (e) => {
