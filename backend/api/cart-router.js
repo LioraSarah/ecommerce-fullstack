@@ -41,6 +41,7 @@ cartRouter.get("/", async (req, res) => {
 });
 
 cartRouter.delete("/", async (req, res) => {
+    console.log(req.body);
     const { id } = req.body;
     const response = cart.deleteItem(id);
     res.status(204).send();

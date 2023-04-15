@@ -6,7 +6,7 @@ import { selectCartItems } from "../../../features/cartSlice";
 import { loadCart, removeItem, setCart, updateQuantity } from "../../../features/cartSlice.js";
 import { selectUserId } from '../../../features/loginSlice';
 import "./cart.css";
-import { findInCart, getIndexSize } from '../helper.js';
+import { getIndexSize } from '../helper.js';
 import { useNavigate } from 'react-router-dom';
 
 export const Cart = () => {
@@ -45,9 +45,9 @@ export const Cart = () => {
     }
   );
 
-  const removeItemFromDB = async (cartItemId) => { //function for useMutation
+  const removeItemFromDB = async (itemInfo) => { //function for useMutation
     try {
-      const response = await axios.delete("/shopcart", { data: cartItemId });
+      const response = await axios.delete("/shopcart", { itemInfo });
       return response;
     } catch (err) {
       console.log(err);
@@ -74,21 +74,22 @@ export const Cart = () => {
     console.log(cart);
     const productClass = e.target.className;
     const productClassArray = productClass.split(" qbtn");
-    const productId = productClassArray[0];
-    console.log(productId);
-    const index = findInCart(cart, productId); //find item in cart to change quantity
+    const productName = productClassArray[0];
+    const productSize = productClassArray[1];
+    console.log(productName);
+    console.log(productSize);
+    const index = getIndexSize(cart, productName, productSize); //find item in cart to change quantity
     console.log(index);
     const newQuantity = cart[index].quantity - 1;
     if (newQuantity > 0) { //only change quantity if grater than 0
       dispatch(updateQuantity({ index: index, quantity: newQuantity })); //update quantity in redux state
+      const cartItemId = cart[index].id;
       console.log("in decrease");
-      console.log("quantity");
-      console.log(newQuantity);
       if (userId) { //if a user is logged in, change quantity in db
         try {
           updateItemMutation.mutate({
             userId: userId,
-            id: productId,
+            id: cartItemId,
             quantity: newQuantity
           });
         } catch (err) {
@@ -105,13 +106,16 @@ export const Cart = () => {
     console.log(cart);
     const productClass = e.target.className;
     const productClassArray = productClass.split(" qbtn");
-    const productId = productClassArray[0];
-    console.log(productId);
-    const index = findInCart(cart, productId); //find item in cart to change quantity
+    const productName = productClassArray[0];
+    const productSize = productClassArray[1];
+    console.log(productName);
+    console.log(productSize);
+    const index = getIndexSize(cart, productName, productSize); //find item in cart to change quantity
     console.log(index);
     const newQuantity = cart[index].quantity + 1;
     if (newQuantity <= 3) { //only change quantity if less than or equal to 3
       dispatch(updateQuantity({ index: index, quantity: newQuantity }));
+      const cartItemId = cart[index].id;
       console.log("increase");
       console.log("quantity");
       console.log(newQuantity);
@@ -119,7 +123,7 @@ export const Cart = () => {
         try {
           updateItemMutation.mutate({
             userId: userId,
-            id: productId,
+            id: cartItemId,
             quantity: newQuantity
           });
         } catch (err) {
@@ -145,8 +149,8 @@ export const Cart = () => {
         console.log(err);
       }
     }
-      const itemId = e.target.id;
-      const index = findInCart(cart, itemId);
+      const itemDetails = e.target.name.split("-");
+      const index = getIndexSize(cart, itemDetails[0], itemDetails[1]);
       dispatch(removeItem(index)); //remove item from redux cart state
     dispatch(loadCart()); //then refetch the new cart
   };
@@ -183,13 +187,13 @@ export const Cart = () => {
               <div className="info">
                 <h4>{item.product_name}</h4>
                 <p className='info-p'>size: {item.size}<br />
-                  quantity: <span onClick={decreaseItem} className={item.id + " qbtn"}> - </span> {item.quantity}<span onClick={increaseItem} className={item.id + " qbtn"}> + </span><br />
+                  quantity: <span onClick={decreaseItem} className={item.product_name + " qbtn" + item.size}> - </span> {item.quantity}<span onClick={increaseItem} className={item.product_name + " qbtn" + item.size}> + </span><br />
                   price: {item.price}$
                 </p>
               </div>
               {/* </NavLink> */}
 
-              <button className="remove-button" onClick={handleRemoveClick} id={item.id}>
+              <button className="remove-button" onClick={handleRemoveClick} name={item.product_name + "-" + item.size} id={item.id}>
                 remove
               </button>
             </li>
