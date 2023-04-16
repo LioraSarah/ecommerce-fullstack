@@ -4,10 +4,10 @@ const cart = require("./db-cart");
 
 
 cartRouter.post("/", async (req, res) => {
-    const { id } = req.body;
-    const { quantity } = req.body;
-    const { userId } = req.body;
-    const { productId } = req.body;
+    const id = req.body.id;
+    const quantity = req.body.quantity;
+    const userId = req.body.userId;
+    const productId = req.body.productId;
     const productSize = req.body.size;
     console.log("body");
     console.log(req.body);

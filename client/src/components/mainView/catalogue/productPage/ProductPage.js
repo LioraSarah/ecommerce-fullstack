@@ -101,7 +101,7 @@ export function ProductPage() {
                 const itemInfo = cart[index];
                 if (userId) { //only update in db if a user is logged in
                     try {
-                        updateItemMutation.mutate({ userId: userId, id: itemInfo.cart_id, quantity: newQuantity, size: itemInfo.size });
+                        updateItemMutation.mutate({ userId: userId, id: itemInfo.cart_id, quantity: newQuantity, size: itemInfo.size, productId: productId });
                     } catch (err) {
                         console.log(err);
                     }
