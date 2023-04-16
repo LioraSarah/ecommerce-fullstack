@@ -6,6 +6,7 @@ const cart = require("./db-cart");
 cartRouter.post("/", async (req, res) => {
     const { id } = req.body;
     const { quantity } = req.body;
+    const { userId } = req.body;
     const productSize = req.body.size;
     console.log("body");
     console.log(req.body);
@@ -13,17 +14,19 @@ cartRouter.post("/", async (req, res) => {
     console.log(quantity);
     console.log("in api post cart");
     try {
-        console.log("find item");
-        const findItem = await cart.getItemInCart(id);
-        console.log(findItem);
         let response;
-        if (findItem.length === 0) {
-            console.log("did not find");
-            response = await cart.addToCart({ userId, productId, quantity, productSize });
-        } else {
-            console.log("did find");
-            response = cart.updateQuantity(id, quantity);
+        if (id) {
+            console.log("find item");
+            const findItem = await cart.getItemInCart(id);
+            console.log(findItem);
+            if (findItem.length !== 0) {
+                console.log("did find");
+                response = cart.updateQuantity(id, quantity);
+                res.status(200).send(response);
+            }
         }
+        console.log("did not find");
+        response = await cart.addToCart({ userId, productId, quantity, productSize });
         res.status(200).send(response);
     } catch (error) {
         console.log(error);
