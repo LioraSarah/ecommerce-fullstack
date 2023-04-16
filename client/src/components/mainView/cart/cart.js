@@ -14,7 +14,7 @@ export const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userId = useSelector(selectUserId);
-  const cart = useSelector(selectCartItems);
+  const localCart = useSelector(selectCartItems);
 
   const queryCart = async () => {
     if (userId) { //only query the cart if the user is logged in
@@ -36,7 +36,7 @@ export const Cart = () => {
 
   //useQuery to query the cart from the backend
   const {
-    data,
+    data: cart,
     isLoading,
     refetch
   } = useQuery(["cart"], queryCart,
@@ -48,14 +48,14 @@ export const Cart = () => {
 
   const removeItemFromDB = async (itemInfo) => { //function for useMutation
     try {
-      const response = await axios.delete("/shopcart", { data: itemInfo});
+      const response = await axios.delete("/shopcart", { data: itemInfo });
       return response;
     } catch (err) {
       console.log(err);
     }
   }
 
-  const removeItemMutation = useMutation(removeItemFromDB, {refetchQueries: [ {query: queryCart } ]});
+  const removeItemMutation = useMutation(removeItemFromDB, { refetchQueries: [{ query: queryCart }] });
 
 
   const updateItemInDB = async (itemInfo) => { //also for useMutation
@@ -67,26 +67,26 @@ export const Cart = () => {
     }
   }
 
-  const updateItemMutation = useMutation(updateItemInDB, {refetchQueries: [ {query: queryCart } ]});
+  const updateItemMutation = useMutation(updateItemInDB, { refetchQueries: [{ query: queryCart }] });
 
   //using useCallback because it is a dependency of useEffect
   const decreaseItem = async (e) => { //decrease the item quantity down until 1 and not under 1
     console.log("e.target.className");
-    console.log(cart);
+    console.log(localCart);
     const productClass = e.target.className;
     const productClassArray = productClass.split(" qbtn");
     const productName = productClassArray[0];
     const productSize = productClassArray[1];
     console.log(productName);
     console.log(productSize);
-    const index = getIndexSize(cart, productName, productSize); //find item in cart to change quantity
+    const index = getIndexSize(localCart, productName, productSize); //find item in cart to change quantity
     console.log(index);
-    const newQuantity = cart[index].quantity - 1;
+    const newQuantity = localCart[index].quantity - 1;
     if (newQuantity > 0) { //only change quantity if grater than 0
       dispatch(updateQuantity({ index: index, quantity: newQuantity })); //update quantity in redux state
-      let cartItemId = cart[index].cart_id;
+      let cartItemId = localCart[index].cart_id;
       if (!cartItemId) { //if the cart is not from the db (no user is logged in)
-        cartItemId = cart[index].id;
+        cartItemId = localCart[index].id;
       }
       console.log("in decrease");
       if (userId) { //if a user is logged in, change quantity in db
@@ -107,21 +107,21 @@ export const Cart = () => {
   //using useCallback because it is a dependency of useEffect
   const increaseItem = async (e) => { //increase the item quantity up until 3 and not above 3
     console.log("e.target.className");
-    console.log(cart);
+    console.log(localCart);
     const productClass = e.target.className;
     const productClassArray = productClass.split(" qbtn");
     const productName = productClassArray[0];
     const productSize = productClassArray[1];
     console.log(productName);
     console.log(productSize);
-    const index = getIndexSize(cart, productName, productSize); //find item in cart to change quantity
+    const index = getIndexSize(localCart, productName, productSize); //find item in cart to change quantity
     console.log(index);
-    const newQuantity = cart[index].quantity + 1;
+    const newQuantity = localCart[index].quantity + 1;
     if (newQuantity <= 3) { //only change quantity if less than or equal to 3
       dispatch(updateQuantity({ index: index, quantity: newQuantity }));
-      let cartItemId = cart[index].cart_id;
+      let cartItemId = localCart[index].cart_id;
       if (!cartItemId) { //if the cart is not from the db (no user is logged in)
-        cartItemId = cart[index].id;
+        cartItemId = localCart[index].id;
       }
       console.log("increase");
       console.log("quantity");
@@ -143,10 +143,16 @@ export const Cart = () => {
 
   useEffect(() => { //refetch the cart everytime there is a change in the cart
     refetch();
-    dispatch(loadCart());
-    console.log("in load cart");
+  }, [refetch]);
+
+  useEffect(() => { //refetch the cart everytime there is a change in the cart
+    if (cart) {
+      dispatch(setCart(cart));
+      // dispatch(loadCart());
+      console.log("in load cart");
+    }
   }
-    , [dispatch, refetch, cart]);
+    , [dispatch, cart]);
 
   const handleRemoveClick = async (e) => {
     if (userId) { //remove from db only if neccessary - only if there is a logged in user
@@ -158,9 +164,9 @@ export const Cart = () => {
         console.log(err);
       }
     }
-      const itemDetails = e.target.name.split("-");
-      const index = getIndexSize(cart, itemDetails[0], itemDetails[1]);
-      dispatch(removeItem(index)); //remove item from redux cart state
+    const itemDetails = e.target.name.split("-");
+    const index = getIndexSize(localCart, itemDetails[0], itemDetails[1]);
+    dispatch(removeItem(index)); //remove item from redux cart state
     dispatch(loadCart()); //then refetch the new cart
   };
 
@@ -189,10 +195,10 @@ export const Cart = () => {
       <h3>your cart</h3>
       <div id="cart-cont">
         <ul id="cart-view">
-          {cart?.map((item, index) => (
+          {localCart?.map((item, index) => (
             <li className="cart-view-item" key={index}>
               {/* <NavLink to={item.product_url} className='link-cart'> */}
-              <img src={`../../../media/${item.image_url}.png`} alt={item.product_name} className="cart-item-img" id={item.category + "-" + item.product_id} onClick={moveToProduct}/>
+              <img src={`../../../media/${item.image_url}.png`} alt={item.product_name} className="cart-item-img" id={item.category + "-" + item.product_id} onClick={moveToProduct} />
               <div className="info">
                 <h4>{item.product_name}</h4>
                 <p className='info-p'>size: {item.size}<br />
@@ -208,7 +214,7 @@ export const Cart = () => {
             </li>
           ))}
         </ul>
-        <h5 id="total">total: {calcTotal(cart)}$</h5>
+        <h5 id="total">total: {calcTotal(localCart)}$</h5>
         <div className="main-button checkout-btn">check out</div>
       </div>
     </article>
