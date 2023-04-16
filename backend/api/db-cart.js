@@ -22,8 +22,10 @@ module.exports = {
     getCart: async (userId) => {
         return new Promise((resolve, reject) => {
             pool.query(
-                `SELECT *
+                `SELECT cart.id AS cart_id, *
                 FROM public.cart
+                JOIN public.products 
+                ON public.cart.product_id = public.products.id
                 WHERE public.cart.user_id = '${userId}'`, (err, result) => {
                 if (!err) {
                     return resolve(result.rows);

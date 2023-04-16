@@ -84,7 +84,10 @@ export const Cart = () => {
     const newQuantity = cart[index].quantity - 1;
     if (newQuantity > 0) { //only change quantity if grater than 0
       dispatch(updateQuantity({ index: index, quantity: newQuantity })); //update quantity in redux state
-      const cartItemId = cart[index].id;
+      let cartItemId = cart[index].cart_id;
+      if (!cartItemId) { //if the cart is not from the db (no user is logged in)
+        cartItemId = cart[index].id;
+      }
       console.log("in decrease");
       if (userId) { //if a user is logged in, change quantity in db
         try {
@@ -116,7 +119,10 @@ export const Cart = () => {
     const newQuantity = cart[index].quantity + 1;
     if (newQuantity <= 3) { //only change quantity if less than or equal to 3
       dispatch(updateQuantity({ index: index, quantity: newQuantity }));
-      const cartItemId = cart[index].id;
+      let cartItemId = cart[index].cart_id;
+      if (!cartItemId) { //if the cart is not from the db (no user is logged in)
+        cartItemId = cart[index].id;
+      }
       console.log("increase");
       console.log("quantity");
       console.log(newQuantity);
@@ -194,7 +200,7 @@ export const Cart = () => {
               </div>
               {/* </NavLink> */}
 
-              <button className="remove-button" onClick={handleRemoveClick} name={item.product_name + "-" + item.size} id={item.id}>
+              <button className="remove-button" onClick={handleRemoveClick} name={item.product_name + "-" + item.size} id={item.cart_id ? item.cart_id : item.id}>
                 remove
               </button>
             </li>
