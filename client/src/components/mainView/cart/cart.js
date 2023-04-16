@@ -21,6 +21,7 @@ export const Cart = () => {
       console.log("in cart query");
       console.log(userId);
       const res = await axios.get("/shopcart", { params: { userId: userId } });
+      console.log(res);
       return res.data;
     };
   };
