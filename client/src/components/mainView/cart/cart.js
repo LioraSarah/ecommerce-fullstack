@@ -151,8 +151,11 @@ export const Cart = () => {
       // dispatch(loadCart());
       console.log("in load cart");
     }
-  }
-    , [dispatch, cart]);
+  }, [dispatch, cart]);
+
+  useEffect(() => { //refetch the cart everytime there is a change in the cart
+    dispatch(loadCart());
+  }, [dispatch, localCart]);
 
   const handleRemoveClick = async (e) => {
     if (userId) { //remove from db only if neccessary - only if there is a logged in user
