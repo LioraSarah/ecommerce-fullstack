@@ -16,18 +16,13 @@ cartRouter.post("/", async (req, res) => {
     console.log("in api post cart");
     try {
         let response;
-        if (id) {
-            console.log("find item");
-            const findItem = await cart.getItemInCart(id);
-            console.log(findItem);
-            if (findItem.length !== 0) {
-                console.log("did find");
-                response = cart.updateQuantity(id, quantity);
-                res.status(200).send(response);
-            }
+        if (id) { //if there is a cart_id: the item is already in the cart and just need update
+            console.log("did find");
+            response = cart.updateQuantity(id, quantity);
+        } else { //otherwise, it is not in the cart and need to be added as new item (row)
+            console.log("did not find");
+            response = await cart.addToCart({ userId, productId, quantity, productSize });
         }
-        console.log("did not find");
-        response = await cart.addToCart({ userId, productId, quantity, productSize });
         res.status(200).send(response);
     } catch (error) {
         console.log(error);
