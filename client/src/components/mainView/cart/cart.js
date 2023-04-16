@@ -48,7 +48,7 @@ export const Cart = () => {
 
   const removeItemFromDB = async (itemInfo) => { //function for useMutation
     try {
-      const response = await axios.delete("/shopcart", { itemInfo });
+      const response = await axios.delete("/shopcart", itemInfo);
       return response;
     } catch (err) {
       console.log(err);
@@ -151,7 +151,9 @@ export const Cart = () => {
   const handleRemoveClick = async (e) => {
     if (userId) { //remove from db only if neccessary - only if there is a logged in user
       try {
-        removeItemMutation.mutate({ userId: userId, id: e.target.id });
+        console.log("remove id:");
+        console.log(Number(e.target.id));
+        removeItemMutation.mutate({ userId: userId, id: Number(e.target.id) });
       } catch (err) {
         console.log(err);
       }
