@@ -35,12 +35,24 @@ export const findInCart = (cart, id) => {
 };
 
 export function getIndexSize(arr, val, itemSize) {
-    let indexes = [], i = -1, j;
-    while ((i = arr.indexOf(val, i+1)) !== -1){
-        indexes.push(i);
+    console.log("val");
+    console.log(val);
+    console.log("size");
+    console.log(itemSize);
+    console.log("cart");
+    console.log(arr);
+    let indexes = [], i = 0, j;
+    while (i !== -1) {
+        i = arr.indexOf(val, i);
+        if (i !== -1) {
+            indexes.push(i);
+            i++;
+        }
     };
+    console.log("indexes");
+    console.log(indexes);
 
-    for (j=0; j < indexes.length; j++){
+    for (j = 0; j < indexes.length; j++) {
         if (arr[indexes[j]].size === itemSize) {
             return indexes[j];
         }
