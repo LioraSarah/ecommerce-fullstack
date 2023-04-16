@@ -48,7 +48,7 @@ export const Cart = () => {
 
   const removeItemFromDB = async (itemInfo) => { //function for useMutation
     try {
-      const response = await axios.delete("/shopcart", itemInfo);
+      const response = await axios.delete("/shopcart", { data: itemInfo});
       return response;
     } catch (err) {
       console.log(err);
