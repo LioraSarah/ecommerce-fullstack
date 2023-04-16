@@ -57,7 +57,7 @@ export function ProductPage() {
 
     const updateItemInDB = async (itemInfo) => { //for second useMutation
         try {
-            const response = await axios.post("/shopcart", { data: itemInfo });
+            const response = await axios.post("/shopcart", itemInfo);
             return response;
         } catch (err) {
             console.log(err);
