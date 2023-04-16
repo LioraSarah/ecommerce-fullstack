@@ -34,30 +34,10 @@ export const findInCart = (cart, id) => {
     return cart.findIndex((item) => item.id === id);
 };
 
-export function getIndexSize(arr, val, itemSize) {
-    console.log("val");
-    console.log(val);
-    console.log("size");
-    console.log(itemSize);
-    console.log("cart");
-    console.log(arr);
-    let indexes = [], i = 0, j;
-    while (i !== -1) {
-        i = arr.indexOf(val, i);
-        if (i !== -1) {
-            indexes.push(i);
-            i++;
-        }
-    };
-    console.log("indexes");
-    console.log(indexes);
-
-    for (j = 0; j < indexes.length; j++) {
-        if (arr[indexes[j]].size === itemSize) {
-            return indexes[j];
-        }
-    }
-    return -1;
+export function getIndexSize(cart, productName, itemSize) {
+    return cart.findIndex((item) => {
+        return item.product_name === productName && item.size === itemSize;
+    });
 }
 
 //check if object is empty
