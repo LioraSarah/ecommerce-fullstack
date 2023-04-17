@@ -177,5 +177,10 @@
     #logo-div {
         padding-top: 15px;
     }
+
+    #top-nav {
+        justify-content: center;
+        right: 0;
+    }
 }
 
