@@ -18,9 +18,6 @@
     object-fit: cover;
     object-position: 25% 25%;
     cursor: pointer;
-
-    transition-property: box-shadow;
-    transition-duration: 0.3s;
 }
 
 #img-container {
@@ -31,12 +28,7 @@
     position:absolute;
     bottom: 3%;
     left: 2.5%;
-    color: white;
-}
-
-.product-img:hover {
-    -webkit-box-shadow: -5px 6px 10px -2px rgba(0, 0, 0, 0.4);
-    box-shadow: -5px 6px 10px -2px rgba(0, 0, 0, 0.4);
+    color: #7FACFA;
 }
 
 .product-description {

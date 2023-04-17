@@ -18,6 +18,14 @@
     object-fit: cover;
     object-position: 25% 25%;
     cursor: pointer;
+
+    transition-property: box-shadow;
+    transition-duration: 0.3s;
+}
+
+.cart-item-img:hover {
+    -webkit-box-shadow: -5px 6px 10px -2px rgba(0, 0, 0, 0.4);
+    box-shadow: -5px 6px 10px -2px rgba(0, 0, 0, 0.4);
 }
 
 .cart-view-item {
