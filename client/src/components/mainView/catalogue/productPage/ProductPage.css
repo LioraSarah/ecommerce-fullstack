@@ -29,8 +29,8 @@
 
 #magnify {
     position:absolute;
-    bottom: 2%;
-    left: 1%;
+    bottom: 3%;
+    left: 2.5%;
 }
 
 .product-img:hover {
@@ -130,6 +130,11 @@ prod {
     }
 
     .product-img {
+        height: 250px;
+        width: 100%;
+    }
+
+    #img-container {
         height: 250px;
         width: 100%;
     }
