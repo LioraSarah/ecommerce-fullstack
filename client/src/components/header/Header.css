@@ -174,5 +174,8 @@
         clear: both;
     } */
 
+    #logo-div {
+        margin-top: 15px;
+    }
 }
 

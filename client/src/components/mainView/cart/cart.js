@@ -216,7 +216,7 @@ export const Cart = () => {
             {localCart?.map((item, index) => (
               <li className="cart-view-item" key={index}>
                 {/* <NavLink to={item.product_url} className='link-cart'> */}
-                <img src={`../../../media/${item.image_url}.png`} alt={item.product_name} className="cart-item-img" id={item.category + "-" + item.product_id} onClick={moveToProduct} />
+                <img src={`../../../media/${item.image_url}.png`} alt={item.product_name} className="cart-item-img" id={item.category + "-" + item.id} onClick={moveToProduct} />
                 <div className="info">
                   <h4>{item.product_name}</h4>
                   <p className='info-p'>size: {item.size}<br />
