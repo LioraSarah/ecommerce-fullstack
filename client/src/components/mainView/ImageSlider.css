@@ -93,17 +93,12 @@
 
     #banner-text h2 {
         font-size: 2rem;
-        margin: 0;
         padding: 10px 50px;
-        padding-top: 15px;
     }
     
     #banner-text p {
-        /* color: rgb(127, 172, 250); */
-        /* margin-left: 50px; */
         padding: 10px 50px;
         font-size: 0.5rem;
-        /*rgb(237, 174, 210);*/
     }
 
 }
