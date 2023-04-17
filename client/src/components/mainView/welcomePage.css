@@ -27,11 +27,11 @@
 }
 
 #c {
-  align-self: end;  
+  justify-self: end;  
 }
 
 #e {
-  align-self: start;
+  justify-self: start;
 }
 
 .knit-img {
