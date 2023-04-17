@@ -93,11 +93,11 @@
 
     #banner-text h2 {
         font-size: 2rem;
-        padding: 10px 50px;
+        padding: 10px 40px;
     }
     
     #banner-text p {
-        padding: 10px 50px;
+        padding: 10px 20px;
     }
 
 }
