@@ -191,10 +191,20 @@ export const Cart = () => {
     navigate(itemPath);
   }
 
+  const parallax = (e) => {
+    document.querySelectorAll(".knit-img").forEach(function(move) {
+      const moving_value = move.getAttribute("data-value");
+      const x = (e.clientX * moving_value) / 250;
+      const y = (e.clientY * moving_value) / 250;
+
+      move.getElementsByClassName.transform = `translateX(${x}px) translateY(${y}px)`;
+    });
+  };
+
   console.log(cart);
 
   return (
-    <article className="cart-container">
+    <article className="cart-container" onMouseMove={parallax}>
       <div id="knit-content">
       <img src='./media/knit/knitting (1).png' alt='knit' className="knit-img" id="a" />
         <img src='./media/knit/knitting (11).png' alt='knit' className="knit-img" id="b" />

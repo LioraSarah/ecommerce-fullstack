@@ -123,11 +123,11 @@
     grid-column-end: 2;
   }
 
-  #a, #c, #f {
+  #a, #f {
     justify-self: end;
   }
 
-  #b, #g, #e {
+  #b, #g {
     justify-self: start;
   }
   
