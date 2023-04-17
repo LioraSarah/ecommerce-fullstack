@@ -79,7 +79,7 @@
     padding: 10px 0;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     font-size: 0.8rem;
 }
 
@@ -90,7 +90,7 @@
 }
 
 .navbar-links ul {
-    gap: 180px;
+    /* gap: 150px; */
     display: flex;
     align-items: center;
     justify-content: center;
