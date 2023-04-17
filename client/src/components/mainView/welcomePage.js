@@ -14,6 +14,9 @@ export const WelcomePage = () => {
     return (
         <section id="welcome-image">
             {/* <ImageSlider slides={slides} /> */}
+            <div id="content">
+        <h2>hi</h2>
+            </div>
         </section>
     )
 }
