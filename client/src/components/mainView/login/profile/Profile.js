@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { selectFirstName, selectEmail, selectLastName } from '../../../../features/loginSlice';
 import "./profile.css";
 
@@ -9,6 +9,11 @@ export const Profile = () => {
     const firstName = useSelector(selectFirstName);
     const lastName = useSelector(selectLastName);
     const email = useSelector(selectEmail);
+    const navigate = useNavigate();
+
+    if (!firstName) {
+        navigate("/login");
+    };
 
     return (
         <article className="profile">
