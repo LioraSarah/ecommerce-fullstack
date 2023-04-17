@@ -197,7 +197,7 @@ export const Cart = () => {
       const x = (e.clientX * moving_value) / 250;
       const y = (e.clientY * moving_value) / 250;
 
-      move.getElementsByClassName.transform = `translateX(${x}px) translateY(${y}px)`;
+      move.style.transform = `translateX(${x}px) translateY(${y}px)`;
     });
   };
 
