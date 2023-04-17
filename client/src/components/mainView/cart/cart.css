@@ -101,6 +101,31 @@
     padding: 0 2px;
 }
 
+#knit-content {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px 40px;
+    /* width: 80%;
+    margin: 0 auto; */
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+#d {
+    grid-column-start: 2;
+    grid-column-end: span 2;
+    font-size: 2rem;
+}
+
+.knit-img {
+    height: 130px;
+    width: 130px;
+}
+
 @media screen and (max-width: 875px) {
 
     .cart-view-item {

@@ -195,8 +195,8 @@ export const Cart = () => {
 
   return (
     <article className="cart-container">
-      <h3>your cart</h3>
       <div id="cart-cont">
+        <h3>your cart</h3>
         <ul id="cart-view">
           {localCart?.map((item, index) => (
             <li className="cart-view-item" key={index}>
@@ -220,6 +220,15 @@ export const Cart = () => {
         <h5 id="total">total: {calcTotal(localCart)}$</h5>
         <div className="main-button checkout-btn">check out</div>
       </div>
+      {/* <div id="knit-content">
+        <img src='./media/knit/knitting (1).png' alt='knit' className="knit-img" id="a" />
+        <img src='./media/knit/knitting (11).png' alt='knit' className="knit-img" id="b" />
+        <img src='./media/knit/knitting (8).png' alt='knit' className="knit-img" />
+        <h2 id="d">knit love</h2>
+        <img src='./media/knit/knitting (6).png' alt='knit' className="knit-img" />
+        <img src='./media/knit/sweater (2).png' alt='knit' className="knit-img" id="f" />
+        <img src='./media/knit/sweater.png' alt='knit' className="knit-img" id="g" />
+      </div> */}
     </article>
   );
 }

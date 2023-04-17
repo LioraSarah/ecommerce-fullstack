@@ -20,23 +20,10 @@
   align-content: center;
 }
 
-#a, #f {
-  grid-column-start: 2;
-  grid-column-end: span 1;
-  /* display: flex;
-  align-items: center;
-   */
-}
-
 #d {
   grid-column-start: 2;
   grid-column-end: span 2;
   font-size: 2rem;
-}
-
-#b, #g {
-  grid-column-start: 3;
-  grid-column-end: span 1;
 }
 
 .knit-img {
