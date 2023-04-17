@@ -19,6 +19,13 @@
 #a, #f {
   grid-column-start: 1;
   grid-column-end: span 2;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  /* display: flex;
+  align-items: center;
+   */
 }
 
 #d {
