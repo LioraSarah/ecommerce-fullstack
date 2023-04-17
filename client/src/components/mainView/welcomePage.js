@@ -13,7 +13,7 @@ export const WelcomePage = () => {
 
     return (
         <section id="welcome-image">
-            <ImageSlider slides={slides} />
+            {/* <ImageSlider slides={slides} /> */}
         </section>
     )
 }
