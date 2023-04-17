@@ -119,20 +119,11 @@
   #d {
     grid-row-start: 1;
     grid-row-end: span 3;
-    font-size: 2rem;
   }
-  
-  /* #c {
-    justify-self: end;  
-  }
-  
-  #e {
-    justify-self: start;
-  } */
   
   .knit-img {
-    height: 130px;
-    width:130px;
+    height: 100px;
+    width:100px;
   } 
 
 @media screen and (max-width: 875px) {
