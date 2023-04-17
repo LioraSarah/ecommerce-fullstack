@@ -10,6 +10,7 @@ import { selectUserId } from '../../../../features/loginSlice.js';
 import "./ProductPage.css";
 import "../../../../index.css";
 import { getIndexSize } from '../../helper.js';
+import { VscSearch } from 'react-icons/vsc';
 
 export function ProductPage() {
     const [size, setSize] = useState(''); //local state for controlling size selection
@@ -141,6 +142,7 @@ export function ProductPage() {
             <div id="flex-div">
                 <div className="catalog-container">
                     <img src={`../media/${productImage}.png`} alt={product.product_name} className="product-img" onClick={() => setClicked(true)} />
+                    <VscSearch id="magnify" />
                     <form className="product-description" onSubmit={addToCart}>
 
                         <h3 className="product-h3 info-section">{product.product_name}</h3>
