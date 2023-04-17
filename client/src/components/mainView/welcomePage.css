@@ -12,17 +12,17 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px 40px;
-  width: 80%;
-  margin: 0 auto;
+  /* width: 80%;
+  margin: 0 auto; */
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 #a, #f {
   grid-column-start: 1;
   grid-column-end: span 2;
-  justify-items: center;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
   /* display: flex;
   align-items: center;
    */
