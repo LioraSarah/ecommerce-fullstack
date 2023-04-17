@@ -21,10 +21,10 @@ export const ImageSlider = (props) => {
 
     return (
         <div className='slider-wrapper'>
-            <div id="banner-div">
-                <h2>Knit Love</h2>
-                <p>anything hand-knitted</p>
-            </div>
+            <div id="banner-text">
+                    <h2>Knit-love</h2>
+                    <p>Anything hand-knitted</p>
+                </div>
             <div className="slider">
                 <div className="slides">
 
