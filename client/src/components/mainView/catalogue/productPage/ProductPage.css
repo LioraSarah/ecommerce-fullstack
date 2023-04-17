@@ -1,5 +1,4 @@
 .catalog-container {
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,10 +23,14 @@
     transition-duration: 0.3s;
 }
 
+#img-container {
+    position: relative;
+}
+
 #magnify {
     position:absolute;
     bottom: 0;
-    left: 240px;
+    left: 0;
 }
 
 .product-img:hover {

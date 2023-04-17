@@ -141,8 +141,10 @@ export function ProductPage() {
         <div id="prod">
             <div id="flex-div">
                 <div className="catalog-container">
-                    <img src={`../media/${productImage}.png`} alt={product.product_name} className="product-img" onClick={() => setClicked(true)} />
-                    <VscSearch id="magnify" />
+                    <div id="img-container">
+                        <img src={`../media/${productImage}.png`} alt={product.product_name} className="product-img" onClick={() => setClicked(true)} />
+                        <VscSearch id="magnify" />
+                    </div>
                     <form className="product-description" onSubmit={addToCart}>
 
                         <h3 className="product-h3 info-section">{product.product_name}</h3>
