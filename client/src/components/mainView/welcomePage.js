@@ -19,9 +19,9 @@ export const WelcomePage = () => {
                 <img src='./media/knit/knitting (1).png' alt='knit' className="knit-img" id="a"/>
                 <img src='./media/knit/knitting (11).png' alt='knit' className="knit-img" id="b"/>
                 <div></div>
-                <img src='./media/knit/knitting (8).png' alt='knit' className="knit-img" />
+                <img src='./media/knit/knitting (8).png' alt='knit' className="knit-img" id="c"/>
                 <h2 id="d">knit love</h2>
-                <img src='./media/knit/knitting (6).png' alt='knit' className="knit-img" />
+                <img src='./media/knit/knitting (6).png' alt='knit' className="knit-img" id="e"/>
                 <div></div>
                 <img src='./media/knit/sweater (2).png' alt='knit' className="knit-img" id="f"/>
                 <img src='./media/knit/sweater.png' alt='knit' className="knit-img" id="g"/>

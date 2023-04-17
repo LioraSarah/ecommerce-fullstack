@@ -26,6 +26,14 @@
   font-size: 2rem;
 }
 
+#c {
+  align-self: end;  
+}
+
+#e {
+  align-self: start;
+}
+
 .knit-img {
   height: 130px;
   width:130px;
