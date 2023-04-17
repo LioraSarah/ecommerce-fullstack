@@ -1,6 +1,6 @@
 .catalog-container {
     display: flex;
-    align-items:center;
+    align-items: center;
     justify-content: center;
     column-gap: 85px;
     font-weight: 100;
@@ -16,8 +16,16 @@
     height: 450px;
     width: 300px;
     object-fit: cover;
-    object-position: 25% 25%; 
+    object-position: 25% 25%;
     cursor: pointer;
+
+    transition-property: box-shadow;
+    transition-duration: 0.3s;
+}
+
+.product-img:hover {
+    -webkit-box-shadow: -2px 3px 6px -1px rgba(0, 0, 0, 0.78);
+    box-shadow: -2px 3px 6px -1px rgba(0, 0, 0, 0.78);
 }
 
 .product-description {
