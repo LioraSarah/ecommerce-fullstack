@@ -21,6 +21,11 @@
   grid-column-end: span 2;
 }
 
+#d {
+  grid-column-start: 2;
+  grid-column-end: span 2;
+}
+
 #b, #g {
   grid-column-start: 3;
   grid-column-end: span 2;
