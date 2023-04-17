@@ -31,6 +31,7 @@
 #d {
   grid-column-start: 2;
   grid-column-end: span 2;
+  font-size: 2rem;
 }
 
 #b, #g {
