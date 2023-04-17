@@ -28,7 +28,7 @@
     position:absolute;
     bottom: 3%;
     left: 2.5%;
-    color: rgb(237, 174, 210);
+    font-weight: 700;
 }
 
 .product-description {
