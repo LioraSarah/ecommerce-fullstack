@@ -119,6 +119,8 @@
   #d {
     grid-row-start: 1;
     grid-row-end: span 3;
+    grid-column-start: 2;
+    grid-column-end: 2;
   }
   
   .knit-img {
