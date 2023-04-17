@@ -206,9 +206,9 @@ export const Cart = () => {
   return (
     <article className="cart-container" onMouseMove={parallax}>
       <div id="knit-content">
-      <img src='./media/knit/knitting (1).png' alt='knit' className="knit-img" id="a" />
-        <img src='./media/knit/knitting (11).png' alt='knit' className="knit-img" id="b" />
-        <img src='./media/knit/knitting (8).png' alt='knit' className="knit-img" id="c"/>
+      <img src='./media/knit/knitting (1).png' alt='knit' className="knit-img" data-value="-2" id="a" />
+        <img src='./media/knit/knitting (11).png' alt='knit' className="knit-img" data-value="6" id="b" />
+        <img src='./media/knit/knitting (8).png' alt='knit' className="knit-img" data-value="4" id="c"/>
         <div className="cart-cont" id="d">
           <h3>your cart</h3>
           <ul id="cart-view">
@@ -234,9 +234,9 @@ export const Cart = () => {
           <h5 id="total">total: {calcTotal(localCart)}$</h5>
           <div className="main-button checkout-btn">check out</div>
         </div>
-        <img src='./media/knit/knitting (6).png' alt='knit' className="knit-img" id="e"/>
-        <img src='./media/knit/sweater (2).png' alt='knit' className="knit-img" id="f" />
-        <img src='./media/knit/sweater.png' alt='knit' className="knit-img" id="g" />
+        <img src='./media/knit/knitting (6).png' alt='knit' className="knit-img" data-value="-6" id="e"/>
+        <img src='./media/knit/sweater (2).png' alt='knit' className="knit-img" data-value="8" id="f" />
+        <img src='./media/knit/sweater.png' alt='knit' className="knit-img" data-value="-4" id="g" />
       </div>
     </article>
   );
