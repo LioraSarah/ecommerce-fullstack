@@ -160,4 +160,13 @@
         margin-bottom: 1.4em;
     }
 
+    .knit-img {
+        display: none;
+    }
+
+    #knit-content {
+        width: 100%;
+        height: 100%;
+        display:inherit;
+    }
 }
