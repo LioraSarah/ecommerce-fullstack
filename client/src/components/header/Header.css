@@ -174,8 +174,8 @@
         clear: both;
     } */
 
-    #logo-div {
-        margin-top: 15px;
+    #top-nav {
+        padding-bottom: 15px;
     }
 }
 
