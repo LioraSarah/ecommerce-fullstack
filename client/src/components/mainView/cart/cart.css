@@ -107,7 +107,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: repeat(3, 1fr);
-    gap: 20px 40px;
+    gap: 40px 40px;
     /* width: 80%;
     margin: 0 auto; */
     justify-items: center;
@@ -123,11 +123,11 @@
     grid-column-end: 2;
   }
 
-  #a, #c, #e {
+  #a, #c, #f {
     justify-self: end;
   }
 
-  #b, #d, #f {
+  #b, #g, #e {
     justify-self: start;
   }
   
