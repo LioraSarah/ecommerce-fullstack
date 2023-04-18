@@ -148,7 +148,6 @@ export const Cart = () => {
   useEffect(() => { //refetch the cart everytime there is a change in the cart
     if (cart) {
       dispatch(setCart(cart));
-      // dispatch(loadCart());
       console.log("in load cart");
     }
   }, [dispatch, cart]);
