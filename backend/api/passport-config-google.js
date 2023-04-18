@@ -4,8 +4,8 @@ const google = require("./db-google-login");
 
 function initializePassportGoogle(passport) {
   passport.use(new GoogleStrategy({
-    clientID: '504948731334-bkoesvifmjg80dvnka7iccr21hdifum4.apps.googleusercontent.com',
-    clientSecret: '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',
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "/auth/google/callback"
   },
     async function (req, accessToken, refreshToken, profile, done) {

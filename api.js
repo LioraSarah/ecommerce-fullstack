@@ -41,7 +41,7 @@ initializePassportFacebook(passport);
 //session init
 app.use(
     session({
-        secret: 'sessionsecret',
+        secret: process.env.SECRET,
         resave: true,
         saveUninitialized: true
     })
