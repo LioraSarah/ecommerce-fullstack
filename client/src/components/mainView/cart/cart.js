@@ -41,7 +41,6 @@ export const Cart = () => {
     refetch
   } = useQuery(["cart"], queryCart,
     {
-      force: true,
       onSuccess,
     }
   );
@@ -142,6 +141,7 @@ export const Cart = () => {
   };
 
   useEffect(() => { //refetch the cart everytime there is a change in the cart
+    console.log("refetch");
     refetch();
   }, [refetch]);
 
