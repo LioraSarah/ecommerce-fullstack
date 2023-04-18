@@ -4,7 +4,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { selectCartItems } from "../../../features/cartSlice";
 import { loadCart, removeItem, setCart, updateQuantity } from "../../../features/cartSlice.js";
-import { selectUserId } from '../../../features/loginSlice';
+import { selectUserId, loaduser } from '../../../features/loginSlice';
 import "./cart.css";
 import { getIndexSize } from '../helper.js';
 import { useNavigate } from 'react-router-dom';
@@ -155,6 +155,10 @@ export const Cart = () => {
   useEffect(() => { //refetch the cart everytime there is a change in the cart
     dispatch(loadCart());
   }, [dispatch, localCart]);
+
+  // useEffect(() => { //refetch the cart everytime there is a change in the cart
+  //   dispatch(loaduser());
+  // }, [dispatch]);
 
   const handleRemoveClick = async (e) => {
     if (userId) { //remove from db only if neccessary - only if there is a logged in user
