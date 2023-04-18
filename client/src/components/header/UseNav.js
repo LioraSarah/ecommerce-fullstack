@@ -32,6 +32,7 @@ export const UserNav = () => {
     const handleClick = () => {
         logOutUserMutation.mutate();
         dispatch(clearCart());
+//        dispatch(loadCart());
         navigate('/login'); // navigate to the login page after the user has logged out
     }
 

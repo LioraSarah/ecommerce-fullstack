@@ -4,7 +4,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { selectCartItems } from "../../../features/cartSlice";
 import { loadCart, removeItem, setCart, updateQuantity } from "../../../features/cartSlice.js";
-import { selectUserId, loaduser } from '../../../features/loginSlice';
+import { selectUserId } from '../../../features/loginSlice';
 import "./cart.css";
 import { getIndexSize } from '../helper.js';
 import { useNavigate } from 'react-router-dom';
@@ -56,7 +56,6 @@ export const Cart = () => {
 
   const removeItemMutation = useMutation(removeItemFromDB, { refetchQueries: [{ query: queryCart }] });
 
-
   const updateItemInDB = async (itemInfo) => { //also for useMutation
     try {
       const response = await axios.post("/shopcart", itemInfo);
@@ -101,77 +100,6 @@ export const Cart = () => {
       dispatch(loadCart());
     }
   }
-
-  // const decreaseItem = async (e) => { //decrease the item quantity down until 1 and not under 1
-  //   console.log("e.target.innerHTML");
-  //   console.log(e.target.innerHTML);
-  //   const productClass = e.target.className; //a className with the neccessary product details for update
-  //   const productClassArray = productClass.split(" qbtn ");
-  //   const productName = productClassArray[0];
-  //   const productSize = productClassArray[1];
-  //   console.log(productName);
-  //   console.log(productSize);
-  //   const index = getIndexSize(localCart, productName, productSize); //find item in cart to change quantity
-  //   console.log(index);
-  //   const newQuantity = localCart[index].quantity - 1;
-  //   if (newQuantity > 0) { //only change quantity if grater than 0
-  //     dispatch(updateQuantity({ index: index, quantity: newQuantity })); //update quantity in redux state
-  //     let cartItemId = localCart[index].cart_id;
-  //     if (!cartItemId) { //if the cart is not from the db (no user is logged in)
-  //       cartItemId = localCart[index].id;
-  //     }
-  //     console.log("in decrease");
-  //     if (userId) { //if a user is logged in, change quantity in db
-  //       try {
-  //         updateItemMutation.mutate({
-  //           userId: userId,
-  //           id: cartItemId,
-  //           quantity: newQuantity
-  //         });
-  //       } catch (err) {
-  //         console.log(err);
-  //       }
-  //     }
-  //     dispatch(loadCart()); //load redux cart to be up to date after quantity change
-  //   }
-  // };
-
-  // //using useCallback because it is a dependency of useEffect
-  // const increaseItem = async (e) => { //increase the item quantity up until 3 and not above 3
-  //   console.log("e.target.className");
-  //   console.log(localCart);
-  //   const productClass = e.target.className;
-  //   const productClassArray = productClass.split(" qbtn ");
-  //   const productName = productClassArray[0];
-  //   const productSize = productClassArray[1];
-  //   console.log(productName);
-  //   console.log(productSize);
-  //   const index = getIndexSize(localCart, productName, productSize); //find item in cart to change quantity
-  //   console.log(index);
-  //   const newQuantity = localCart[index].quantity + 1;
-  //   if (newQuantity <= 3) { //only change quantity if less than or equal to 3
-  //     dispatch(updateQuantity({ index: index, quantity: newQuantity }));
-  //     let cartItemId = localCart[index].cart_id;
-  //     if (!cartItemId) { //if the cart is not from the db (no user is logged in)
-  //       cartItemId = localCart[index].id;
-  //     }
-  //     console.log("increase");
-  //     console.log("quantity");
-  //     console.log(newQuantity);
-  //     if (userId) { //if a user is logged in, change quantity in db
-  //       try {
-  //         updateItemMutation.mutate({
-  //           userId: userId,
-  //           id: cartItemId,
-  //           quantity: newQuantity
-  //         });
-  //       } catch (err) {
-  //         console.log(err);
-  //       }
-  //     }
-  //     dispatch(loadCart()); //load redux cart to be up to date after quantity change
-  //   }
-  // };
 
   useEffect(() => { //refetch the cart everytime there is a change in the cart
     console.log("refetch");
@@ -232,8 +160,10 @@ export const Cart = () => {
   return (
     <article className="cart-container" onMouseMove={parallax}>
       <div id="knit-content">
-        <img src='./media/knit/knitting (1).png' alt='knit' className="knit-img" data-value="-2" id="a" />
-        <img src='./media/knit/knitting (11).png' alt='knit' className="knit-img" data-value="6" id="b" />
+        {/* <img src='./media/knit/knitting (1).png' alt='knit' className="knit-img" data-value="-2" id="a" />
+        <img src='./media/knit/knitting (11).png' alt='knit' className="knit-img" data-value="6" id="b" /> */}
+        <div></div>
+        <div></div>
         <img src='./media/knit/knitting (8).png' alt='knit' className="knit-img" data-value="4" id="c" />
         <div className="cart-cont" id="d">
           <h3>your cart</h3>
@@ -261,8 +191,8 @@ export const Cart = () => {
           <div className="main-button checkout-btn">check out</div>
         </div>
         <img src='./media/knit/knitting (6).png' alt='knit' className="knit-img" data-value="-6" id="e" />
-        <img src='./media/knit/sweater.png' alt='knit' className="knit-img" data-value="8" id="f" />
-        <img src='./media/knit/sweater (2).png' alt='knit' className="knit-img" data-value="4" id="g" />
+        <img src='./media/knit/sweater (2).png' alt='knit' className="knit-img" data-value="8" id="f" />
+        <img src='./media/knit/knitting (11).png' alt='knit' className="knit-img" data-value="4" id="g" />
       </div>
     </article>
   );
