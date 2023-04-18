@@ -41,6 +41,7 @@ export const Cart = () => {
     refetch
   } = useQuery(["cart"], queryCart,
     {
+      refetchOnMount: "always",
       onSuccess,
     }
   );
