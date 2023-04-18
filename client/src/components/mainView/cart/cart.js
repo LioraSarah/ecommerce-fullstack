@@ -68,11 +68,14 @@ export const Cart = () => {
 
   const updateItemMutation = useMutation(updateItemInDB, { refetchQueries: [{ query: queryCart }] });
 
-  //using useCallback because it is a dependency of useEffect
+  // const changeQuantity = async (e) => {
+
+  // }
+
   const decreaseItem = async (e) => { //decrease the item quantity down until 1 and not under 1
-    console.log("e.target.className");
-    console.log(localCart);
-    const productClass = e.target.className;
+    console.log("e.target.innerHTML");
+    console.log(e.target.innerHTML);
+    const productClass = e.target.className; //a className with the neccessary product details for update
     const productClassArray = productClass.split(" qbtn ");
     const productName = productClassArray[0];
     const productSize = productClassArray[1];
