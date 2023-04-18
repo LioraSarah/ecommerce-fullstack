@@ -133,8 +133,8 @@
   }
   
   .knit-img {
-    height: 70px;
-    width: 70px;
+    height: 60px;
+    width: 0px;
   } 
 
 @media screen and (max-width: 875px) {
