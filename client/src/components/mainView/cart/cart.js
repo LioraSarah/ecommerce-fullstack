@@ -164,7 +164,7 @@ export const Cart = () => {
         <img src='./media/knit/knitting (11).png' alt='knit' className="knit-img" data-value="6" id="b" /> */}
         <div></div>
         <div></div>
-        <img src='./media/knit/knitting (8).png' alt='knit' className="knit-img" data-value="6" id="c" />
+        <img src='./media/knit/knitting (8).png' alt='knit' className="knit-img" data-value="4" id="c" />
         <div className="cart-cont" id="d">
           <h3>your cart</h3>
           <ul id="cart-view">
