@@ -156,9 +156,9 @@ export const Cart = () => {
     dispatch(loadCart());
   }, [dispatch, localCart]);
 
-  // useEffect(() => { //refetch the cart everytime there is a change in the cart
-  //   dispatch(loaduser());
-  // }, [dispatch]);
+  useEffect(() => { //refetch the cart everytime there is a change in the cart
+    dispatch(loaduser());
+  }, [dispatch]);
 
   const handleRemoveClick = async (e) => {
     if (userId) { //remove from db only if neccessary - only if there is a logged in user
