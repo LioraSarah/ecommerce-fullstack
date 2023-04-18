@@ -70,6 +70,8 @@ export const Cart = () => {
 
   const changeQuantity = async (e) => {
     const isDecrease = e.target.innerHTML === " - ";
+    console.log("is decrease");
+    console.log(isDecrease)
     const productClass = e.target.className; //a className with the neccessary product details for update
     const productClassArray = productClass.split(" qbtn ");
     const productName = productClassArray[0];
