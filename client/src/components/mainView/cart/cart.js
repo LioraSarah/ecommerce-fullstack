@@ -236,8 +236,8 @@ export const Cart = () => {
           <div className="main-button checkout-btn">check out</div>
         </div>
         <img src='./media/knit/knitting (6).png' alt='knit' className="knit-img" data-value="-6" id="e"/>
-        <img src='./media/knit/sweater (2).png' alt='knit' className="knit-img" data-value="8" id="f" />
-        <img src='./media/knit/sweater.png' alt='knit' className="knit-img" data-value="4" id="g" />
+        <img src='./media/knit/sweater.png' alt='knit' className="knit-img" data-value="8" id="f" />
+        <img src='./media/knit/sweater (2).png' alt='knit' className="knit-img" data-value="4" id="g" />
       </div>
     </article>
   );
