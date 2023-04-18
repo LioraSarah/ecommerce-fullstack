@@ -170,4 +170,8 @@
         height: 100%;
         display:inherit;
     }
+
+    .cart-container h3 {
+        text-align: center;
+    }
 }
