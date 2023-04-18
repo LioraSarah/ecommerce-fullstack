@@ -71,7 +71,7 @@ export const Cart = () => {
   const changeQuantity = async (e) => {
     const isDecrease = e.target.innerHTML === " - ";
     console.log("is decrease");
-    console.log(isDecrease)
+    console.log(isDecrease);
     const productClass = e.target.className; //a className with the neccessary product details for update
     const productClassArray = productClass.split(" qbtn ");
     const productName = productClassArray[0];
@@ -80,7 +80,7 @@ export const Cart = () => {
 
     const newQuantity = isDecrease ? (localCart[index].quantity - 1) : (localCart[index].quantity + 1);
 
-    if ((isDecrease && newQuantity > 0) || (newQuantity <= 3)) {
+    if ((isDecrease && newQuantity > 0) || (!isDecrease && newQuantity <= 3)) {
       dispatch(updateQuantity({ index: index, quantity: newQuantity })); //update quantity in redux state
       let cartItemId = localCart[index].cart_id;
       if (!cartItemId) { //if the cart is not from the db (no user is logged in)
