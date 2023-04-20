@@ -5,7 +5,6 @@ module.exports = {
     addToCart: async (details) => {
         //we are returning a promise in order to make the operation Asynchronic
         return new Promise((resolve, reject) => {
-            console.log(details.productSize);
             pool.query(`INSERT INTO public.cart(id, user_id, product_id, quantity, size)
             VALUES (DEFAULT, '${details.userId}', ${details.productId}, ${details.quantity}, '${details.productSize}');`, (err, result) => {
                 if (!err) {
