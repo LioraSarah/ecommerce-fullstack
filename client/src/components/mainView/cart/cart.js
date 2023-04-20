@@ -18,18 +18,13 @@ export const Cart = () => {
 
   const queryCart = async () => {
     if (userId) { //only query the cart if the user is logged in
-      console.log("in cart query");
-      console.log(userId);
       const res = await axios.get("/shopcart", { params: { userId: userId } });
-      console.log(res);
       return res.data;
     };
   };
 
   //onSuccess method for useQuery, if success, set the cart in the redux state
   const onSuccess = (data) => {
-    console.log("on success cart");
-    console.log(data);
     dispatch(setCart(data));
     return data;
   }
@@ -69,8 +64,6 @@ export const Cart = () => {
 
   const changeQuantity = async (e) => {
     const isDecrease = e.target.innerHTML === " - ";
-    console.log("is decrease");
-    console.log(isDecrease);
     const productClass = e.target.className; //a className with the neccessary product details for update
     const productClassArray = productClass.split(" qbtn ");
     const productName = productClassArray[0];
@@ -85,7 +78,6 @@ export const Cart = () => {
       if (!cartItemId) { //if the cart is not from the db (no user is logged in)
         cartItemId = localCart[index].id;
       }
-      console.log("in change quantity");
       if (userId) { //if a user is logged in, change quantity in db
         try {
           updateItemMutation.mutate({
@@ -102,7 +94,6 @@ export const Cart = () => {
   }
 
   useEffect(() => { //refetch the cart everytime there is a change in the cart
-    console.log("refetch");
     refetch();
   }, [refetch, userId]);
 
@@ -113,8 +104,6 @@ export const Cart = () => {
   const handleRemoveClick = async (e) => {
     if (userId) { //remove from db only if neccessary - only if there is a logged in user
       try {
-        console.log("remove id:");
-        console.log(Number(e.target.id));
         removeItemMutation.mutate({ userId: userId, id: Number(e.target.id) });
       } catch (err) {
         console.log(err);
@@ -153,9 +142,6 @@ export const Cart = () => {
       move.style.transform = `translateX(${x}px) translateY(${y}px)`;
     });
   };
-
-  console.log(cart);
-  console.log(localCart);
 
   return (
     <article className="cart-container" onMouseMove={parallax}>
