@@ -96,8 +96,6 @@ app.get('/auth/facebook/callback',
 app.get("/verify/user/:id/:token", async (req, res) => {
     const id = req.params.id;
     const token = req.params.token;
-    console.log("request params:");
-    console.log(req.params);
     const verifiedUser = await verifyMail.verifyUser(token, id);
     if (verifiedUser) {
         res.status(200).send(true);
@@ -110,7 +108,6 @@ app.get("/verify/user/:id/:token", async (req, res) => {
 app.post("/login", passport.authenticate('local', {
     failureRedirect: "/loginfail"
 }), (req, res) => {
-    console.log(req.user);
     if (req.user && req.user.verified) {
         const user = {
             id: req.user.id,
@@ -129,10 +126,7 @@ app.post("/login", passport.authenticate('local', {
 
 //get user info from current session
 app.get("/user", (req, res)=>{
-    console.log(req.user);
     if (req.user) {
-        console.log("in api");
-          console.log(req.user.email);
         const user = {
             id: req.user.id,
             firstName: req.user.first_name,
@@ -143,7 +137,6 @@ app.get("/user", (req, res)=>{
         }
         res.status(200).send(user);
     } else {
-        console.log('none');
         res.status(200).send();
     }
 });
@@ -163,7 +156,6 @@ app.get("/product", async (req, res) => {
     const { productId } = req.query;
     try {
         const response = await catalogue.getItem(productId);
-        console.log(response)
         res.status(200).send(response);
     } catch (error) {
         console.log(error);
