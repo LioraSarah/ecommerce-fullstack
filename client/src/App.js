@@ -48,7 +48,7 @@ function App() {
   let location = useLocation();
   const bottomUl = document.getElementById("bottomUl");
 
-  useEffect(() => {
+  useEffect(() => { //used for responsive menu, to close the menu after location change
     const bottomUl = document.getElementById("bottomUl");
     if (bottomUl && bottomUl.classList.contains('active')) {
       bottomUl.classList.remove('active');
