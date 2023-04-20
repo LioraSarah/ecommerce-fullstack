@@ -22,8 +22,6 @@ export function ProductPage() {
     let cart = useSelector(selectCartItems);
     const navigate = useNavigate();
 
-    console.log(productId);
-
     const onSuccess = (data) => { //onSuccess for useQuery
         dispatch(setCurrentProduct({ product: data, quantity: 1 }));
     }
