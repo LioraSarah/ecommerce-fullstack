@@ -86,10 +86,6 @@ export function ProductPage() {
     const addToCart = (e) => {
         e.preventDefault();
         const index = getIndexSize(cart, product.product_name, size);
-        console.log("cart zise");
-        console.log(cart[index]);
-        console.log("item size");
-        console.log(size);
         if (index >= 0) { //if item is already in cart with same size, only update it's quantity in cart (up to 3)
             let newQuantity
             if (cart[index].quantity <= 3) { //only add quantity if less or equal to 3
@@ -117,7 +113,6 @@ export function ProductPage() {
             };
             dispatch(addItem(cartItem));
             if (userId) { // if a user is logged in, add the new item to db too
-                console.log("in userid add new");
                 try {
                     addItemMutation.mutate({ productId: product.id, userId: userId, quantity: quantity, size: size, product_url: productURL });
                 } catch (err) {
@@ -125,7 +120,6 @@ export function ProductPage() {
                 }
             }
         }
-        console.log(cart);
         navigate('/cart'); //navigate to cart page after adding to cart
     };
 
