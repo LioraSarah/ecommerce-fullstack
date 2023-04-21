@@ -85,13 +85,8 @@ export function ProductPage() {
         e.preventDefault();
         const index = getIndexSize(cart, product.product_name, size);
         if (index >= 0) { //if item is already in cart with same size, only update it's quantity in cart (up to 3)
-            let newQuantity
-            if (cart[index].quantity <= 3) { //only add quantity if less or equal to 3
-                newQuantity = cart[index].quantity + quantity;
-            } else {
-                newQuantity = quantity;
-            }
-            if (newQuantity <= 3) {
+            const newQuantity = cart[index].quantity + quantity;
+            if (newQuantity <= 3) { //only add quantity if less or equal to 3
                 dispatch(updateQuantity({ index: index, quantity: newQuantity }));
                 const itemInfo = cart[index];
                 if (userId) { //only update in db if a user is logged in
