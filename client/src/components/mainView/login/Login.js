@@ -24,7 +24,6 @@ export function Login() {
                 withCredentials: true,
                 url: "/login"
             });
-            console.log(response);
             if (response.data.verified) { //only log in if user is verified
                 dispatch(setUser(response.data)); //set logged in user details in redux state 
                 dispatch(setAuthenticated(true));
